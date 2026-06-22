@@ -4,6 +4,8 @@ Javier Ramos's developer "showroom": each exhibit shows both the shipped product
 
 Repo: https://github.com/jiramos87/portfolio (public). Kit: https://github.com/jiramos87/agentic-dev-kit (`~/projects/agentic-dev-kit`).
 
+Companion docs: `docs/PRD.md` (requirements — what/why/acceptance), `docs/build-plan.md` (progress log). Per-feature PRDs go in `docs/prd/`.
+
 ## Stack (locked)
 - Monorepo: pnpm + Turborepo. `apps/web` (Next.js App Router) + `apps/api` (NestJS REST). `packages/*` shared.
 - Postgres + Prisma. Hosting: Vercel (web) + Railway (api + db + a nightly GitHub-stats job).
