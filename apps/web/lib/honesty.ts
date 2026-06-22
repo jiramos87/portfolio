@@ -33,21 +33,113 @@ export function metricTag(kind: MetricKind): HonestyTag {
   return "PLACEHOLDER";
 }
 
+/**
+ * Legacy byte-percentage slice. Still used by the design-system donut demo;
+ * the live activity block now renders curated `Stack`s (no percentages).
+ */
 export interface LanguageSlice {
   name: string;
   pct: number;
 }
 
-/** Narrow the `unknown` languages payload into a typed, validated array. */
-export function parseLanguages(raw: unknown): LanguageSlice[] {
+/**
+ * Curated primary stacks ("what I build in") — honest self-representation, NOT a
+ * byte measurement. The activity payload ships an ordered list of `{ name }`.
+ */
+export interface Stack {
+  name: string;
+}
+
+/**
+ * Narrow the `unknown` languages payload into an ordered list of stack names.
+ * Accepts the curated `[{ name }]` shape; also tolerates the legacy
+ * `[{ name, pct }]` shape (the `pct` is simply ignored).
+ */
+export function parseStacks(raw: unknown): Stack[] {
   if (!Array.isArray(raw)) return [];
   return raw
     .filter(
-      (item): item is LanguageSlice =>
+      (item): item is Stack =>
         typeof item === "object" &&
         item !== null &&
-        typeof (item as Record<string, unknown>).name === "string" &&
-        typeof (item as Record<string, unknown>).pct === "number",
+        typeof (item as Record<string, unknown>).name === "string",
     )
-    .map((item) => ({ name: item.name, pct: item.pct }));
+    .map((item) => ({ name: item.name }));
+}
+
+/** One day in the contribution calendar. */
+export interface CalendarDay {
+  date: string;
+  count: number;
+}
+
+/** A single week column of the heatmap. */
+export interface CalendarWeek {
+  days: CalendarDay[];
+}
+
+/** A normalized point of the contributions-over-time series. */
+export interface SeriesPoint {
+  date: string;
+  count: number;
+}
+
+/** The supported chart ranges (mirrors the API's normalized series keys). */
+export type SeriesRange = "1D" | "7D" | "1M" | "1Y";
+
+export type ContributionsSeries = Record<SeriesRange, SeriesPoint[]>;
+
+function isRecord(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null;
+}
+
+/** Narrow the `unknown` calendar payload into the validated heatmap weeks. */
+export function parseCalendarWeeks(raw: unknown): CalendarWeek[] {
+  if (!isRecord(raw)) return [];
+  const weeks = raw.weeks;
+  if (!Array.isArray(weeks)) return [];
+  return weeks
+    .map((week): CalendarWeek | null => {
+      if (!isRecord(week) || !Array.isArray(week.days)) return null;
+      const days = week.days
+        .filter(
+          (d): d is CalendarDay =>
+            isRecord(d) &&
+            typeof d.date === "string" &&
+            typeof d.count === "number",
+        )
+        .map((d) => ({ date: d.date, count: d.count }));
+      return { days };
+    })
+    .filter((w): w is CalendarWeek => w !== null && w.days.length > 0);
+}
+
+function parseSeriesPoints(raw: unknown): SeriesPoint[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter(
+      (p): p is SeriesPoint =>
+        isRecord(p) &&
+        typeof p.date === "string" &&
+        typeof p.count === "number",
+    )
+    .map((p) => ({ date: p.date, count: p.count }));
+}
+
+/** Narrow the `unknown` calendar payload into the normalized time series. */
+export function parseContributionsSeries(
+  raw: unknown,
+): ContributionsSeries | null {
+  if (!isRecord(raw) || !isRecord(raw.series)) return null;
+  const series = raw.series;
+  const out: ContributionsSeries = {
+    "1D": parseSeriesPoints(series["1D"]),
+    "7D": parseSeriesPoints(series["7D"]),
+    "1M": parseSeriesPoints(series["1M"]),
+    "1Y": parseSeriesPoints(series["1Y"]),
+  };
+  const hasAny = (Object.values(out) as SeriesPoint[][]).some(
+    (pts) => pts.length > 0,
+  );
+  return hasAny ? out : null;
 }

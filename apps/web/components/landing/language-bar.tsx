@@ -1,51 +1,33 @@
-import type { LanguageSlice } from "@/lib/honesty";
-
-const BAR_COLORS = [
-  "bg-primary",
-  "bg-chart-2",
-  "bg-chart-3",
-  "bg-chart-4",
-  "bg-muted-foreground",
-];
+import { cn } from "@/lib/utils";
+import type { Stack } from "@/lib/honesty";
 
 /**
- * Language & tech breakdown. `activity.languages` carries real-looking design
- * values; render the bars but flag them as approximate / live pull pending.
+ * Primary stacks — a curated, ordered list of the languages & frameworks Javier
+ * builds in. Honest "what I work in", NOT a byte breakdown: raw GitHub bytes are
+ * dominated by generated/vendored/game files that hide the real TypeScript.
+ * Rendered as mono chips, with the primary (first) stack carrying the cyan accent.
  */
-export function LanguageBar({
-  languages,
-  approximate,
-}: {
-  languages: LanguageSlice[];
-  approximate: boolean;
-}) {
+export function LanguageBar({ stacks }: { stacks: Stack[] }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium">Language &amp; tech breakdown</h3>
-        {approximate ? (
-          <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-            approximate · live pull pending
-          </span>
-        ) : null}
-      </div>
+      <h3 className="text-sm font-medium">Primary stacks</h3>
       <p className="mt-1 text-xs text-muted-foreground">
-        across public + private repositories
+        the languages &amp; frameworks I build in
       </p>
 
-      <ul className="mt-4 space-y-3">
-        {languages.map((lang, i) => (
-          <li key={lang.name}>
-            <div className="flex items-center justify-between font-mono text-xs">
-              <span className="text-foreground">{lang.name}</span>
-              <span className="text-muted-foreground tabular-nums">{lang.pct}%</span>
-            </div>
-            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-              <div
-                className={`${BAR_COLORS[i % BAR_COLORS.length]} h-full rounded-full`}
-                style={{ width: `${lang.pct}%` }}
-              />
-            </div>
+      <ul className="mt-4 flex flex-wrap gap-2">
+        {stacks.map((stack, i) => (
+          <li key={stack.name}>
+            <span
+              className={cn(
+                "inline-flex items-center rounded-sm border px-2 py-1 font-mono text-xs",
+                i === 0
+                  ? "border-primary/40 bg-primary/15 text-primary"
+                  : "border-border bg-muted text-foreground",
+              )}
+            >
+              {stack.name}
+            </span>
           </li>
         ))}
       </ul>

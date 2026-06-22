@@ -7,7 +7,7 @@ import { TagChip } from "@/components/site/tag-chip";
 import { MetricChip } from "@/components/site/metric-chip";
 import { Timeline } from "@/components/projects/timeline";
 import { LanguageBar } from "@/components/landing/language-bar";
-import type { LanguageSlice } from "@/lib/honesty";
+import type { LanguageSlice, Stack } from "@/lib/honesty";
 
 export const metadata: Metadata = {
   title: "Design system — Javier Ramos",
@@ -48,6 +48,14 @@ const DEMO_LANGS: LanguageSlice[] = [
   { name: "JavaScript", pct: 12 },
   { name: "CSS", pct: 9 },
   { name: "Other", pct: 7 },
+];
+
+const DEMO_STACKS: Stack[] = [
+  { name: "TypeScript" },
+  { name: "JavaScript" },
+  { name: "C#" },
+  { name: "Python" },
+  { name: "SQL" },
 ];
 
 const DEMO_TIMELINE = [
@@ -332,7 +340,7 @@ export default function DesignSystemPage() {
           </div>
 
           <div>
-            <LanguageBar languages={DEMO_LANGS} approximate />
+            <LanguageBar stacks={DEMO_STACKS} />
           </div>
         </div>
       </Section>
