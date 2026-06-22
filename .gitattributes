@@ -1,0 +1,4 @@
+# design-reference/ is a vendored design handoff bundle — it never ships
+# (see CLAUDE.md). Exclude it from GitHub Linguist so it doesn't skew the
+# repo's language statistics (it's ~370 KB of HTML/JS).
+design-reference/** linguist-vendored
