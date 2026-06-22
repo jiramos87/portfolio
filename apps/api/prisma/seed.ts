@@ -7,7 +7,8 @@ import {
 } from '../src/generated/prisma/client';
 
 /**
- * Seed the 3 launch exhibits + one activity snapshot.
+ * Seed the 3 launch exhibits + one activity snapshot. Content matches the
+ * design (design-reference/ + docs/m4-design-spec.md).
  *
  * Honesty principle (docs/PRD.md §3): only real numbers ship. Metrics carry a
  * `kind` of "real" | "placeholder" | "target"; the activity snapshot is flagged
@@ -23,21 +24,13 @@ const GH = 'https://github.com/jiramos87';
 const projects = [
   {
     slug: 'portfolio',
-    name: 'Portfolio Showroom',
+    name: 'This Portfolio',
     tagline:
-      'A developer showroom that proves the product and the way it was built.',
+      'A full-stack showroom that presents the product and exactly how it was built with agents.',
     problem:
-      'Most portfolios show only the finished product. This one shows the build too — the PRD, the commit/PR/deploy timeline, the metrics, and the agentic workflow behind each exhibit.',
-    stack: [
-      'Next.js',
-      'NestJS',
-      'Postgres',
-      'Prisma',
-      'TypeScript',
-      'Tailwind CSS',
-      'Turborepo',
-    ],
-    toolsUsed: ['Claude Code', 'MCP', 'PRD loop', 'Claude Design'],
+      'Most portfolios show only the finished product. This one shows the build too — the PRD, the commit/PR/deploy timeline, the metrics, and the agent-driven workflow behind each exhibit.',
+    stack: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma'],
+    toolsUsed: ['Claude Code', 'MCP', 'PRD loop'],
     liveUrl: null,
     repoUrl: `${GH}/portfolio`,
     repoPublic: true,
@@ -47,17 +40,9 @@ const projects = [
       'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',
     metrics: [
       {
-        key: 'contributions',
-        label: 'GitHub contributions (12 mo)',
-        value: 1863,
-        kind: 'real',
-      },
-      { key: 'commits', label: 'Commits', value: null, kind: 'placeholder' },
-      {
         key: 'lighthouse',
         label: 'Lighthouse',
-        value: 95,
-        unit: '+',
+        value: '95+',
         kind: 'target',
       },
     ],
@@ -65,12 +50,22 @@ const projects = [
       {
         date: '2026-06-22',
         type: 'milestone',
-        label: 'M0 — monorepo scaffold (pnpm + Turborepo)',
+        label: 'M3 — design system wired (Tailwind v4 + tokens + shadcn)',
+      },
+      {
+        date: '2026-06-22',
+        type: 'milestone',
+        label: 'M2 — public API + RSC reads',
       },
       {
         date: '2026-06-22',
         type: 'milestone',
         label: 'M1 — backend foundation (NestJS + Prisma + Postgres)',
+      },
+      {
+        date: '2026-06-22',
+        type: 'milestone',
+        label: 'M0 — monorepo scaffold (pnpm + Turborepo)',
       },
     ],
     screenshots: [] as string[],
@@ -82,13 +77,13 @@ const projects = [
   },
   {
     slug: 'agentic-dev-kit',
-    name: 'Agentic Dev Kit',
+    name: 'agentic-dev-kit',
     tagline:
-      'Open-source Claude Code skills + an MCP server + PRD templates for agent-driven development.',
+      'Open-source Claude Code skills, an MCP server, and PRD templates for building TS / Nest / Next apps with agents.',
     problem:
       'Agentic coding is powerful but ad-hoc. This kit makes it repeatable: a PRD loop, a verify gate, design-sync, and project-introspection tools you can drop into any repo.',
     stack: ['TypeScript', 'Node.js', 'MCP'],
-    toolsUsed: ['Claude Code', 'MCP'],
+    toolsUsed: ['CC skills', 'MCP server', 'PRD templates'],
     liveUrl: null,
     repoUrl: `${GH}/agentic-dev-kit`,
     repoPublic: true,
@@ -96,11 +91,7 @@ const projects = [
     prd: null,
     buildStory:
       'A reusable toolkit extracted while building this portfolio: skills (prd / implement / verify / design-sync), an MCP server (schema introspection, exhibit scaffolding, deploy status), and PRD templates.',
-    metrics: [
-      { key: 'skills', label: 'Skills', value: 4, kind: 'real' },
-      { key: 'mcpTools', label: 'MCP tools', value: 3, kind: 'real' },
-      { key: 'stars', label: 'GitHub stars', value: null, kind: 'placeholder' },
-    ],
+    metrics: [{ key: 'ci', label: 'CI', value: 'green', kind: 'target' }],
     timeline: [],
     screenshots: [] as string[],
     status: ProjectStatus.LIVE,
@@ -111,12 +102,13 @@ const projects = [
   },
   {
     slug: 'territory-developer',
-    name: 'Territory Developer',
-    tagline: 'A 2D isometric city-builder built with a custom agentic pipeline.',
+    name: 'territory-developer',
+    tagline:
+      'A 2D isometric city-builder grounded in real simulation, built with a custom agentic pipeline. Public writeup, private code.',
     problem:
       'A case study in shipping a non-trivial game with an agent-driven workflow — the code stays private, but the process and the playable result are public.',
-    stack: ['TypeScript'],
-    toolsUsed: ['Claude Code', 'Custom agentic pipeline'],
+    stack: ['Unity', 'C#'],
+    toolsUsed: ['Agentic pipeline', 'Claude Code', 'PRD loop'],
     liveUrl: null,
     repoUrl: null,
     repoPublic: false,
@@ -124,7 +116,7 @@ const projects = [
     prd: null,
     buildStory:
       'Case study: built with a custom agentic pipeline. Public writeup + a live game page; source remains private.',
-    metrics: [{ key: 'code', label: 'Code', value: 'Private', kind: 'real' }],
+    metrics: [],
     timeline: [],
     screenshots: [] as string[],
     status: ProjectStatus.LIVE,
@@ -133,6 +125,14 @@ const projects = [
     shippedAt: null,
     sortOrder: 3,
   },
+];
+
+const languages = [
+  { name: 'TypeScript', pct: 56 },
+  { name: 'C#', pct: 16 },
+  { name: 'JavaScript', pct: 12 },
+  { name: 'CSS', pct: 9 },
+  { name: 'Other', pct: 7 },
 ];
 
 async function main() {
@@ -151,7 +151,7 @@ async function main() {
     data: {
       totalContribs: 1863, // real: last 12 months
       calendar: { note: 'pending live GitHub pull', weeks: [] },
-      languages: [],
+      languages, // design values; replaced by the nightly job once live
       repoStats: [],
       source: 'github',
       isPlaceholder: true,
