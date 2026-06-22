@@ -1,50 +1,176 @@
+/* =============================================================================
+   Javier Ramos Portfolio — globals.css
+   shadcn/ui CSS-variable contract (dark + light) + extra semantic tokens.
+   Written for Tailwind v4 + shadcn/ui. Drop into app/globals.css.
+
+   THEME MODEL
+   - shadcn convention: :root = light, .dark = dark overrides.
+   - This brand is DARK-FIRST. Add `className="dark"` to <html> by default
+     (or set it from your theme provider) so the app opens dark.
+   - Fonts: load Geist + Geist Mono via next/font and expose them as
+     --font-geist-sans / --font-geist-mono (see README "Typography").
+   ========================================================================== */
+
+@import "tailwindcss";
+
+/* enables the `dark:` variant via a .dark class on an ancestor (html) */
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   TOKENS — LIGHT (shadcn :root default)
+   --------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.75rem; /* 12px base; sm/md/lg derived below */
+
+  /* shadcn contract */
+  --background: #f5f8fb;
+  --foreground: #0b1118;
+  --card: #ffffff;
+  --card-foreground: #0b1118;
+  --popover: #ffffff;
+  --popover-foreground: #0b1118;
+  --primary: #0e9cba;            /* darker cyan for AA on light surfaces */
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f6;
+  --secondary-foreground: #0b1118;
+  --muted: #eef2f6;
+  --muted-foreground: #586472;
+  --accent: #0e9cba;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #d9dfe6;             /* mock used rgba(12,20,28,.13); solid equiv */
+  --input: #ccd4dd;              /* mock used rgba(12,20,28,.18) */
+  --ring: #0e9cba;
+  --chart-1: #0891b2;
+  --chart-2: #0d9488;
+  --chart-3: #2563eb;
+  --chart-4: #7c3aed;
+  --chart-5: #c2740a;
+
+  /* extra semantic tokens (beyond shadcn contract) */
+  --surface: #ffffff;           /* slightly raised panel; == card in light */
+  --success: #0d9488;
+  --success-foreground: #ffffff;
+  --warning: #c2740a;
+  --warning-foreground: #ffffff;
+
+  /* the single brand gradient — primary CTA ONLY */
+  --gradient-primary: linear-gradient(100deg, #06b6d4, #0d9488);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------------------------------------------------------------------------
+   TOKENS — DARK (brand default)
+   --------------------------------------------------------------------------- */
+.dark {
+  --background: #0a0e13;
+  --foreground: #e7edf3;
+  --card: #11161d;
+  --card-foreground: #e7edf3;
+  --popover: #11161d;
+  --popover-foreground: #e7edf3;
+  --primary: #22d3ee;            /* brand cyan */
+  --primary-foreground: #04141a;
+  --secondary: #1a222c;
+  --secondary-foreground: #e7edf3;
+  --muted: #1a222c;
+  --muted-foreground: #8a96a3;
+  --accent: #22d3ee;
+  --accent-foreground: #04141a;
+  --destructive: #f87171;
+  --destructive-foreground: #0a0e13;
+  --border: #222a33;             /* mock used rgba(255,255,255,.09) */
+  --input: #2b333d;              /* mock used rgba(255,255,255,.13) */
+  --ring: #22d3ee;
+  --chart-1: #22d3ee;
+  --chart-2: #2dd4bf;
+  --chart-3: #60a5fa;
+  --chart-4: #a78bfa;
+  --chart-5: #fbbf24;
+
+  --surface: #151c25;           /* one step above --card; section gradients */
+  --success: #34d399;
+  --success-foreground: #04141a;
+  --warning: #fbbf24;
+  --warning-foreground: #04141a;
+
+  --gradient-primary: linear-gradient(100deg, #22d3ee, #2dd4bf);
+}
+
+/* ---------------------------------------------------------------------------
+   Tailwind v4 — expose tokens as color/utility names
+   (lets you write bg-background, text-muted-foreground, bg-chart-1, etc.)
+   --------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-surface: var(--surface);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --radius-sm: calc(var(--radius) - 6px); /* 6px  — chips, swatches */
+  --radius-md: calc(var(--radius) - 3px); /* 9px  — buttons, inputs */
+  --radius-lg: var(--radius);             /* 12px — panels */
+  --radius-xl: calc(var(--radius) + 4px); /* 16px — content cards */
+  --radius-2xl: calc(var(--radius) + 8px);/* 20px — feature panels */
+
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   Base layer
+   --------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* brand focus ring — never remove */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+/* Utility: the one allowed gradient (primary CTA). Usage: class="cta-gradient" */
+.cta-gradient {
+  background-image: var(--gradient-primary);
+  color: var(--primary-foreground);
 }

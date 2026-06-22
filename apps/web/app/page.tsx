@@ -1,7 +1,10 @@
-import { getActivity, getProjects, type Project } from "../lib/api";
+import { getActivity, getProjects, type Project } from "@/lib/api";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-// TEMPORARY M2 page: proves the DB → API → RSC read path end-to-end.
-// Replaced by the designed landing (Direction B / terminal hero) at M4.
+// TEMPORARY M2/M3 page: proves the DB → API → RSC path AND the design system
+// (Tailwind v4 tokens + shadcn + next-themes). Replaced by the designed landing
+// (Direction B / terminal hero) at M4.
 export const dynamic = "force-dynamic";
 
 const KIND_LABEL: Record<Project["kind"], string> = {
@@ -26,65 +29,65 @@ export default async function Home() {
   }
 
   return (
-    <main
-      style={{
-        maxWidth: 720,
-        margin: "0 auto",
-        padding: "3rem 1.5rem",
-        fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
-        lineHeight: 1.5,
-      }}
-    >
-      <p
-        style={{
-          fontSize: 12,
-          textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          opacity: 0.6,
-        }}
-      >
-        M2 · RSC read proof — replaced by the designed landing at M4
-      </p>
-      <h1 style={{ fontSize: 32, margin: "0.25rem 0 1rem" }}>
-        Javier Ramos — Developer Showroom
+    <main className="mx-auto min-h-screen max-w-2xl px-6 py-12">
+      <div className="flex items-start justify-between gap-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          M3 · design-system proof — replaced at M4
+        </p>
+        <ThemeToggle />
+      </div>
+
+      <h1 className="mt-2 text-3xl font-semibold tracking-tight">
+        Javier Ramos — <span className="text-primary">Developer Showroom</span>
       </h1>
 
       {error ? (
-        <p style={{ color: "crimson" }}>
-          API unreachable: {error}. Start it with <code>pnpm dev</code> (or{" "}
-          <code>pnpm --filter api dev</code>).
+        <p className="mt-6 text-destructive">
+          API unreachable: {error}. Start it with{" "}
+          <code className="font-mono">pnpm --filter api dev</code>.
         </p>
       ) : (
         <>
           {totalContribs !== null && (
-            <p>
-              <strong>{totalContribs.toLocaleString()}</strong> GitHub
-              contributions (last 12 months)
+            <p className="mt-3 text-muted-foreground">
+              <span className="font-semibold text-foreground">
+                {totalContribs.toLocaleString()}
+              </span>{" "}
+              GitHub contributions (last 12 months)
               {placeholder ? " — live calendar pending" : ""}.
             </p>
           )}
-          <h2 style={{ fontSize: 18, marginTop: "2rem" }}>
+
+          <h2 className="mt-10 text-lg font-medium">
             Exhibits ({projects.length})
           </h2>
-          <ul style={{ listStyle: "none", padding: 0 }}>
+          <ul className="mt-3 space-y-3">
             {projects.map((project) => (
               <li
                 key={project.id}
-                style={{
-                  padding: "0.75rem 0",
-                  borderTop: "1px solid rgba(127,127,127,0.2)",
-                }}
+                className="rounded-lg border border-border bg-card p-4"
               >
-                <strong>{project.name}</strong>
-                {project.featured ? " ★" : ""}{" "}
-                <span style={{ opacity: 0.6 }}>
-                  · {KIND_LABEL[project.kind]}
-                </span>
-                <br />
-                <span style={{ opacity: 0.8 }}>{project.tagline}</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-medium">{project.name}</span>
+                  {project.featured && (
+                    <span className="rounded-sm bg-primary/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-primary">
+                      Featured
+                    </span>
+                  )}
+                  <span className="ml-auto font-mono text-xs text-muted-foreground">
+                    {KIND_LABEL[project.kind]}
+                  </span>
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {project.tagline}
+                </p>
               </li>
             ))}
           </ul>
+
+          <div className="mt-8">
+            <Button>View work</Button>
+          </div>
         </>
       )}
     </main>
