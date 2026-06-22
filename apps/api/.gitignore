@@ -1,0 +1,6 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+# Prisma generated client (regenerated on install / migrate)
+/src/generated/prisma

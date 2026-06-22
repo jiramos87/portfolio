@@ -1,0 +1,83 @@
+// Portfolio API — Prisma schema
+// Models: Project, ActivitySnapshot, Lead. See docs/PRD.md §7 and CLAUDE.md (data model).
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  runtime      = "nodejs"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProjectKind {
+  WEB_APP
+  TOOLING
+  CASE_STUDY
+}
+
+enum ProjectStatus {
+  LIVE
+  IN_PROGRESS
+  ARCHIVED
+}
+
+/// A showroom exhibit: the shipped product + how it was built.
+model Project {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  name        String
+  tagline     String
+  problem     String
+  stack       String[] // product tech stack, e.g. ["Next.js", "NestJS"]
+  toolsUsed   String[] // agentic tools, e.g. ["Claude Code", "MCP"]
+  liveUrl     String?
+  repoUrl     String?
+  repoPublic  Boolean       @default(true)
+  prdUrl      String?
+  prd         String? // rendered PRD markdown for the "How I built this" tab
+  buildStory  String? // narrative of the build
+  metrics     Json? // { commits, prs, lighthouse, ... } each tagged real|placeholder|target
+  timeline    Json? // [{ date, type: commit|pr|deploy, label, url }]
+  screenshots String[] // paths under apps/web/public
+  status      ProjectStatus @default(IN_PROGRESS)
+  kind        ProjectKind
+  featured    Boolean       @default(false)
+  shippedAt   DateTime?
+  sortOrder   Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([featured, sortOrder])
+}
+
+/// Nightly snapshot of GitHub activity. The site reads the latest row.
+model ActivitySnapshot {
+  id            String   @id @default(cuid())
+  capturedAt    DateTime @default(now())
+  totalContribs Int // real: 1863 (last 12 months) at seed
+  calendar      Json // contribution heatmap data
+  languages     Json // language breakdown
+  repoStats     Json // per-repo stats
+  source        String   @default("github")
+  isPlaceholder Boolean  @default(false) // honesty flag for non-live seed data
+  createdAt     DateTime @default(now())
+
+  @@index([capturedAt])
+}
+
+/// Contact form submission.
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  ipHash    String? // for rate limiting, not PII
+  userAgent String?
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
