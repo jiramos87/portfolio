@@ -11,6 +11,7 @@
     "prisma": "prisma",
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
+    "activity:refresh": "tsx src/scripts/refresh-activity.ts",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",

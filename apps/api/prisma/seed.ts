@@ -127,12 +127,14 @@ const projects = [
   },
 ];
 
+// Curated primary stacks ("what I build in"), not a byte breakdown. Matches
+// CURATED_STACKS in src/github/github.ts; the live refresh overrides this anyway.
 const languages = [
-  { name: 'TypeScript', pct: 56 },
-  { name: 'C#', pct: 16 },
-  { name: 'JavaScript', pct: 12 },
-  { name: 'CSS', pct: 9 },
-  { name: 'Other', pct: 7 },
+  { name: 'TypeScript' },
+  { name: 'JavaScript' },
+  { name: 'C#' },
+  { name: 'Python' },
+  { name: 'SQL' },
 ];
 
 async function main() {
