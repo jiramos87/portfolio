@@ -1,0 +1,11 @@
+**/node_modules
+**/.next
+**/dist
+**/.turbo
+**/coverage
+**/generated/prisma
+.git
+**/.env
+**/.env.*
+!**/.env.example
+design-reference

@@ -12,7 +12,7 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - [x] **M2 — Public API + RSC reads.** `GET /projects`, `/projects/:slug`, `GET /activity`, `POST /contact`, `/health`. RSC fetch the Nest API server-to-server.
 - [x] **M3 — Design system wiring.** Tailwind v4 + `design-reference/globals.css` (tokens); shadcn initialized; Geist via `next/font/local`; `next-themes` (dark default). Verified visually (dark `#0a0e13` + cyan `#22d3ee`).
 - [x] **M4 — Build all 6 pages** from the standalone (hero = Direction B / terminal build-log; no A/B toggle). Landing = proof-by-numbers + activity heatmap; detail = tabs + Open-the-PRD + timeline + metrics. Verified visually + working contact form (lead persisted).
-- [ ] **M5 — Ship phase 1a.** Custom domain (personal-name, e.g. javierramos.dev), OG/meta/sitemap/favicon.
+- [~] **M5 — Ship phase 1a.** Local prep **done** (brand favicon, OG image, full metadata, sitemap, robots, `Dockerfile`, `.dockerignore`, `vercel.json`, `docs/deploy.md`). Actual deploy (Vercel + Railway + domain) **pending your accounts** — see `docs/deploy.md`.
 - [ ] **M6–M8 (1b).** Auth + admin CRUD; design-system page; CI + tests + badges; nightly GitHub-stats job; Lighthouse ≥ 95.
 
 ## Decisions (M0)
@@ -82,3 +82,5 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **2026-06-22 — M2 done.** Nest endpoints (projects / activity / contact / health) with validation, throttle (5/min contact), honeypot — all verified live via curl (incl. 404, 400, 429). Web typed API client + temporary `force-dynamic` RSC home; verified end-to-end (exhibits + 1,863 rendered server-side). Gate green incl. api unit test.
 - **2026-06-22 — M3 done.** Tailwind v4 + locked design tokens; shadcn initialized (button + cn); `next-themes` dark default + toggle; Geist via next/font. Gate green; screenshot confirms dark `#0a0e13` / cyan `#22d3ee` brand rendering with live data.
 - **2026-06-22 — M4 done.** All 6 pages built from the standalone (hero Direction B 2-col, KPI strip, featured exhibits, method loop, activity proof, projects table, detail tabs + timeline, methodology, design-system, contact). Seed reconciled to the design. Verified each page via live preview screenshots; contact form persists a lead end-to-end. Full gate green (api + web).
+- **2026-06-22 — pushed M0–M4** to `origin/main` (`15cff18..a3ca6b7`); repo is now public history.
+- **2026-06-22 — M5 prep done.** SEO assets (brand favicon, OG image verified, metadata, sitemap, robots) + deploy configs (api `Dockerfile`, `.dockerignore`, web `vercel.json`, `docs/deploy.md`). Build green incl. `/opengraph-image`, `/sitemap.xml`, `/robots.txt`. Deploy itself awaits Vercel/Railway/domain.
