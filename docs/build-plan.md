@@ -9,7 +9,7 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 
 - [x] **M0 — Monorepo scaffold.** create-turbo (pnpm + Turborepo), `apps/web` (Next.js) + `apps/api` (NestJS), base config packages. Kit skills copied to `.claude/commands/`.
 - [x] **M1 — Backend foundation.** Nest + Prisma + Postgres; `Project` / `ActivitySnapshot` / `Lead` models; migrate; seed the 3 exhibits + one activity snapshot. Kit MCP server registered (`.mcp.json`).
-- [ ] **M2 — Public API + RSC reads.** `GET /projects`, `/projects/:slug`, `GET /activity`, `POST /contact`, `/health`. RSC fetch the Nest API server-to-server.
+- [x] **M2 — Public API + RSC reads.** `GET /projects`, `/projects/:slug`, `GET /activity`, `POST /contact`, `/health`. RSC fetch the Nest API server-to-server.
 - [ ] **M3 — Design system wiring.** Drop in `globals.css`; `npx shadcn@latest add ...`; Geist + Geist Mono via `next/font`; `next-themes` (dark default).
 - [ ] **M4 — Build all 6 pages** from the standalone (hero = Direction B / terminal build-log; no A/B toggle). Landing = proof-by-numbers + activity heatmap; detail = tabs + Open-the-PRD + timeline + metrics.
 - [ ] **M5 — Ship phase 1a.** Custom domain (personal-name, e.g. javierramos.dev), OG/meta/sitemap/favicon.
@@ -37,6 +37,17 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **Build-scripts allowlist** (pnpm 11): `sharp`, `unrs-resolver`, `@prisma/client`, `@prisma/engines`, `prisma`, `esbuild`.
 - **MCP server:** registered project-scoped in `.mcp.json` (`node ${HOME}/projects/agentic-dev-kit/mcp-server/dist/index.js`); smoke-tested — advertises `schema_introspect`, `scaffold_exhibit`, `deploy_status`.
 
+## Decisions (M2)
+
+- **Endpoints (Nest):** `GET /health` (pings DB), `GET /projects` (ordered featured→sortOrder), `GET /projects/:slug` (404 if missing), `GET /activity` (latest snapshot or null), `POST /contact`.
+- **Validation:** global `ValidationPipe` (`whitelist` + `forbidNonWhitelisted` + `transform`). Contact DTO via class-validator.
+- **Abuse controls:** `@nestjs/throttler` global 60/min/IP; `POST /contact` tightened to 5/min. Honeypot field `company` (filled ⇒ 200 success but dropped). Client IP stored as a salted-free sha256 prefix (`ipHash`, 16 chars) — not PII.
+- **Web reads:** `apps/web/lib/api.ts` — typed server-side client (`getProjects`/`getProject`/`getActivity`/`submitContact`) reading `INTERNAL_API_URL` (default `http://localhost:3333`), `revalidate: 60`. Reads are RSC server-to-server; the contact write will run through a Next server action (BFF) at M4.
+- **Proof page:** `apps/web/app/page.tsx` replaced with a temporary `force-dynamic` RSC that lists exhibits + the 1,863 number — verified end-to-end (DB→API→HTML). Replaced by the designed landing at M4.
+- **turbo `globalEnv`:** declared `INTERNAL_API_URL`, `DATABASE_URL`, `PORT`, `GITHUB_TOKEN` (satisfies `turbo/no-undeclared-env-vars` + cache correctness).
+- **Run note:** start the API with cwd = `apps/api` (so `dotenv` finds `.env`) — `pnpm --filter api dev|start` / `turbo` do this; `node dist/main.js` from the repo root does NOT (DATABASE_URL goes undefined → SASL error).
+- **Local port conflicts:** another local service holds 3000/3001 on this machine; web keeps the standard 3000 default (conflict is transient), API is on 3333.
+
 ## Open items (carried)
 
 - **GitHub PAT** → unlock real activity calendar + languages + per-exhibit timelines (replaces placeholders). Drop as `GITHUB_TOKEN` in `apps/api/.env`.
@@ -47,3 +58,4 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 
 - **2026-06-22 — M0 done.** Monorepo scaffolded; `pnpm build` green (web prod build + `nest build`). Design handoff committed (`958fffb`). Kit skills wired.
 - **2026-06-22 — M1 done.** Prisma schema + migration `init`; PrismaModule/Service on the pg adapter (boots + connects); seeded 3 exhibits + 1 activity snapshot (verified in Postgres); MCP server registered + smoke-tested. Full gate green (check-types / lint / build, web + api).
+- **2026-06-22 — M2 done.** Nest endpoints (projects / activity / contact / health) with validation, throttle (5/min contact), honeypot — all verified live via curl (incl. 404, 400, 429). Web typed API client + temporary `force-dynamic` RSC home; verified end-to-end (exhibits + 1,863 rendered server-side). Gate green incl. api unit test.

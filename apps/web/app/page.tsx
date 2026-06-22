@@ -1,102 +1,92 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import { getActivity, getProjects, type Project } from "../lib/api";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
+// TEMPORARY M2 page: proves the DB → API → RSC read path end-to-end.
+// Replaced by the designed landing (Direction B / terminal hero) at M4.
+export const dynamic = "force-dynamic";
+
+const KIND_LABEL: Record<Project["kind"], string> = {
+  WEB_APP: "Web app",
+  TOOLING: "Tooling",
+  CASE_STUDY: "Case study",
 };
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+export default async function Home() {
+  let projects: Project[] = [];
+  let totalContribs: number | null = null;
+  let placeholder = false;
+  let error: string | null = null;
+
+  try {
+    const [p, activity] = await Promise.all([getProjects(), getActivity()]);
+    projects = p;
+    totalContribs = activity?.totalContribs ?? null;
+    placeholder = activity?.isPlaceholder ?? false;
+  } catch (e) {
+    error = (e as Error).message;
+  }
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+    <main
+      style={{
+        maxWidth: 720,
+        margin: "0 auto",
+        padding: "3rem 1.5rem",
+        fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
+        lineHeight: 1.5,
+      }}
+    >
+      <p
+        style={{
+          fontSize: 12,
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          opacity: 0.6,
+        }}
+      >
+        M2 · RSC read proof — replaced by the designed landing at M4
+      </p>
+      <h1 style={{ fontSize: 32, margin: "0.25rem 0 1rem" }}>
+        Javier Ramos — Developer Showroom
+      </h1>
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
-    </div>
+      {error ? (
+        <p style={{ color: "crimson" }}>
+          API unreachable: {error}. Start it with <code>pnpm dev</code> (or{" "}
+          <code>pnpm --filter api dev</code>).
+        </p>
+      ) : (
+        <>
+          {totalContribs !== null && (
+            <p>
+              <strong>{totalContribs.toLocaleString()}</strong> GitHub
+              contributions (last 12 months)
+              {placeholder ? " — live calendar pending" : ""}.
+            </p>
+          )}
+          <h2 style={{ fontSize: 18, marginTop: "2rem" }}>
+            Exhibits ({projects.length})
+          </h2>
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {projects.map((project) => (
+              <li
+                key={project.id}
+                style={{
+                  padding: "0.75rem 0",
+                  borderTop: "1px solid rgba(127,127,127,0.2)",
+                }}
+              >
+                <strong>{project.name}</strong>
+                {project.featured ? " ★" : ""}{" "}
+                <span style={{ opacity: 0.6 }}>
+                  · {KIND_LABEL[project.kind]}
+                </span>
+                <br />
+                <span style={{ opacity: 0.8 }}>{project.tagline}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </main>
   );
 }
