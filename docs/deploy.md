@@ -10,7 +10,8 @@ Everything below is ready in the repo — this is the one-time provision. Nothin
 3. Service variables:
    - `DATABASE_URL` = the Railway Postgres URL
    - `PORT` = `3333` (or let Railway set it; the app reads `process.env.PORT`)
-   - `GITHUB_TOKEN` = *(optional)* read-only PAT → enables real activity data
+   - `GITHUB_TOKEN` = *(optional)* classic PAT `read:user` → live contribution count + heatmap
+   - `GITHUB_REPO_TOKEN` = *(optional)* fine-grained PAT, Contents: read-only → repo stats
 4. Release/one-off command after first deploy: `pnpm --filter api exec prisma migrate deploy` then `pnpm --filter api db:seed`.
 5. Note the service's public URL (e.g. `https://portfolio-api.up.railway.app`).
 
@@ -37,6 +38,7 @@ pnpm --filter web build && pnpm --filter web start
 |-----|-------|---------|
 | `DATABASE_URL` | api | Postgres connection |
 | `PORT` | api | listen port (default 3333) |
-| `GITHUB_TOKEN` | api | optional — real activity stats |
+| `GITHUB_TOKEN` | api | optional — classic `read:user`, live count + heatmap |
+| `GITHUB_REPO_TOKEN` | api | optional — fine-grained read-only, repo stats |
 | `INTERNAL_API_URL` | web | base URL the RSC reads call |
 | `SITE_URL` | web | canonical URL for metadata/sitemap/OG |

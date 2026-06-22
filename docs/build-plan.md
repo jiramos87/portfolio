@@ -69,11 +69,17 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **Build resilience:** landing/projects wrap fetches in try/catch → honest defaults so prerender works without a live API. Home is dynamic; the rest static.
 - **Known dev noise (not a defect):** Next 16 + React 19 dev logs "Encountered a script tag…" from RSC streaming — not from our code (grep-clean), absent in production builds.
 
+## Decisions (live activity)
+
+- **Tokens:** `GITHUB_TOKEN` (classic `read:user`) → count + heatmap via GraphQL; `GITHUB_REPO_TOKEN` (fine-grained, Contents:read) → repo stats. Read only server-side from `apps/api/.env`; never client-exposed, never committed.
+- **Ingest:** `apps/api/src/github/github.ts` (pure fetchers) + `ActivityService.refresh()` + `pnpm --filter api activity:refresh`. Writes a real `ActivitySnapshot` (`isPlaceholder:false`). Nightly cron = 1b.
+- **Language honesty (load-bearing):** raw GitHub bytes misrepresent — generated `dist/` (→JS), a vendored design bundle (→HTML), and a 21 MB Unity game (→C#) drown the authored TypeScript. So the language block shows **curated "primary stacks"** (TypeScript · JavaScript · C# · Python · SQL) as honest chips, labeled "languages & frameworks I build in" — **not** byte percentages. Added `.gitattributes` (`design-reference/** linguist-vendored`) so the public repo's own language bar is honest too.
+
 ## Open items (carried)
 
-- **GitHub PAT** → unlock the real activity calendar + languages + per-exhibit timelines (replaces the "live pull pending" states). Drop as `GITHUB_TOKEN` in `apps/api/.env`.
+- **Per-exhibit GitHub timelines** (commit/PR/deploy) — detail-page timelines are still the seeded milestones; wiring live PR/commit history is 1b.
 - **Content gaps:** CV file; `territory-developer` live game URL; real screenshots per exhibit; the 60–90s methodology demo video.
-- **Push policy:** committing locally per milestone; not pushing to `origin` until confirmed.
+- **Deploy:** pending your Vercel/Railway/domain (configs + runbook ready — `docs/deploy.md`).
 
 ## Log
 
@@ -84,3 +90,4 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **2026-06-22 — M4 done.** All 6 pages built from the standalone (hero Direction B 2-col, KPI strip, featured exhibits, method loop, activity proof, projects table, detail tabs + timeline, methodology, design-system, contact). Seed reconciled to the design. Verified each page via live preview screenshots; contact form persists a lead end-to-end. Full gate green (api + web).
 - **2026-06-22 — pushed M0–M4** to `origin/main` (`15cff18..a3ca6b7`); repo is now public history.
 - **2026-06-22 — M5 prep done.** SEO assets (brand favicon, OG image verified, metadata, sitemap, robots) + deploy configs (api `Dockerfile`, `.dockerignore`, web `vercel.json`, `docs/deploy.md`). Build green incl. `/opengraph-image`, `/sitemap.xml`, `/robots.txt`. Deploy itself awaits Vercel/Railway/domain.
+- **2026-06-22 — live activity pull.** Two read-only GitHub tokens added; built the Nest ingest. Activity section is now **fully real**: populated contribution heatmap, live count **1,879**, real "commit + PR" time chart, and honest curated "primary stacks" chips (no fabricated byte %). `.gitattributes` vendored the design bundle. Verified via screenshot; full gate green.
