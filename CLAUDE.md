@@ -35,14 +35,5 @@ Honesty: 1,863 GitHub contributions (last 12 mo) is the only real metric so far;
 ## The kit (dogfood it)
 `~/projects/agentic-dev-kit`: skills (`prd`/`implement`/`verify`/`design-sync`) + an MCP server (`schema_introspect`, `scaffold_exhibit`, `deploy_status`). Copy the skills into `.claude/commands/` and register the MCP server when the Prisma schema exists.
 
-## Build order (walk-list)
-- M0: `create-turbo` monorepo (pnpm), base config packages.
-- M1: `apps/api` Nest + Prisma + Postgres (Railway); Project + ActivitySnapshot + Lead models; migrate; seed the 3 exhibits + one activity snapshot.
-- M2: public endpoints (`GET /projects`, `/:slug`, `GET /activity`, `POST /contact`, `/health`); RSC reads.
-- M3: drop in `globals.css`; `npx shadcn@latest add ...`; wire Geist + next-themes (dark default).
-- M4: build all 6 pages from the standalone (hero B; proof-by-numbers + activity heatmap; detail = tabs + Open-the-PRD + timeline + metrics).
-- M5: custom domain (personal-name, e.g. javierramos.dev), OG/meta/sitemap/favicon. Ship phase 1a.
-- M6-M8 (1b): auth + admin CRUD; design-system page; CI + tests + badges; automate the nightly GitHub job; meet Lighthouse >= 95.
-
-## Next
-Start M0.
+## Build order
+Lives in `docs/build-plan.md` (milestones M0–M8 + progress). Not duplicated here — it's transient and goes stale.
