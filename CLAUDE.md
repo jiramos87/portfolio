@@ -30,10 +30,20 @@ landing, `projects` (list), `projects/[slug]` (detail: product + "How I built th
 
 ## Exhibits at launch (seed these)
 1. portfolio (WEB_APP, public). 2. agentic-dev-kit (TOOLING, public). 3. territory-developer (CASE_STUDY, private code, public writeup + live game page).
-Honesty: 1,863 GitHub contributions (last 12 mo) is the only real metric so far; commits/apps/Lighthouse are tagged placeholders/targets until live. No stars (repos new).
+Honesty (load-bearing — never fabricate a stat): GitHub contribution count + heatmap are now LIVE (`pnpm --filter api activity:refresh`, ~1.8k contribs). The language block is curated "primary stacks" chips, NOT raw bytes (generated `dist/`, the vendored `design-reference/` bundle, and a Unity game skew GitHub byte counts away from the real TypeScript). Metric `kind` (real|placeholder|target) drives UI treatment; commits/Lighthouse stay target/placeholder until real; no star counts.
 
 ## The kit (dogfood it)
 `~/projects/agentic-dev-kit`: skills (`prd`/`implement`/`verify`/`design-sync`) + an MCP server (`schema_introspect`, `scaffold_exhibit`, `deploy_status`). Copy the skills into `.claude/commands/` and register the MCP server when the Prisma schema exists.
+
+## Conventions & gotchas (learned in the build — don't re-derive)
+- **Run the API from `apps/api`** so `dotenv` finds `.env`: `pnpm --filter api dev|start` / turbo. `node apps/api/dist/main.js` from the repo root → `DATABASE_URL` undefined → SASL error.
+- **Ports:** web `3000`, API `3333` (3000/3001 are held by other local services on this machine); Postgres via `docker compose` on host `5433`.
+- **Prisma 7:** datasource URL is in `prisma.config.ts` (NOT the schema); the runtime client needs a driver adapter (`@prisma/adapter-pg`). Generator `prisma-client`, `moduleFormat="cjs"`, output `src/generated/prisma` (gitignored; `postinstall` regenerates). API `tsconfig`: `incremental:false` + build `rootDir:"./src"` (else `deleteOutDir` + a stale `.tsbuildinfo` re-emit only the changed file).
+- **pnpm 11 blocks postinstall scripts** — allowlist them in `pnpm-workspace.yaml` under `allowBuilds:` (sharp, unrs-resolver, @prisma/*, esbuild).
+- **Verify gate:** `pnpm check-types && pnpm lint && pnpm build` (turbo). Web lint is `--max-warnings 0`. shadcn = the "base-nova" (Base UI) style — render link-buttons as `<Link>/<a>` + `buttonVariants(...)`, never `<Button render={<Link/>}>` (Base UI `nativeButton` console error).
+- **Live activity:** `pnpm --filter api activity:refresh` writes a real `ActivitySnapshot`. Needs `GITHUB_TOKEN` (classic `read:user`) + `GITHUB_REPO_TOKEN` (fine-grained, Contents:read) in `apps/api/.env` (gitignored, server-only — never client/`NEXT_PUBLIC`).
+- **Docs map:** PRD `docs/PRD.md` · progress+decisions `docs/build-plan.md` · design spec `docs/m4-design-spec.md` · deploy `docs/deploy.md`. Per-feature PRDs → `docs/prd/`.
+- **Commits:** clean, per-milestone (build-in-public timeline); push to origin only when explicitly asked.
 
 ## Build order
 Lives in `docs/build-plan.md` (milestones M0–M8 + progress). Not duplicated here — it's transient and goes stale.
