@@ -16,6 +16,12 @@
 /* enables the `dark:` variant via a .dark class on an ancestor (html) */
 @custom-variant dark (&:is(.dark *));
 
+/* base-nova components key orientation styling off data-orientation (e.g. the
+   Tabs list sits above content when horizontal). These variants were dropped
+   when the design tokens replaced the shadcn-generated globals; restore them. */
+@custom-variant data-horizontal (&[data-orientation="horizontal"]);
+@custom-variant data-vertical (&[data-orientation="vertical"]);
+
 /* ---------------------------------------------------------------------------
    TOKENS: LIGHT (shadcn :root default)
    --------------------------------------------------------------------------- */

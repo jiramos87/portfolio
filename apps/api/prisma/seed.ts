@@ -40,6 +40,24 @@ const projects = [
       'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',
     metrics: [
       {
+        key: 'ship-time',
+        label: 'Ship time',
+        value: '<24h',
+        kind: 'real',
+      },
+      {
+        key: 'ai-cost',
+        label: 'AI cost',
+        value: '<$15',
+        kind: 'real',
+      },
+      {
+        key: 'cadence',
+        label: 'Cadence',
+        value: '~7/wk',
+        kind: 'target',
+      },
+      {
         key: 'lighthouse',
         label: 'Lighthouse',
         value: '95+',

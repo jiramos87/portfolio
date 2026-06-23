@@ -11,7 +11,7 @@ const LINKS = [
   { href: "/", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "/methodology", label: "Methodology" },
-  { href: "/design-system", label: "System" },
+  { href: "/design-system", label: "Design System" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {

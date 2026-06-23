@@ -13,10 +13,16 @@ export function ProjectTabs({ project }: { project: Project }) {
 
   return (
     <Tabs defaultValue="product" className="gap-6">
-      <TabsList className="w-full sm:w-fit">
-        <TabsTrigger value="product">Product</TabsTrigger>
-        <TabsTrigger value="build">How I built it</TabsTrigger>
-        <TabsTrigger value="metrics">Metrics</TabsTrigger>
+      <TabsList className="w-fit">
+        <TabsTrigger value="product" className="flex-none px-3">
+          Product
+        </TabsTrigger>
+        <TabsTrigger value="build" className="flex-none px-3">
+          How I built it
+        </TabsTrigger>
+        <TabsTrigger value="metrics" className="flex-none px-3">
+          Metrics
+        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="product" className="space-y-6">
@@ -99,7 +105,14 @@ export function ProjectTabs({ project }: { project: Project }) {
       </TabsContent>
 
       <TabsContent value="metrics" className="space-y-4">
-        <p className="text-muted-foreground">
+        {metrics.some((m) => m.key === "ship-time") ? (
+          <p className="max-w-2xl text-foreground">
+            Designed, built, and shipped in under 24 hours for under $15 of agent
+            time, about 15% of a weekly Claude Code plan. That is roughly 7 projects
+            of capacity in a five-day work week.
+          </p>
+        ) : null}
+        <p className="text-sm text-muted-foreground">
           Each metric carries an honesty tag. Verified numbers read solid; targets and
           placeholders read muted.
         </p>
