@@ -149,11 +149,11 @@ const projects = [
     ],
     timeline: [],
     screenshots: [
+      '/screenshots/territory/residential.png',
       '/screenshots/territory/main-menu.png',
       '/screenshots/territory/region-map.png',
       '/screenshots/territory/found-city.png',
       '/screenshots/territory/city.png',
-      '/screenshots/territory/residential.png',
       '/screenshots/territory/city-budget.png',
     ] as string[],
     status: ProjectStatus.LIVE,

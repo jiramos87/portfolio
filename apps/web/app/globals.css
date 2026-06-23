@@ -180,3 +180,47 @@
   background-image: var(--gradient-primary);
   color: var(--primary-foreground);
 }
+
+/* ---------------------------------------------------------------------------
+   Marquee (project carousel): seamless right-to-left drift. Each identical
+   group translates by exactly its own width + the inter-group gap, so any
+   number of groups loops without a jump. Pauses on hover via the group/marquee
+   variant on the carousel; stops entirely under reduced-motion.
+   --------------------------------------------------------------------------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap, 1.25rem)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 55s) linear infinite;
+  will-change: transform;
+}
+
+/* Soft fade so cards melt into the page at both edges. */
+.marquee-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4%,
+    black 96%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}

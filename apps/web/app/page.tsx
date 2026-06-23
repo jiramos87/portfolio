@@ -6,7 +6,7 @@ import {
 } from "@/lib/api";
 import { Hero } from "@/components/landing/hero";
 import { KpiStrip, type Kpi } from "@/components/landing/kpi-strip";
-import { FeaturedExhibits } from "@/components/landing/featured-exhibits";
+import { ProjectCarousel } from "@/components/landing/project-carousel";
 import { MethodLoop } from "@/components/landing/method-loop";
 import { ActivitySection } from "@/components/landing/activity-section";
 import { ContactSection } from "@/components/landing/contact-section";
@@ -20,8 +20,6 @@ export default async function Home() {
   } catch {
     // API unreachable (e.g. at build time): degrade to honest defaults.
   }
-
-  const featured = projects.filter((p) => p.featured);
 
   const kpis: Kpi[] = [
     {
@@ -44,7 +42,7 @@ export default async function Home() {
     <main>
       <Hero />
       <KpiStrip kpis={kpis} />
-      <FeaturedExhibits projects={featured} />
+      <ProjectCarousel projects={projects} />
       <MethodLoop />
       <ActivitySection activity={activity} />
       <ContactSection />

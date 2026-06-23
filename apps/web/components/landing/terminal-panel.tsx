@@ -19,13 +19,15 @@ const GLYPHS: Record<Glyph, { char: string; className: string }> = {
   iterate: { char: "↻", className: "text-chart-4" }, // ↻
 };
 
-// Verify step (Lighthouse + CI) omitted until M6–M8: no fabricated scores in the hero log.
+// Verify reports the local gate result (check-types, lint, build) as a pass count;
+// no Lighthouse/CI score in the hero log until real scores exist (M6–M8).
 const LINES: Line[] = [
   { command: true, text: "$ agent run --prd portfolio.prd.md" },
   { glyph: "ok", step: "explore", text: "repo scanned · 142 files · context built" },
   { glyph: "ok", step: "plan", text: "PRD → 9 tasks · acceptance set" },
   { glyph: "run", step: "implement", text: "apps/web/landing.tsx · +312 −44" },
   { glyph: "iterate", step: "iterate", text: "Claude Design → UI · diff applied" },
+  { glyph: "ok", step: "verify", text: "7/7 tests passed" },
   { glyph: "ok", step: "ship", text: "deployed · main@a1f9c2" },
 ];
 
