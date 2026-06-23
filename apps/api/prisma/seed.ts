@@ -86,7 +86,11 @@ const projects = [
         label: 'M0: monorepo scaffold (pnpm + Turborepo)',
       },
     ],
-    screenshots: [] as string[],
+    screenshots: [
+      '/screenshots/landing.png',
+      '/screenshots/methodology.png',
+      '/screenshots/projects.png',
+    ] as string[],
     status: ProjectStatus.IN_PROGRESS,
     kind: ProjectKind.WEB_APP,
     featured: true,

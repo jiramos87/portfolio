@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { buttonVariants } from "@/components/ui/button";
 import { MetricChip } from "@/components/site/metric-chip";
 import { Timeline } from "@/components/projects/timeline";
+import { ScreenshotGallery } from "@/components/projects/screenshot-gallery";
 import type { Project } from "@/lib/api";
 
 export function ProjectTabs({ project }: { project: Project }) {
@@ -50,10 +51,18 @@ export function ProjectTabs({ project }: { project: Project }) {
           </div>
         </div>
 
-        {project.screenshots.length > 0 ? null : (
-          <p className="text-sm text-muted-foreground">
-            Screenshots coming soon.
-          </p>
+        {project.screenshots.length > 0 ? (
+          <div>
+            <h3 className="text-sm font-medium">Screenshots</h3>
+            <div className="mt-2">
+              <ScreenshotGallery
+                screenshots={project.screenshots}
+                name={project.name}
+              />
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-muted-foreground">Screenshots coming soon.</p>
         )}
       </TabsContent>
 
