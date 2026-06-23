@@ -317,3 +317,74 @@ export async function fetchRepoStats(
     }))
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
+
+// ---------------------------------------------------------------------------
+// 4. Recent commits (REST, Contents:read). Per-exhibit live timeline.
+// ---------------------------------------------------------------------------
+
+/** One commit, trimmed to what the per-exhibit timeline renders. */
+export interface CommitEntry {
+  /** Short (7-char) SHA, for display. */
+  sha: string;
+  /** First line of the commit message. */
+  message: string;
+  /** Authored date (ISO), falls back to committed date. */
+  date: string;
+  /** GitHub web URL for the commit. */
+  url: string;
+}
+
+interface RestCommit {
+  sha: string;
+  html_url: string;
+  commit: {
+    message: string;
+    author: { date: string } | null;
+    committer: { date: string } | null;
+  };
+}
+
+/**
+ * Parse `{owner}/{repo}` out of a GitHub repo URL.
+ * Returns null for non-GitHub or malformed URLs (caller skips those exhibits).
+ */
+export function parseGitHubRepo(
+  repoUrl: string,
+): { owner: string; repo: string } | null {
+  try {
+    const u = new URL(repoUrl);
+    if (!u.hostname.endsWith('github.com')) return null;
+    const parts = u.pathname
+      .replace(/\.git$/, '')
+      .split('/')
+      .filter(Boolean);
+    if (parts.length < 2) return null;
+    return { owner: parts[0], repo: parts[1] };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Most recent commits on a repo's default branch. Public repos only in practice
+ * (the fine-grained Contents:read token covers them). Each message is reduced to
+ * its first line; SHA is shortened for display.
+ */
+export async function fetchRecentCommits(
+  token: string,
+  owner: string,
+  repo: string,
+  perPage = 8,
+): Promise<CommitEntry[]> {
+  const data = await githubRest<RestCommit[]>(
+    token,
+    `/repos/${owner}/${repo}/commits?per_page=${perPage}`,
+  );
+
+  return data.map((c) => ({
+    sha: c.sha.slice(0, 7),
+    message: (c.commit.message ?? '').split('\n')[0].trim(),
+    date: c.commit.author?.date ?? c.commit.committer?.date ?? '',
+    url: c.html_url,
+  }));
+}

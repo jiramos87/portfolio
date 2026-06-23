@@ -4,6 +4,8 @@ import { Prisma } from '../generated/prisma/client';
 import {
   fetchContributionCalendar,
   fetchRepoStats,
+  fetchRecentCommits,
+  parseGitHubRepo,
   CURATED_STACKS,
   type CalendarWeek,
 } from '../github/github';
@@ -83,12 +85,78 @@ export class ActivityService {
         `languages=${languages.length}, repos=${repoStats.length}`,
     );
 
+    // Per-exhibit live commit feed. Non-fatal: a commit-fetch failure must not
+    // discard the snapshot we just wrote.
+    let repoCommitFeeds = 0;
+    try {
+      const feeds = await this.refreshRepoCommits(repoToken);
+      repoCommitFeeds = feeds.length;
+    } catch (err) {
+      this.logger.error(
+        `Repo commit refresh skipped: ${(err as Error).message}`,
+      );
+    }
+
     return {
       id: snapshot.id,
       totalContributions: calendar.totalContributions,
       languages,
       repoStats: repoStats,
+      repoCommitFeeds,
     };
+  }
+
+  /**
+   * Refresh the recent-commits feed for every public-repo exhibit and store it
+   * on the Project row (read by the "How I built it" tab). Per-repo failures are
+   * logged and skipped so one bad repo never blocks the others.
+   *
+   * @param repoToken fine-grained token with Contents:read (defaults to env).
+   * @returns one entry per repo that was successfully refreshed.
+   */
+  async refreshRepoCommits(
+    repoToken = process.env.GITHUB_REPO_TOKEN,
+  ): Promise<{ slug: string; repo: string; count: number }[]> {
+    if (!repoToken) throw new Error('GITHUB_REPO_TOKEN is not set');
+
+    const projects = await this.prisma.project.findMany({
+      where: { repoPublic: true, repoUrl: { not: null } },
+      select: { id: true, slug: true, repoUrl: true },
+    });
+
+    const results: { slug: string; repo: string; count: number }[] = [];
+    for (const project of projects) {
+      const parsed = parseGitHubRepo(project.repoUrl as string);
+      if (!parsed) {
+        this.logger.warn(
+          `Skipping ${project.slug}: cannot parse repoUrl as a GitHub repo`,
+        );
+        continue;
+      }
+      try {
+        const commits = await fetchRecentCommits(
+          repoToken,
+          parsed.owner,
+          parsed.repo,
+        );
+        await this.prisma.project.update({
+          where: { id: project.id },
+          data: {
+            repoCommits: commits as unknown as Prisma.InputJsonValue,
+            repoCommitsAt: new Date(),
+          },
+        });
+        const repo = `${parsed.owner}/${parsed.repo}`;
+        results.push({ slug: project.slug, repo, count: commits.length });
+        this.logger.log(`Repo commits: ${repo} -> ${commits.length}`);
+      } catch (err) {
+        this.logger.error(
+          `Repo commits failed for ${project.slug}: ${(err as Error).message}`,
+        );
+      }
+    }
+
+    return results;
   }
 }
 

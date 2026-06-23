@@ -30,6 +30,14 @@ export interface TimelineEntry {
   url?: string;
 }
 
+/** A real commit, pulled from GitHub nightly and stored on the Project row. */
+export interface CommitEntry {
+  sha: string;
+  message: string;
+  date: string;
+  url: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -46,6 +54,8 @@ export interface Project {
   buildStory: string | null;
   metrics: Metric[] | null;
   timeline: TimelineEntry[] | null;
+  repoCommits: CommitEntry[] | null;
+  repoCommitsAt: string | null;
   screenshots: string[];
   status: ProjectStatus;
   kind: ProjectKind;

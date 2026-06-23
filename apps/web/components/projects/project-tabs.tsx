@@ -5,12 +5,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { buttonVariants } from "@/components/ui/button";
 import { MetricChip } from "@/components/site/metric-chip";
 import { Timeline } from "@/components/projects/timeline";
+import { RecentCommits } from "@/components/projects/recent-commits";
 import { ScreenshotGallery } from "@/components/projects/screenshot-gallery";
+import { GithubIcon } from "@/components/site/brand-icons";
+import { formatDate } from "@/lib/format";
 import type { Project } from "@/lib/api";
 
 export function ProjectTabs({ project }: { project: Project }) {
   const metrics = project.metrics ?? [];
   const timeline = project.timeline ?? [];
+  const commits = project.repoCommits ?? [];
 
   return (
     <Tabs defaultValue="product" className="gap-6">
@@ -105,12 +109,51 @@ export function ProjectTabs({ project }: { project: Project }) {
           ) : null}
         </div>
 
-        <div>
-          <h3 className="text-base font-semibold">Timeline</h3>
-          <div className="mt-4">
-            <Timeline entries={timeline} />
+        {timeline.length > 0 ? (
+          <div>
+            <h3 className="text-base font-semibold">Timeline</h3>
+            <div className="mt-4">
+              <Timeline entries={timeline} />
+            </div>
           </div>
-        </div>
+        ) : null}
+
+        {commits.length > 0 ? (
+          <div>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h3 className="text-base font-semibold">Recent commits</h3>
+              {project.repoUrl ? (
+                <a
+                  href={`${project.repoUrl}/commits`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonVariants({ variant: "outline", size: "sm" })}
+                >
+                  <GithubIcon className="size-3.5" />
+                  All commits
+                  <ExternalLink className="size-3.5" aria-hidden />
+                </a>
+              ) : null}
+            </div>
+            {project.repoCommitsAt ? (
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+                Live from GitHub, as of {formatDate(project.repoCommitsAt)}
+              </p>
+            ) : null}
+            <div className="mt-4">
+              <RecentCommits commits={commits} />
+            </div>
+          </div>
+        ) : null}
+
+        {timeline.length === 0 && commits.length === 0 ? (
+          <div>
+            <h3 className="text-base font-semibold">Timeline</h3>
+            <div className="mt-4">
+              <Timeline entries={[]} />
+            </div>
+          </div>
+        ) : null}
       </TabsContent>
 
       <TabsContent value="metrics" className="space-y-4">

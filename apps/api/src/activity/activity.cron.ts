@@ -24,9 +24,11 @@ export class ActivityCron {
   async nightlyRefresh() {
     this.logger.log('Nightly activity refresh starting…');
     try {
-      const { totalContributions } = await this.activity.refresh();
+      const { totalContributions, repoCommitFeeds } =
+        await this.activity.refresh();
       this.logger.log(
-        `Nightly activity refresh done: totalContribs=${totalContributions}`,
+        `Nightly activity refresh done: totalContribs=${totalContributions}, ` +
+          `repoCommitFeeds=${repoCommitFeeds}`,
       );
     } catch (err) {
       // Swallow: a failed nightly pull must not crash the API; the last good

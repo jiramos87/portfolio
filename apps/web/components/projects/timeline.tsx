@@ -1,5 +1,6 @@
 import { GitCommit, GitPullRequest, FileText, Rocket, Milestone } from "lucide-react";
 import type { TimelineEntry } from "@/lib/api";
+import { formatDate } from "@/lib/format";
 
 const ICONS: Record<string, typeof GitCommit> = {
   commit: GitCommit,
@@ -8,19 +9,6 @@ const ICONS: Record<string, typeof GitCommit> = {
   prd: FileText,
   milestone: Milestone,
 };
-
-function formatDate(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  // Format in UTC so a "YYYY-MM-DD" string (parsed as UTC midnight) renders as
-  // that exact calendar date rather than shifting a day in negative-offset zones.
-  return d.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  });
-}
 
 export function Timeline({ entries }: { entries: TimelineEntry[] }) {
   if (entries.length === 0) {

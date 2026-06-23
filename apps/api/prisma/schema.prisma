@@ -26,29 +26,31 @@ enum ProjectStatus {
 
 /// A showroom exhibit: the shipped product + how it was built.
 model Project {
-  id          String        @id @default(cuid())
-  slug        String        @unique
-  name        String
-  tagline     String
-  problem     String
-  stack       String[] // product tech stack, e.g. ["Next.js", "NestJS"]
-  toolsUsed   String[] // agentic tools, e.g. ["Claude Code", "MCP"]
-  liveUrl     String?
-  repoUrl     String?
-  repoPublic  Boolean       @default(true)
-  prdUrl      String?
-  prd         String? // rendered PRD markdown for the "How I built this" tab
-  buildStory  String? // narrative of the build
-  metrics     Json? // { commits, prs, lighthouse, ... } each tagged real|placeholder|target
-  timeline    Json? // [{ date, type: commit|pr|deploy, label, url }]
-  screenshots String[] // paths under apps/web/public
-  status      ProjectStatus @default(IN_PROGRESS)
-  kind        ProjectKind
-  featured    Boolean       @default(false)
-  shippedAt   DateTime?
-  sortOrder   Int           @default(0)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  name          String
+  tagline       String
+  problem       String
+  stack         String[] // product tech stack, e.g. ["Next.js", "NestJS"]
+  toolsUsed     String[] // agentic tools, e.g. ["Claude Code", "MCP"]
+  liveUrl       String?
+  repoUrl       String?
+  repoPublic    Boolean       @default(true)
+  prdUrl        String?
+  prd           String? // rendered PRD markdown for the "How I built this" tab
+  buildStory    String? // narrative of the build
+  metrics       Json? // { commits, prs, lighthouse, ... } each tagged real|placeholder|target
+  timeline      Json? // [{ date, type: commit|pr|deploy, label, url }] curated build milestones
+  repoCommits   Json? // [{ sha, message, date, url }] recent commits, refreshed nightly (public repos)
+  repoCommitsAt DateTime? // when repoCommits was last pulled from GitHub
+  screenshots   String[] // paths under apps/web/public
+  status        ProjectStatus @default(IN_PROGRESS)
+  kind          ProjectKind
+  featured      Boolean       @default(false)
+  shippedAt     DateTime?
+  sortOrder     Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
   @@index([featured, sortOrder])
 }
