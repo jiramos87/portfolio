@@ -30,7 +30,7 @@ landing, `projects` (list), `projects/[slug]` (detail: product + "How I built th
 
 ## Exhibits at launch (seed these)
 1. portfolio (WEB_APP, public). 2. agentic-dev-kit (TOOLING, public). 3. territory-developer (CASE_STUDY, private code, public writeup + live game page).
-Honesty (load-bearing — never fabricate a stat): GitHub contribution count + heatmap are now LIVE (`pnpm --filter api activity:refresh`, ~1.8k contribs). The language block is curated "primary stacks" chips, NOT raw bytes (generated `dist/`, the vendored `design-reference/` bundle, and a Unity game skew GitHub byte counts away from the real TypeScript). Metric `kind` (real|placeholder|target) drives UI treatment; commits/Lighthouse stay target/placeholder until real; no star counts.
+Honesty (load-bearing — never fabricate a stat): GitHub contribution count + heatmap are now LIVE (`pnpm --filter api activity:refresh`, ~1.8k contribs). The language block is curated "primary stacks" chips, NOT raw bytes (generated `dist/`, the vendored `design-reference/` bundle, and a Unity game skew GitHub byte counts away from the real TypeScript). Metric `kind` (real|placeholder|target) drives UI treatment; Lighthouse is now REAL (`96-100`: live-site audit, lighthouse 12.8.2, desktop perf 98 / mobile perf 96, A11y+BestPractices+SEO 100 on both); commits metric stays target until real; no star counts.
 
 ## The kit (dogfood it)
 `~/projects/agentic-dev-kit`: skills (`prd`/`implement`/`verify`/`design-sync`) + an MCP server (`schema_introspect`, `scaffold_exhibit`, `deploy_status`). Copy the skills into `.claude/commands/` and register the MCP server when the Prisma schema exists.
