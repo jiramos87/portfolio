@@ -58,10 +58,13 @@ const projects = [
         kind: 'target',
       },
       {
+        // Real Lighthouse on the live landing page (lighthouse 12.8.2):
+        // desktop perf 98, mobile perf 96; Accessibility/Best Practices/SEO 100
+        // on both. Range 96-100 covers every category on both form factors.
         key: 'lighthouse',
         label: 'Lighthouse',
-        value: '95+',
-        kind: 'target',
+        value: '96-100',
+        kind: 'real',
       },
     ],
     timeline: [
