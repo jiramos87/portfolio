@@ -57,7 +57,7 @@ export class ActivityService {
     this.logger.log('Fetching repo stats…');
     const repoStats = await fetchRepoStats(repoToken);
 
-    // Curated primary stacks — honest "what I build in", not a byte breakdown.
+    // Curated primary stacks: honest "what I build in", not a byte breakdown.
     const languages = CURATED_STACKS.map((name) => ({ name }));
 
     const series = buildSeries(calendar.weeks);

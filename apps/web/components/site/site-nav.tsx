@@ -25,7 +25,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-6">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Javier Ramos — home">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Javier Ramos, home">
           <span
             aria-hidden
             className="cta-gradient flex size-7 items-center justify-center rounded-md font-mono text-xs font-bold"

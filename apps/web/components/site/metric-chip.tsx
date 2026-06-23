@@ -4,7 +4,7 @@ import { TagChip } from "@/components/site/tag-chip";
 import type { Metric } from "@/lib/api";
 
 function formatValue(metric: Metric): string {
-  if (metric.value === null) return "—";
+  if (metric.value === null) return "n/a";
   const v = String(metric.value);
   return metric.unit ? `${v}${metric.unit}` : v;
 }

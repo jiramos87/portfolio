@@ -1,4 +1,6 @@
+import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -20,10 +22,17 @@ export function SiteFooter() {
         </div>
 
         <p className="order-last text-center text-xs text-muted-foreground sm:order-none">
-          &copy; 2026 Javier Ramos — built with agentic workflows
+          &copy; 2026 Javier Ramos &middot; built with agentic workflows
         </p>
 
         <div className="flex items-center gap-4">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            aria-label={`Email ${CONTACT_EMAIL}`}
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <Mail className="size-5" />
+          </a>
           <a
             href="https://github.com/jiramos87"
             target="_blank"

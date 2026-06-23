@@ -1,5 +1,5 @@
 /**
- * GitHub ingest — pure async functions using the global `fetch` (no deps).
+ * GitHub ingest: pure async functions using the global `fetch` (no deps).
  *
  * Two tokens, two APIs (see CLAUDE.md / .env, both git-ignored):
  *  - read:user (classic)        → contribution count + calendar via GraphQL
@@ -38,7 +38,7 @@ export const LANGUAGE_EXCLUDE = [
 export const LANGUAGE_TOP_N = 6;
 
 /**
- * Curated primary stacks — the languages/frameworks Javier builds in, ordered by
+ * Curated primary stacks: the languages/frameworks Javier builds in, ordered by
  * emphasis. Honest self-representation ("what I work in"), NOT a byte measurement:
  * raw GitHub bytes are dominated by generated/vendored/game files that hide the real TS.
  */
@@ -81,7 +81,7 @@ export interface LanguageBytes {
 export interface LanguageBreakdown {
   /** Curated top N + "Other", percentages rounded to sum ~100. */
   languages: LanguageSlice[];
-  /** Raw summed bytes per language (curated repo set) — for debugging. */
+  /** Raw summed bytes per language (curated repo set), for debugging. */
   raw: LanguageBytes[];
 }
 
@@ -291,7 +291,7 @@ function toPercentSlices(
 }
 
 // ---------------------------------------------------------------------------
-// 3. Repo stats (REST, Contents:read) — no star counts (brand omits stars)
+// 3. Repo stats (REST, Contents:read). No star counts (brand omits stars).
 // ---------------------------------------------------------------------------
 
 /**

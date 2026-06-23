@@ -10,8 +10,8 @@ import { LanguageBar } from "@/components/landing/language-bar";
 import type { LanguageSlice, Stack } from "@/lib/honesty";
 
 export const metadata: Metadata = {
-  title: "Design system — Javier Ramos",
-  description: "Tokens, type & components — a dark-first shadcn/ui system with a cyan accent.",
+  title: "Design system | Javier Ramos",
+  description: "Tokens, type & components: a dark-first shadcn/ui system with a cyan accent.",
 };
 
 const COLOR_TOKENS = [
@@ -60,7 +60,7 @@ const DEMO_STACKS: Stack[] = [
 
 const DEMO_TIMELINE = [
   { date: "2026-06-22", type: "deploy", label: "Deployed to production · vercel · main" },
-  { date: "2026-06-22", type: "pr", label: "Merged PR #42 — landing hero · jiramos87/portfolio" },
+  { date: "2026-06-22", type: "pr", label: "Merged PR #42: landing hero · jiramos87/portfolio" },
   { date: "2026-06-22", type: "commit", label: "feat: terminal panel · 8 files · +312 −44" },
 ];
 
@@ -108,7 +108,7 @@ function Section({
   return (
     <section className="border-t border-border py-12">
       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-        <span className="text-primary">{num}</span> — {title}
+        <span className="text-primary">{num}</span> · {title}
       </p>
       <div className="mt-6">{children}</div>
     </section>
@@ -310,8 +310,6 @@ export default function DesignSystemPage() {
             </p>
             <pre className="overflow-x-auto rounded-lg border border-border bg-background p-4 font-mono text-xs leading-relaxed">
               <code>
-                <span className="text-success">✓</span> verify lighthouse 97 · a11y AA
-                {"\n"}
                 <span className="text-primary">→</span> implement landing.tsx · +312 −44
               </code>
             </pre>

@@ -11,7 +11,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Validate + forward a contact submission via the Nest BFF. */
 export async function sendContact(_prev: ContactResult, formData: FormData): Promise<ContactResult> {
-  // Honeypot — a filled `company` field means a bot. Silently succeed.
+  // Honeypot: a filled `company` field means a bot. Silently succeed.
   const honeypot = String(formData.get("company") ?? "").trim();
   if (honeypot) return { ok: true };
 

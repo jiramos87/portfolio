@@ -23,7 +23,7 @@ export function ActivitySection({ activity }: { activity: ActivitySnapshot | nul
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <Eyebrow>PROOF — GITHUB ACTIVITY</Eyebrow>
+      <Eyebrow>PROOF · GITHUB ACTIVITY</Eyebrow>
       <h2 className="mt-4 text-3xl font-semibold tracking-tight">
         Backed by real, continuous work
       </h2>

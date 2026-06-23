@@ -100,7 +100,7 @@ export function ExhibitCard({ project }: { project: Project }) {
           <span className="inline-flex items-center gap-1.5">
             <span className="font-mono text-xs text-muted-foreground">
               {primaryMetric.label}{" "}
-              {primaryMetric.value !== null ? String(primaryMetric.value) : "—"}
+              {primaryMetric.value !== null ? String(primaryMetric.value) : "n/a"}
             </span>
             <TagChip tag={metricTag(primaryMetric.kind)} />
           </span>

@@ -12,7 +12,7 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - [x] **M2 — Public API + RSC reads.** `GET /projects`, `/projects/:slug`, `GET /activity`, `POST /contact`, `/health`. RSC fetch the Nest API server-to-server.
 - [x] **M3 — Design system wiring.** Tailwind v4 + `design-reference/globals.css` (tokens); shadcn initialized; Geist via `next/font/local`; `next-themes` (dark default). Verified visually (dark `#0a0e13` + cyan `#22d3ee`).
 - [x] **M4 — Build all 6 pages** from the standalone (hero = Direction B / terminal build-log; no A/B toggle). Landing = proof-by-numbers + activity heatmap; detail = tabs + Open-the-PRD + timeline + metrics. Verified visually + working contact form (lead persisted).
-- [~] **M5 — Ship phase 1a.** Local prep **done** (brand favicon, OG image, full metadata, sitemap, robots, `Dockerfile`, `.dockerignore`, `vercel.json`, `docs/deploy.md`). Actual deploy (Vercel + Railway + domain) **pending your accounts** — see `docs/deploy.md`.
+- [x] **M5 — Ship phase 1a.** **LIVE** — web on Vercel (`https://portfolio-nine-pearl-77.vercel.app`), API+Postgres on Railway (`https://portfolio-production-ed5b.up.railway.app`). All routes 200; real activity served end-to-end. Custom domain still optional. See `docs/deploy.md` + Decisions (deploy).
 - [ ] **M6–M8 (1b).** Auth + admin CRUD; design-system page; CI + tests + badges; nightly GitHub-stats job; Lighthouse ≥ 95.
 
 ## Decisions (M0)
@@ -75,11 +75,23 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **Ingest:** `apps/api/src/github/github.ts` (pure fetchers) + `ActivityService.refresh()` + `pnpm --filter api activity:refresh`. Writes a real `ActivitySnapshot` (`isPlaceholder:false`). Nightly cron = 1b.
 - **Language honesty (load-bearing):** raw GitHub bytes misrepresent — generated `dist/` (→JS), a vendored design bundle (→HTML), and a 21 MB Unity game (→C#) drown the authored TypeScript. So the language block shows **curated "primary stacks"** (TypeScript · JavaScript · C# · Python · SQL) as honest chips, labeled "languages & frameworks I build in" — **not** byte percentages. Added `.gitattributes` (`design-reference/** linguist-vendored`) so the public repo's own language bar is honest too.
 
+## Decisions (deploy / M5)
+
+- **Live URLs:** web → `https://portfolio-nine-pearl-77.vercel.app` (Vercel, project `portfolio` / team `jiramos87s-projects`); API+DB → `https://portfolio-production-ed5b.up.railway.app` (Railway, project `just-recreation`/production). Web RSC fetch the Railway API server-to-server.
+- **Railway (API+Postgres):** Dockerfile build pinned via service var **`RAILWAY_DOCKERFILE_PATH=apps/api/Dockerfile`** (else Railway auto-builds the whole monorepo wrong). `DATABASE_URL=${{Postgres.DATABASE_URL}}` (private network). Healthcheck `/health`. **No `PORT` var** — Railway injects it; `main.ts` reads `process.env.PORT`.
+- **Railway Pre-Deploy gotcha (load-bearing):** the Pre-Deploy Command field does **NOT** honor shell `&&`/subshells — a `migrate && seed && refresh` chain ran only `prisma migrate deploy` and silently dropped the rest (tables created, DB empty → site rendered no data). Fix: keep pre-deploy to the single `pnpm --filter api exec prisma migrate deploy`; run `db:seed` + `activity:refresh` once via the service **Console** tab (or the nightly cron in 1b). Did that → real snapshot `totalContribs≈1883`, `isPlaceholder:false`.
+- **Vercel (web):** Root Directory `apps/web`, framework `nextjs`, Git-connected to `jiramos87/portfolio` (auto-deploys on push to `main`). `apps/web` has `workspace:*` deps (`@repo/ui|eslint-config|typescript-config`) so it can't build standalone — the monorepo root is cloned and built at the root dir.
+- **Vercel MCP is thin:** `deploy_to_vercel` is **advisory only** (no real deploy/config); no env-var or root-dir tools. The Vercel CLI **re-auths on every call** in the sandboxed shell (can't read stored creds → device-login loop, ~4 prompts). Resolution: a short-lived **`VERCEL_TOKEN`** in the **gitignored root `.env`**, driven via the REST API — set env (`POST /v10/projects/{id}/env?upsert=true`), trigger build (`POST /v13/deployments` with `gitSource{type:github,ref:main,repoId}`), poll `GET /v13/deployments/{id}`.
+- **Env vars (Vercel):** `INTERNAL_API_URL` = Railway URL; `SITE_URL` = the `*.vercel.app` domain. `SITE_URL` must be set **before** the build that consumes it (metadata/OG/sitemap/robots) → set env, then redeploy. Verified: `og:url`/canonical = the production domain.
+- **Token hygiene:** `VERCEL_TOKEN` is short-expiry, gitignored, read only via `process.env`, never printed; delete it post-launch.
+
 ## Open items (carried)
 
 - **Per-exhibit GitHub timelines** (commit/PR/deploy) — detail-page timelines are still the seeded milestones; wiring live PR/commit history is 1b.
 - **Content gaps:** CV file; `territory-developer` live game URL; real screenshots per exhibit; the 60–90s methodology demo video.
-- **Deploy:** pending your Vercel/Railway/domain (configs + runbook ready — `docs/deploy.md`).
+- **Custom domain:** site is live on `*.vercel.app`; pointing a custom domain (e.g. `javierramos.dev`) + updating `SITE_URL` is optional/when ready.
+- **Railway pre-deploy:** simplify the Pre-Deploy Command to the single `prisma migrate deploy` (currently a `&&` chain Railway only partly runs) so a future redeploy can't re-break; seed/refresh stay manual/cron.
+- **Prod contact write-path:** read paths verified live; a prod POST `/contact` test (creates a real Lead row) not yet run.
 
 ## Log
 
@@ -91,3 +103,4 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 - **2026-06-22 — pushed M0–M4** to `origin/main` (`15cff18..a3ca6b7`); repo is now public history.
 - **2026-06-22 — M5 prep done.** SEO assets (brand favicon, OG image verified, metadata, sitemap, robots) + deploy configs (api `Dockerfile`, `.dockerignore`, web `vercel.json`, `docs/deploy.md`). Build green incl. `/opengraph-image`, `/sitemap.xml`, `/robots.txt`. Deploy itself awaits Vercel/Railway/domain.
 - **2026-06-22 — live activity pull.** Two read-only GitHub tokens added; built the Nest ingest. Activity section is now **fully real**: populated contribution heatmap, live count **1,879**, real "commit + PR" time chart, and honest curated "primary stacks" chips (no fabricated byte %). `.gitattributes` vendored the design bundle. Verified via screenshot; full gate green.
+- **2026-06-23 — M5 DEPLOYED (1a live).** Local prod check first (web build + API Docker image booted against Postgres, served real `/projects`+`/activity`). Railway: Postgres + Dockerfile API service (`RAILWAY_DOCKERFILE_PATH`, healthcheck `/health`, GitHub tokens); pre-deploy `&&` chain only ran migrate → seeded + refreshed manually via Console (real `totalContribs≈1883`). Vercel: project `portfolio`, root `apps/web`, Git-connected, driven via REST API with a gitignored `VERCEL_TOKEN` (the CLI re-auth loop + thin MCP forced this); set `INTERNAL_API_URL`+`SITE_URL`, deployed `main`, redeployed to bake `SITE_URL`. Verified live: **all 9 routes 200**, canonical = prod domain, real data end-to-end (Vercel RSC → Railway → Postgres). Web: `https://portfolio-nine-pearl-77.vercel.app`.

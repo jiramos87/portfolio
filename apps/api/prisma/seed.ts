@@ -28,10 +28,10 @@ const projects = [
     tagline:
       'A full-stack showroom that presents the product and exactly how it was built with agents.',
     problem:
-      'Most portfolios show only the finished product. This one shows the build too — the PRD, the commit/PR/deploy timeline, the metrics, and the agent-driven workflow behind each exhibit.',
+      'Most portfolios show only the finished product. This one shows the build too: the PRD, the commit/PR/deploy timeline, the metrics, and the agent-driven workflow behind each exhibit.',
     stack: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma'],
     toolsUsed: ['Claude Code', 'MCP', 'PRD loop'],
-    liveUrl: null,
+    liveUrl: 'https://portfolio-nine-pearl-77.vercel.app',
     repoUrl: `${GH}/portfolio`,
     repoPublic: true,
     prdUrl: `${GH}/portfolio/blob/main/docs/PRD.md`,
@@ -50,22 +50,22 @@ const projects = [
       {
         date: '2026-06-22',
         type: 'milestone',
-        label: 'M3 — design system wired (Tailwind v4 + tokens + shadcn)',
+        label: 'M3: design system wired (Tailwind v4 + tokens + shadcn)',
       },
       {
         date: '2026-06-22',
         type: 'milestone',
-        label: 'M2 — public API + RSC reads',
+        label: 'M2: public API + RSC reads',
       },
       {
         date: '2026-06-22',
         type: 'milestone',
-        label: 'M1 — backend foundation (NestJS + Prisma + Postgres)',
+        label: 'M1: backend foundation (NestJS + Prisma + Postgres)',
       },
       {
         date: '2026-06-22',
         type: 'milestone',
-        label: 'M0 — monorepo scaffold (pnpm + Turborepo)',
+        label: 'M0: monorepo scaffold (pnpm + Turborepo)',
       },
     ],
     screenshots: [] as string[],
@@ -106,7 +106,7 @@ const projects = [
     tagline:
       'A 2D isometric city-builder grounded in real simulation, built with a custom agentic pipeline. Public writeup, private code.',
     problem:
-      'A case study in shipping a non-trivial game with an agent-driven workflow — the code stays private, but the process and the playable result are public.',
+      'A case study in shipping a non-trivial game with an agent-driven workflow. The code stays private, but the process and the playable result are public.',
     stack: ['Unity', 'C#'],
     toolsUsed: ['Agentic pipeline', 'Claude Code', 'PRD loop'],
     liveUrl: null,

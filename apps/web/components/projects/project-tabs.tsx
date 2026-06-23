@@ -78,7 +78,7 @@ export function ProjectTabs({ project }: { project: Project }) {
           ) : (
             <p className="mt-4 text-sm text-muted-foreground">
               {project.prdUrl
-                ? "The full PRD lives in the repo — open it above."
+                ? "The full PRD lives in the repo. Open it above."
                 : "PRD not published for this exhibit yet."}
             </p>
           )}
@@ -100,7 +100,7 @@ export function ProjectTabs({ project }: { project: Project }) {
 
       <TabsContent value="metrics" className="space-y-4">
         <p className="text-muted-foreground">
-          Each metric carries an honesty tag — verified numbers read solid; targets and
+          Each metric carries an honesty tag. Verified numbers read solid; targets and
           placeholders read muted.
         </p>
         {metrics.length > 0 ? (

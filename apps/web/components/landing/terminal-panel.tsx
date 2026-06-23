@@ -19,12 +19,12 @@ const GLYPHS: Record<Glyph, { char: string; className: string }> = {
   iterate: { char: "↻", className: "text-chart-4" }, // ↻
 };
 
+// Verify step (Lighthouse + CI) omitted until M6–M8: no fabricated scores in the hero log.
 const LINES: Line[] = [
   { command: true, text: "$ agent run --prd portfolio.prd.md" },
   { glyph: "ok", step: "explore", text: "repo scanned · 142 files · context built" },
   { glyph: "ok", step: "plan", text: "PRD → 9 tasks · acceptance set" },
   { glyph: "run", step: "implement", text: "apps/web/landing.tsx · +312 −44" },
-  { glyph: "verify", step: "verify", text: "lighthouse 97 · a11y AA · CI green" },
   { glyph: "iterate", step: "iterate", text: "Claude Design → UI · diff applied" },
   { glyph: "ok", step: "ship", text: "deployed · main@a1f9c2" },
 ];
@@ -44,7 +44,7 @@ export function TerminalPanel({ className }: { className?: string }) {
           <span className="size-3 rounded-full bg-success/70" />
         </span>
         <span className="ml-2 font-mono text-xs text-muted-foreground">
-          agent — build-feature.sh
+          agent · build-feature.sh
         </span>
       </div>
 

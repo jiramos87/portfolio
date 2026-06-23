@@ -2,7 +2,7 @@
  * Server-side client for the Nest API.
  *
  * Reads run from React Server Components, server-to-server (the API stays
- * private — no browser calls, no CORS). The contact write is invoked from a
+ * private (no browser calls, no CORS). The contact write is invoked from a
  * server action / route handler (the Next BFF), never from the browser.
  *
  * Base URL comes from INTERNAL_API_URL (see .env.example); defaults to local.
@@ -72,7 +72,7 @@ export interface ContactInput {
   name: string;
   email: string;
   message: string;
-  /** Honeypot — leave empty. */
+  /** Honeypot: leave empty. */
   company?: string;
 }
 

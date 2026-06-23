@@ -25,7 +25,7 @@ function level(count: number, max: number): number {
 
 /**
  * Contribution heatmap. When the snapshot is real, fill the grid from the
- * calendar weeks; otherwise (`pending`) render a muted empty grid — never
+ * calendar weeks; otherwise (`pending`) render a muted empty grid (never
  * fabricated cells.
  */
 export function ContributionHeatmap({

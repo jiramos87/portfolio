@@ -10,7 +10,7 @@ export interface Kpi {
   sub: string;
 }
 
-/** Decorative sparkline — a fixed shape, not a data claim. */
+/** Decorative sparkline: a fixed shape, not a data claim. */
 function Sparkline({ muted }: { muted: boolean }) {
   return (
     <svg

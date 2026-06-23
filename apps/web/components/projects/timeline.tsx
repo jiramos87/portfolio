@@ -26,7 +26,7 @@ export function Timeline({ entries }: { entries: TimelineEntry[] }) {
   if (entries.length === 0) {
     return (
       <p className="rounded-lg border border-dashed border-border bg-card p-6 text-sm text-muted-foreground">
-        No timeline entries yet — commit, PR, and deploy activity will appear here.
+        No timeline entries yet. Commit, PR, and deploy activity will appear here.
       </p>
     );
   }

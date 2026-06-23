@@ -28,9 +28,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = await loadProject(slug);
-  if (!project) return { title: "Project not found — Javier Ramos" };
+  if (!project) return { title: "Project not found | Javier Ramos" };
   return {
-    title: `${project.name} — Javier Ramos`,
+    title: `${project.name} | Javier Ramos`,
     description: project.tagline,
   };
 }

@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/site/eyebrow";
 import { ProjectsTable } from "@/components/projects/projects-table";
 
 export const metadata: Metadata = {
-  title: "Projects — Javier Ramos",
+  title: "Projects | Javier Ramos",
   description: "Every exhibit: the shipped product and how it was built with agents.",
 };
 
@@ -21,7 +21,7 @@ export default async function ProjectsPage() {
       <Eyebrow>EXHIBITS</Eyebrow>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight">Projects</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Each row is an exhibit — the shipped product and the agent-driven build behind
+        Each row is an exhibit: the shipped product and the agent-driven build behind
         it. Click a header to sort; click a row for the full story.
       </p>
 

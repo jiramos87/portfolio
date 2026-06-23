@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { Stack } from "@/lib/honesty";
 
 /**
- * Primary stacks — a curated, ordered list of the languages & frameworks Javier
+ * Primary stacks: a curated, ordered list of the languages & frameworks Javier
  * builds in. Honest "what I work in", NOT a byte breakdown: raw GitHub bytes are
  * dominated by generated/vendored/game files that hide the real TypeScript.
  * Rendered as mono chips, with the primary (first) stack carrying the cyan accent.

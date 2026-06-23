@@ -1,0 +1,11 @@
+---
+description: Copy and honesty conventions for portfolio user-facing text
+alwaysApply: true
+---
+
+# Portfolio copy conventions
+
+- Do not use the Unicode em-dash (U+2014) in user-visible copy, code comments, or identifiers. Prefer commas, periods, parentheses, or a hyphen-minus (-).
+- Missing metric values: use `n/a`, not an em-dash.
+- Page title pattern: `"Page | Javier Ramos"`, not em-dash separators.
+- Terminal hero log: the `verify lighthouse / CI green` line is intentionally omitted until M6–M8 (real Lighthouse runs + CI). Do not add fabricated verify scores to the terminal block.

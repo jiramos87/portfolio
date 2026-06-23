@@ -12,12 +12,12 @@ export function Hero() {
           <Eyebrow>PRD → IMPLEMENT → VERIFY → SHIP</Eyebrow>
 
           <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            The product <span className="text-primary">and</span> the build log.
-            <br className="hidden sm:block" /> Shipped with agentic workflows.
+            From PRD to production.
+            <br className="hidden sm:block" /> Built with agentic workflows.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            I&apos;m Javier — a backend-leaning full-stack engineer. Each exhibit is
+            I&apos;m Javier, a backend-leaning full-stack engineer. Each exhibit is
             real, deployed, and backed by GitHub activity, with the agent-driven
             process shown in full.
           </p>

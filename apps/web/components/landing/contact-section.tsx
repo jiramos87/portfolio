@@ -1,10 +1,12 @@
 import { Mail } from "lucide-react";
+import Link from "next/link";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { ContactForm } from "@/components/contact/contact-form";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
+import { buttonVariants } from "@/components/ui/button";
+import { CONTACT_EMAIL } from "@/lib/site";
 
-const LINKS = [
-  { icon: Mail, label: "hello@javierramos.dev", href: "mailto:hello@javierramos.dev" },
+const SOCIAL_LINKS = [
   {
     icon: LinkedinIcon,
     label: "linkedin.com/in/javier-ramos-humeres",
@@ -20,28 +22,38 @@ export function ContactSection() {
         <div>
           <Eyebrow>CONTACT</Eyebrow>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-            Let&apos;s build something — and show how.
+            Let&apos;s build something, and show how.
           </h2>
           <p className="mt-4 max-w-md text-muted-foreground">
             Open to remote full-stack roles and agentic-tooling work. Send a note and
             I&apos;ll reply with relevant exhibits.
           </p>
 
-          <ul className="mt-8 space-y-3">
-            {LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex items-center gap-2.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <link.icon className="size-4 text-primary" aria-hidden />
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8 space-y-4">
+            <Link
+              href={`mailto:${CONTACT_EMAIL}`}
+              className={buttonVariants({ size: "lg", className: "cta-gradient w-fit" })}
+            >
+              <Mail className="size-4" aria-hidden />
+              {CONTACT_EMAIL}
+            </Link>
+
+            <ul className="space-y-3">
+              {SOCIAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <link.icon className="size-4 text-primary" aria-hidden />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-6">

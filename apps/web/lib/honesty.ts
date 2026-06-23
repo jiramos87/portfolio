@@ -43,7 +43,7 @@ export interface LanguageSlice {
 }
 
 /**
- * Curated primary stacks ("what I build in") — honest self-representation, NOT a
+ * Curated primary stacks ("what I build in"). Honest self-representation, NOT a
  * byte measurement. The activity payload ships an ordered list of `{ name }`.
  */
 export interface Stack {

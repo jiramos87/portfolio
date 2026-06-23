@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Javier Ramos — Developer Showroom";
+export const alt = "Javier Ramos | Developer Showroom";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Brand-colored social card. Plain inline styles (satori) — no external fonts.
+// Brand-colored social card. Plain inline styles (satori), no external fonts.
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -62,10 +62,10 @@ export default function OpengraphImage() {
               maxWidth: "1000px",
             }}
           >
-            The product and the build log.
+            From PRD to production.
           </div>
           <div style={{ fontSize: "30px", color: "#8a96a3", fontFamily: "sans-serif" }}>
-            A full-stack showroom — shipped with agentic workflows.
+            Built with agentic workflows.
           </div>
         </div>
 

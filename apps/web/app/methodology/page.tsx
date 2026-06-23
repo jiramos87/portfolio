@@ -4,15 +4,15 @@ import { Eyebrow } from "@/components/site/eyebrow";
 import { MethodLoop } from "@/components/landing/method-loop";
 
 export const metadata: Metadata = {
-  title: "Methodology — Javier Ramos",
+  title: "Methodology | Javier Ramos",
   description:
-    "The closed agentic loop behind every exhibit: PRD, implement, verify, ship — with Claude Code skills and a custom MCP server.",
+    "The closed agentic loop behind every exhibit: PRD, implement, verify, ship, with Claude Code skills and a custom MCP server.",
 };
 
 const SECTIONS = [
   {
     title: "The kit",
-    body: "An open-source agentic-dev-kit — Claude Code skills, a custom MCP server, and PRD templates — dropped into each repo. The portfolio is built by dogfooding it end to end.",
+    body: "An open-source agentic-dev-kit: Claude Code skills, a custom MCP server, and PRD templates, dropped into each repo. The portfolio is built by dogfooding it end to end.",
   },
   {
     title: "The PRD loop",
@@ -28,7 +28,7 @@ const SECTIONS = [
   },
   {
     title: "Closed-loop verify",
-    body: "Lint, typecheck, tests, Lighthouse, and CI form the gate. Nothing ships until the loop closes green — and the proof is the public GitHub history.",
+    body: "Lint, typecheck, tests, Lighthouse, and CI form the gate. Nothing ships until the loop closes green, and the proof is the public GitHub history.",
   },
 ] as const;
 
@@ -38,7 +38,7 @@ export default function MethodologyPage() {
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-4">
         <Eyebrow>METHODOLOGY</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
-          A repeatable, verifiable pipeline — driven by a PRD
+          A repeatable, verifiable pipeline, driven by a PRD
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           Every exhibit runs the same closed loop. Here&apos;s the shape of it, and the
@@ -53,7 +53,7 @@ export default function MethodologyPage() {
           <div className="flex aspect-video flex-col items-center justify-center gap-3 text-center">
             <PlayCircle className="size-10 text-muted-foreground" aria-hidden />
             <p className="font-mono text-sm text-muted-foreground">
-              60–90s demo — coming soon
+              60–90s demo, coming soon
             </p>
             <p className="max-w-md text-xs text-muted-foreground">
               A short walkthrough of the loop in action: PRD → implement → verify → ship.

@@ -15,15 +15,15 @@ const geistMono = localFont({
 });
 
 const SITE_URL = process.env.SITE_URL ?? "https://javierramos.dev";
-const TITLE = "Javier Ramos — Developer Showroom";
+const TITLE = "Javier Ramos | Developer Showroom";
 const DESCRIPTION =
   "A full-stack showroom that proves the product and the agentic workflow behind each build.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: TITLE, template: "%s · Javier Ramos" },
+  title: { default: TITLE, template: "%s | Javier Ramos" },
   description: DESCRIPTION,
-  applicationName: "Javier Ramos — Developer Showroom",
+  applicationName: "Javier Ramos | Developer Showroom",
   authors: [{ name: "Javier Ramos", url: SITE_URL }],
   keywords: [
     "full-stack engineer",

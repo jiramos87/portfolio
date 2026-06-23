@@ -33,7 +33,7 @@ export function ContactForm() {
         <div>
           <p className="font-medium text-foreground">Message sent.</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Thanks — I&apos;ll reply with relevant exhibits.
+            Thanks, I&apos;ll reply with relevant exhibits.
           </p>
         </div>
       </div>
@@ -42,7 +42,7 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-4">
-      {/* Honeypot — hidden from users, catches bots. */}
+      {/* Honeypot: hidden from users, catches bots. */}
       <div className="hidden" aria-hidden>
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />

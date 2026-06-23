@@ -21,7 +21,7 @@ const STEPS = [
   {
     num: "04",
     title: "Verify",
-    body: "Lint, typecheck, Lighthouse, CI — then loop back.",
+    body: "Lint, typecheck, Lighthouse, CI, then loop back.",
   },
 ] as const;
 
@@ -36,7 +36,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
             A closed agentic loop, on every exhibit
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Each product is built with a repeatable, verifiable pipeline — driven by
+            Each product is built with a repeatable, verifiable pipeline, driven by
             a PRD and Claude Code skills, closed by automated checks.
           </p>
         </div>
@@ -68,7 +68,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
           <span className="font-mono font-semibold uppercase tracking-wide text-primary">
             iterate
           </span>{" "}
-          — verify fails loop back to implement; Claude Design ⇄ UI runs on every
+          When verify fails, loop back to implement; Claude Design ⇄ UI runs on every
           visual change.
         </p>
       </div>
