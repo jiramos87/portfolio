@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Mail, FileText } from "lucide-react";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { ContactForm } from "@/components/contact/contact-form";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
 import { buttonVariants } from "@/components/ui/button";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, CV_EN_PATH, CV_ES_PATH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact | Javier Ramos",
@@ -42,6 +42,30 @@ export default function ContactPage() {
             <Mail className="size-4" aria-hidden />
             {CONTACT_EMAIL}
           </Link>
+
+          <div className="space-y-1.5">
+            <a
+              href={CV_EN_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ variant: "outline", className: "w-fit" })}
+            >
+              <FileText className="size-4" aria-hidden />
+              Download CV (PDF)
+            </a>
+            <p className="font-mono text-xs text-muted-foreground">
+              Also in{" "}
+              <a
+                href={CV_ES_PATH}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline-offset-2 hover:text-primary hover:underline"
+              >
+                Spanish
+              </a>
+              .
+            </p>
+          </div>
 
           <ul className="space-y-3">
             {SOCIAL_LINKS.map((link) => (

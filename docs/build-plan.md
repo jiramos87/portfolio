@@ -95,7 +95,7 @@ This file tracks **progress, decisions, and findings** as the build proceeds. Pe
 ## Open items (carried)
 
 - **Per-exhibit GitHub timelines DONE (commit feed):** each public-repo exhibit shows a live "Recent commits" section (nightly snapshot in DB) under the curated milestones; spec `docs/prd/live-repo-timelines.md`. Commits-only by decision (no live PR history); private case study stays curated.
-- **Content gaps:** CV file; `territory-developer` live game URL; real screenshots per exhibit; the 60–90s methodology demo video.
+- **Content gaps:** ~~CV file~~ DONE (EN + ES PDFs under `apps/web/public/cv/`, linked from the contact page + top nav, English primary); `territory-developer` live game URL; real screenshots per exhibit; the 60–90s methodology demo video.
 - **Custom domain DONE:** `https://javierramos.dev` (bought via Vercel, $9.99/yr, auto DNS+SSL; `www` 308s to apex; `SITE_URL` updated; ICANN email-verify pending in inbox).
 - **Railway pre-deploy DONE:** `railway.json` pins the pre-deploy to a single `prisma migrate deploy`, overriding the dashboard `&&` chain; validated by green deploys (incl. the `project_repo_commits` migration). Seed/refresh stay manual/cron.
 - **Prod contact write-path DONE:** prod POST `/contact` verified end-to-end (real Lead row created, then deleted).

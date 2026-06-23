@@ -1,5 +1,6 @@
 /** Public contact email (mailto links, footer, contact section). */
 export const CONTACT_EMAIL = "jiramos87@gmail.com";
 
-/** Production web URL (README, seed, metadata). */
-export const LIVE_SITE_URL = "https://portfolio-nine-pearl-77.vercel.app";
+/** Downloadable CV (PDF) assets under apps/web/public. English is primary. */
+export const CV_EN_PATH = "/cv/Javier_Ramos_Humeres_CV_EN.pdf";
+export const CV_ES_PATH = "/cv/Javier_Ramos_Humeres_CV_ES.pdf";

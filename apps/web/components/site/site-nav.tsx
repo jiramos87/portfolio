@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GithubIcon } from "@/components/site/brand-icons";
+import { CV_EN_PATH } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Work" },
@@ -64,6 +66,16 @@ export function SiteNav() {
             className={buttonVariants({ variant: "ghost", size: "icon" })}
           >
             <GithubIcon className="size-4" />
+          </a>
+          <a
+            href={CV_EN_PATH}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download CV (PDF)"
+            className={cn(buttonVariants({ variant: "outline" }), "hidden sm:inline-flex")}
+          >
+            <FileText className="size-4" aria-hidden />
+            CV
           </a>
           <Link href="/contact" className={buttonVariants()}>
             Contact
