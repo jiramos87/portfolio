@@ -1,0 +1,42 @@
+name: CI
+
+# Verify gate for the monorepo: the same check-types / lint / build that the
+# `verify` skill runs locally. Drives the CI badge on the portfolio exhibit.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Newer pushes on a ref supersede older in-flight runs.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: types, lint, build
+    runs-on: ubuntu-latest
+    env:
+      # Prisma reads this in prisma.config.ts. generate/build never connect, so a
+      # placeholder keeps client generation happy without a real database.
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter api exec prisma generate
+
+      - name: Verify gate
+        run: pnpm check-types && pnpm lint && pnpm build
