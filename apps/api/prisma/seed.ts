@@ -31,7 +31,7 @@ const projects = [
       'Most portfolios show only the finished product. This one shows the build too: the PRD, the commit/PR/deploy timeline, the metrics, and the agent-driven workflow behind each exhibit.',
     stack: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma'],
     toolsUsed: ['Claude Code', 'MCP', 'PRD loop'],
-    liveUrl: 'https://portfolio-nine-pearl-77.vercel.app',
+    liveUrl: 'https://javierramos.dev',
     repoUrl: `${GH}/portfolio`,
     repoPublic: true,
     prdUrl: `${GH}/portfolio/blob/main/docs/PRD.md`,
