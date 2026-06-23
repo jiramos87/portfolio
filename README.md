@@ -1,5 +1,7 @@
 # portfolio
 
+[![CI](https://github.com/jiramos87/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/jiramos87/portfolio/actions/workflows/ci.yml)
+
 A full-stack developer showroom by Javier Ramos. Each exhibit shows two things: the shipped product, and exactly how it was built using agentic workflows (PRD to implement to verify to deploy).
 
 **Live:** https://javierramos.dev

@@ -35,6 +35,7 @@ const projects = [
     repoUrl: `${GH}/portfolio`,
     repoPublic: true,
     prdUrl: `${GH}/portfolio/blob/main/docs/PRD.md`,
+    ciUrl: `${GH}/portfolio/actions/workflows/ci.yml`,
     prd: null,
     buildStory:
       'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',

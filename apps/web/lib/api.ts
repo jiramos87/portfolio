@@ -50,6 +50,7 @@ export interface Project {
   repoUrl: string | null;
   repoPublic: boolean;
   prdUrl: string | null;
+  ciUrl: string | null;
   prd: string | null;
   buildStory: string | null;
   metrics: Metric[] | null;

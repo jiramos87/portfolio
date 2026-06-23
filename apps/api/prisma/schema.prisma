@@ -37,6 +37,7 @@ model Project {
   repoUrl       String?
   repoPublic    Boolean       @default(true)
   prdUrl        String?
+  ciUrl         String? // GitHub Actions workflow URL; drives the live CI badge on the exhibit
   prd           String? // rendered PRD markdown for the "How I built this" tab
   buildStory    String? // narrative of the build
   metrics       Json? // { commits, prs, lighthouse, ... } each tagged real|placeholder|target

@@ -109,6 +109,29 @@ export function ProjectTabs({ project }: { project: Project }) {
           ) : null}
         </div>
 
+        {project.ciUrl ? (
+          <div>
+            <h3 className="text-base font-semibold">Continuous integration</h3>
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+              Every push runs the verify gate in GitHub Actions: type-check, lint,
+              and build across the monorepo. This badge is live.
+            </p>
+            <a
+              href={project.ciUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- live GitHub Actions status badge (SVG); next/image adds nothing here */}
+              <img
+                src={`${project.ciUrl}/badge.svg`}
+                alt="GitHub Actions CI status"
+                className="h-5 w-auto"
+              />
+            </a>
+          </div>
+        ) : null}
+
         {timeline.length > 0 ? (
           <div>
             <h3 className="text-base font-semibold">Timeline</h3>
