@@ -23,6 +23,7 @@ async function main() {
 
     logger.log(`Wrote snapshot ${result.id}`);
     logger.log(`Total contributions: ${result.totalContributions}`);
+    logger.log(`Per-exhibit commit feeds refreshed: ${result.repoCommitFeeds}`);
     logger.log('Curated primary stacks:');
     for (const stack of result.languages) {
       logger.log(`  ${stack.name}`);
