@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileText } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -24,6 +25,12 @@ function isActive(pathname: string, href: string): boolean {
 
 export function SiteNav() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  // Close the mobile menu whenever the route changes.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -71,16 +78,68 @@ export function SiteNav() {
           <Link
             href={CV_PATH}
             aria-label="View CV"
-            className={cn(buttonVariants({ variant: "outline" }), "hidden sm:inline-flex")}
+            className={cn(buttonVariants({ variant: "outline" }), "hidden md:inline-flex")}
           >
             <FileText className="size-4" aria-hidden />
             CV
           </Link>
-          <Link href="/contact" className={buttonVariants()}>
+          <Link href="/contact" className={cn(buttonVariants(), "hidden md:inline-flex")}>
             Contact
           </Link>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "md:hidden")}
+          >
+            {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+          </button>
         </div>
       </nav>
+
+      {open ? (
+        <div id="mobile-menu" className="border-t border-border bg-background md:hidden">
+          <ul className="mx-auto max-w-6xl space-y-1 px-6 py-4">
+            {LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive(pathname, link.href) ? "page" : undefined}
+                  className={cn(
+                    "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    isActive(pathname, link.href)
+                      ? "bg-muted text-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  )}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li className="flex gap-2 pt-3">
+              <Link
+                href={CV_PATH}
+                onClick={() => setOpen(false)}
+                aria-label="View CV"
+                className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
+              >
+                <FileText className="size-4" aria-hidden />
+                CV
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className={cn(buttonVariants(), "flex-1")}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      ) : null}
     </header>
   );
 }
