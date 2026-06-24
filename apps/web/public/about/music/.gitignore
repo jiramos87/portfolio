@@ -1,0 +1,3 @@
+# Original high-res source photos are kept locally only.
+# The site serves the optimized .webp versions (committed).
+*.png

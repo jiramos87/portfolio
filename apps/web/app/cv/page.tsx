@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FileText, Mail, MapPin } from "lucide-react";
+import { ExternalLink, FileText, Mail, MapPin } from "lucide-react";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { LangToggle } from "@/components/site/lang-toggle";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
@@ -189,6 +189,32 @@ export default async function CvPage({
               </div>
               <p className="mt-0.5 font-mono text-xs text-muted-foreground">{p.venue}</p>
               <p className="mt-1 text-sm text-muted-foreground">{p.note}</p>
+              {p.officialUrl || p.pdfUrl ? (
+                <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+                  {p.officialUrl ? (
+                    <a
+                      href={p.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-medium text-primary underline-offset-2 hover:underline"
+                    >
+                      <ExternalLink className="size-3" aria-hidden />
+                      MIT Press
+                    </a>
+                  ) : null}
+                  {p.pdfUrl ? (
+                    <a
+                      href={p.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-muted-foreground underline-offset-2 hover:text-foreground hover:underline"
+                    >
+                      <FileText className="size-3" aria-hidden />
+                      PDF
+                    </a>
+                  ) : null}
+                </p>
+              ) : null}
             </article>
           ))}
         </div>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { LangToggle } from "@/components/site/lang-toggle";
+import { MusicSection } from "@/components/about/music-section";
+import { PublicationBox } from "@/components/about/publication-box";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resolveLang } from "@/lib/i18n";
@@ -111,6 +113,25 @@ export default async function AboutPage({
             ))}
           </div>
         </div>
+
+      </section>
+
+      <section className="mx-auto max-w-5xl px-6 py-10">
+        <MusicSection
+          heading={about.musicHeading}
+          blurb={about.musicBlurb}
+          personalLabel={about.musicPersonalLabel}
+          projects={about.music}
+        />
+      </section>
+
+      <section className="mx-auto max-w-3xl space-y-12 px-6 pb-16">
+        <PublicationBox
+          heading={about.publicationHeading}
+          publication={about.publication}
+          officialLabel={lang === "es" ? "Ver en MIT Press" : "View at MIT Press"}
+          pdfLabel={lang === "es" ? "Leer el PDF" : "Read the PDF"}
+        />
 
         <div className="rounded-2xl border border-border bg-card p-6">
           <p className="text-base text-foreground">{about.closing.text}</p>
