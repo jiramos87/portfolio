@@ -34,7 +34,16 @@ export interface CvPublication {
   venue: string;
   year: string;
   note: string;
+  /** Official publisher page. */
+  officialUrl?: string;
+  /** Direct PDF (open access). */
+  pdfUrl?: string;
 }
+
+/** Shared paper links (also surfaced on the About page). */
+const PAPER_OFFICIAL = "https://direct.mit.edu/comj/issue/38/4";
+const PAPER_PDF =
+  "https://repositorio.uc.cl/server/api/core/bitstreams/b1361794-5db9-4f3f-8dc4-fc0b2e2d25d5/content";
 
 export interface CvSkillGroup {
   group: string;
@@ -154,6 +163,8 @@ const EN: CvContent = {
       venue: "Computer Music Journal (MIT Press)",
       year: "2014",
       note: "Peer-reviewed; physics-based sound synthesis.",
+      officialUrl: PAPER_OFFICIAL,
+      pdfUrl: PAPER_PDF,
     },
   ],
   skills: [
@@ -285,6 +296,8 @@ const ES: CvContent = {
       venue: "Computer Music Journal (MIT Press)",
       year: "2014",
       note: "Revisado por pares; síntesis de sonido basada en física.",
+      officialUrl: PAPER_OFFICIAL,
+      pdfUrl: PAPER_PDF,
     },
   ],
   skills: [
