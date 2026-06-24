@@ -295,8 +295,12 @@ function toPercentSlices(
 // ---------------------------------------------------------------------------
 
 /**
- * Light per-repo info for the curated owner set: name, primary language,
- * last-updated, and visibility. Deliberately omits star counts.
+ * Light per-repo info for the curated owner set: name, primary language, and
+ * last-updated. PUBLIC repos only. Deliberately omits star counts.
+ *
+ * listOwnerRepos returns private repos too (the token can read them), so we
+ * filter them out here: private repo names/metadata must never reach the
+ * public /activity payload.
  */
 export async function fetchRepoStats(
   token: string,
@@ -305,7 +309,7 @@ export async function fetchRepoStats(
   const exclude = new Set(opts.exclude ?? LANGUAGE_EXCLUDE);
 
   const repos = (await listOwnerRepos(token)).filter(
-    (r) => !exclude.has(r.name),
+    (r) => !r.private && !exclude.has(r.name),
   );
 
   return repos
