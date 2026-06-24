@@ -140,8 +140,8 @@ const projects = [
       },
     ],
     screenshots: [
-      '/screenshots/world-music-map/map.webp',
-      '/screenshots/world-music-map/locale.webp',
+      '/screenshots/world-music-map/ss-1.webp',
+      '/screenshots/world-music-map/ss-2.webp',
     ] as string[],
     status: ProjectStatus.LIVE,
     kind: ProjectKind.WEB_APP,
