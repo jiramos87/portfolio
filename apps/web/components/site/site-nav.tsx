@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GithubIcon } from "@/components/site/brand-icons";
-import { CV_EN_PATH } from "@/lib/site";
+import { CV_PATH } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "/methodology", label: "Methodology" },
   { href: "/design-system", label: "Design System" },
+  { href: "/about", label: "About" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
@@ -67,16 +68,14 @@ export function SiteNav() {
           >
             <GithubIcon className="size-4" />
           </a>
-          <a
-            href={CV_EN_PATH}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download CV (PDF)"
+          <Link
+            href={CV_PATH}
+            aria-label="View CV"
             className={cn(buttonVariants({ variant: "outline" }), "hidden sm:inline-flex")}
           >
             <FileText className="size-4" aria-hidden />
             CV
-          </a>
+          </Link>
           <Link href="/contact" className={buttonVariants()}>
             Contact
           </Link>
