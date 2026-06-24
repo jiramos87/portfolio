@@ -23,9 +23,14 @@ const STEPS = [
     title: "Verify",
     body: "Lint, typecheck, Lighthouse, CI, then loop back.",
   },
+  {
+    num: "05",
+    title: "Reconcile",
+    body: "Diff the PRD against what shipped; log the deltas, update the spec.",
+  },
 ] as const;
 
-/** The 01–04 + iterate agentic loop. Used on landing and methodology. */
+/** The 01–05 + iterate agentic loop. Used on landing and methodology. */
 export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
@@ -42,7 +47,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
         </div>
       ) : null}
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {STEPS.map((step, i) => (
           <div key={step.num} className="relative">
             <Card className="h-full gap-2 p-5">
@@ -68,8 +73,8 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
           <span className="font-mono font-semibold uppercase tracking-wide text-primary">
             iterate
           </span>{" "}
-          When verify fails, loop back to implement; Claude Design ⇄ UI runs on every
-          visual change.
+          When verify fails, loop back to implement. Reconcile keeps the PRD honest
+          against what shipped, and Claude Design ⇄ UI runs on every visual change.
         </p>
       </div>
     </section>
