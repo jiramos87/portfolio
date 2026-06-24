@@ -15,16 +15,21 @@ const STEPS = [
   },
   {
     num: "03",
+    title: "Grill",
+    body: "Pressure-test the PRD: polling rounds lock design, behavior, and dependencies.",
+  },
+  {
+    num: "04",
     title: "Implement",
     body: "The agent writes code and tests against the PRD.",
   },
   {
-    num: "04",
+    num: "05",
     title: "Verify",
     body: "Lint, typecheck, Lighthouse, CI, then loop back.",
   },
   {
-    num: "05",
+    num: "06",
     title: "Reconcile",
     body: "Diff the PRD against what shipped; log the deltas, update the spec.",
   },
@@ -47,7 +52,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
         </div>
       ) : null}
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {STEPS.map((step, i) => (
           <div key={step.num} className="relative">
             <Card className="h-full gap-2 p-5">
@@ -60,7 +65,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
             {i < STEPS.length - 1 ? (
               <ArrowRight
                 aria-hidden
-                className="absolute top-1/2 -right-3 hidden size-4 -translate-y-1/2 text-muted-foreground lg:block"
+                className="absolute top-1/2 -right-3 hidden size-4 -translate-y-1/2 text-muted-foreground xl:block"
               />
             ) : null}
           </div>

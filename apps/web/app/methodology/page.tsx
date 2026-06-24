@@ -6,7 +6,7 @@ import { MethodLoop } from "@/components/landing/method-loop";
 export const metadata: Metadata = {
   title: "Methodology | Javier Ramos",
   description:
-    "The closed agentic loop behind every exhibit: PRD, implement, verify, reconcile, with Claude Code skills and a custom MCP server.",
+    "The closed agentic loop behind every exhibit: PRD, grill, implement, verify, reconcile, with Claude Code skills and a custom MCP server.",
 };
 
 const SECTIONS = [
@@ -16,7 +16,7 @@ const SECTIONS = [
   },
   {
     title: "The PRD loop",
-    body: "Every feature starts as a behavioral PRD: scope, tasks, and acceptance criteria. The agent implements against it, and a failing check loops straight back to implement.",
+    body: "Every feature starts as a behavioral PRD: scope, tasks, and acceptance criteria. A grill step then pressure-tests it with relentless polling rounds until the design, behavior, and dependencies are locked. The agent implements against it, and a failing check loops straight back to implement.",
   },
   {
     title: "Claude Design → UI",
@@ -24,7 +24,7 @@ const SECTIONS = [
   },
   {
     title: "MCP + skills",
-    body: "A project MCP server exposes schema introspection, exhibit scaffolding, and deploy status. Skills (prd / implement / verify / design-sync / reconcile) drive the repeatable steps.",
+    body: "A project MCP server exposes schema introspection, exhibit scaffolding, and deploy status. Skills (prd / prd-grill-me / implement / verify / design-sync / reconcile) drive the repeatable steps.",
   },
   {
     title: "Closed-loop verify",
