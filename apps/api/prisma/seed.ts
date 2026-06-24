@@ -102,6 +102,54 @@ const projects = [
     sortOrder: 1,
   },
   {
+    slug: 'world-music-map',
+    name: 'World Music Map',
+    tagline:
+      'A discovery-first world map: click a place to open a drawer of curated music from that locale, each embed with full attribution.',
+    problem:
+      'Music discovery is usually by algorithm or genre, rarely by place. World Music Map flips it: an interactive map where each curated locale opens a drawer of region-defining music with genre and era context and always-visible attribution, so you can explore the planet by sound. It is honest about what it is: curated YouTube embeds, not a licensed catalog.',
+    stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'MapLibre GL'],
+    toolsUsed: ['Claude Code', 'MCP', 'prd-grill-me', 'PRD loop'],
+    liveUrl: 'https://world-music-map.javierramos.dev',
+    repoUrl: `${GH}/world-music-map`,
+    repoPublic: true,
+    prdUrl: `${GH}/world-music-map/blob/main/docs/prd/world-music-map.md`,
+    prd: null,
+    buildStory:
+      'World Music Map started as a draft PRD grilled to DEFINED with /prd-grill-me, locking a discovery-first v1: media-per-locale at the center, influence-flow links deferred to v2. It ships as a single Next.js (App Router) + Prisma app, with no separate API since curation is agent-driven rather than user-written. A MapLibre GL map renders curated locales; clicking one opens a mobile-first drawer with a blurb, genre and era chips, and an official-channel YouTube embed with always-visible attribution. It runs its own world_music_map database on the same Postgres server as this portfolio, isolating its data while sharing infrastructure. S0 (skeleton) and S1 (deploy) are live with three marquee locales; the remaining slices (MapTiler basemap, genre/era filters, dead-embed fallback, archive.org enrichment, broader coverage, and polish) are mapped out in the build plan.',
+    metrics: [
+      { key: 'stage', label: 'Stage', value: 'S1 deployed', kind: 'real' },
+      { key: 'locales', label: 'Locales live', value: '3', kind: 'real' },
+      { key: 'coverage', label: 'v1 target', value: '~20 locales', kind: 'target' },
+    ],
+    timeline: [
+      {
+        date: '2026-06-24',
+        type: 'milestone',
+        label: 'S1: deployed live on Vercel (MapLibre GL, 3 marquee locales)',
+      },
+      {
+        date: '2026-06-24',
+        type: 'milestone',
+        label: 'S0: skeleton (Next 16 App Router + Prisma 7 + own world_music_map DB)',
+      },
+      {
+        date: '2026-06-24',
+        type: 'milestone',
+        label: 'v1 PRD grilled from draft to DEFINED (/prd-grill-me)',
+      },
+    ],
+    screenshots: [
+      '/screenshots/world-music-map/map.webp',
+      '/screenshots/world-music-map/locale.webp',
+    ] as string[],
+    status: ProjectStatus.LIVE,
+    kind: ProjectKind.WEB_APP,
+    featured: true,
+    shippedAt: null,
+    sortOrder: 2,
+  },
+  {
     slug: 'agentic-dev-kit',
     name: 'agentic-dev-kit',
     tagline:
@@ -124,7 +172,7 @@ const projects = [
     kind: ProjectKind.TOOLING,
     featured: true,
     shippedAt: null,
-    sortOrder: 2,
+    sortOrder: 3,
   },
   {
     slug: 'territory-developer',
@@ -164,7 +212,7 @@ const projects = [
     kind: ProjectKind.CASE_STUDY,
     featured: false,
     shippedAt: null,
-    sortOrder: 3,
+    sortOrder: 4,
   },
 ];
 
