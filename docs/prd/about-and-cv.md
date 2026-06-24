@@ -1,6 +1,6 @@
 # PRD — About page + HTML CV
 
-Status: DEFINED. (Acceptance locked via poll 2026-06-24; moves to SHIPPED once `reconcile` confirms the body matches the live pages.) Owner: Javier. Dogfood: prd -> implement -> verify -> reconcile.
+Status: SHIPPED. (Reconciled 2026-06-24: live on javierramos.dev via PR #11; body matches the shipped pages.) Owner: Javier. Dogfood: prd -> implement -> verify -> reconcile.
 
 ## Why
 The portfolio shows the work and how it was built, but there is no page that says who Javier is, and the only CV is a binary PDF download (not browsable, not linkable to a section, invisible to search). An About page and a web-native CV close both gaps: a human story for recruiters who want context, and a fast, shareable, indexable resume that the PDF can no longer be the only form of.
@@ -9,7 +9,7 @@ The portfolio shows the work and how it was built, but there is no page that say
 - **Two pages:** `/about` (narrative + personality) and `/cv` (structured HTML resume). Cross-linked, each independently shareable.
 - **Source of truth:** a static typed data file in `apps/web` (no DB, no API). CV content is derived from the current EN + ES PDFs; About copy is authored fresh. PDFs stay in sync manually.
 - **Bilingual:** EN + ES toggle, scoped to just these two pages (the rest of the site stays EN-only). EN is the default. The toggle is a pair of links driven by a `?lang=` query param (server-rendered both ways: shareable + indexable, near-zero client JS).
-- **Headshot:** real professional photo on `/about`. Javier drops the file; the page ships with a committed placeholder at the same path so the layout is never broken.
+- **Headshot:** real professional photo on `/about` (square, served from `/about/headshot.jpg`). Shipped behind an SVG placeholder + a one-line `HEADSHOT_SRC` constant, then flipped to the real photo before launch.
 - **CV vs PDF:** the HTML `/cv` is canonical and browsable; a "Download PDF" button (EN/ES) sits on it. The existing PDFs stay as-is for ATS / offline.
 - **Nav:** add an "About" link; repoint the existing CV button from the PDF to `/cv` (which itself offers the PDFs).
 - **Voice:** professional but personal, first person.
@@ -41,6 +41,7 @@ The portfolio shows the work and how it was built, but there is no page that say
 - Admin/CRUD editing of CV or About content (it is static, edited in-repo).
 - Print-optimized CSS for `/cv` (the PDF download covers print/ATS; the HTML is for browsing).
 - Auto-generating the PDF from the HTML, or parsing the PDF at build time.
+- A mobile nav menu. About/CV stay desktop-only in the header (the nav hides links below `md`, matching every other nav item); no hamburger menu added.
 
 ## Done looks like
 `/about` and `/cv` are live on `javierramos.dev`, reachable from the nav, bilingual via an EN/ES toggle, with a real headshot on About and a Download-PDF button on CV, all content honest and matching the PDFs.
@@ -60,10 +61,11 @@ The portfolio shows the work and how it was built, but there is no page that say
 - `apps/web/components/site/lang-toggle.tsx` (new): two links (EN/ES) preserving the current path, active one `aria-current`. Pure links, no client state.
 
 **Assets**
-- `apps/web/public/about/headshot.jpg`: committed placeholder (mono frame). Javier overwrites with the real photo at the same filename (JPG; if WebP, rename + flip one constant). Portrait ~4:5 (e.g. 800x1000) or square 800x800.
+- `apps/web/public/about/headshot.jpg`: the real photo (400x400 square), rendered in an `aspect-square` frame with `object-cover`. Shipped first as an SVG placeholder pointed at by `HEADSHOT_SRC` (`apps/web/lib/site.ts`), then flipped to the JPG and the placeholder removed.
 
-**Nav**
+**Nav + SEO**
 - `apps/web/components/site/site-nav.tsx`: add `{ href: "/about", label: "About" }` to `LINKS`; change the CV button from `<a href={CV_EN_PATH} target="_blank">` to `<Link href={CV_PATH}>` (keep the FileText icon + "CV" label).
+- `apps/web/app/sitemap.ts`: add `/about` and `/cv` to the static routes.
 
 ## Verify
 - Gate: `pnpm check-types && pnpm lint && pnpm build` (turbo; web lint `--max-warnings 0`).
@@ -72,3 +74,8 @@ The portfolio shows the work and how it was built, but there is no page that say
 
 ## Scope changes (living log)
 - 2026-06-24: PRD created; acceptance locked via two-batch poll (architecture, source, i18n, photo, content, nav, CV/PDF, voice). - added - net-new feature.
+- 2026-06-24: Headshot frame shipped as `aspect-square`, not the planned 4:5. - changed - the provided photo is 400x400 square; square fits it with no face-crop.
+- 2026-06-24: Placeholder shipped as an SVG behind a `HEADSHOT_SRC` constant (not a same-filename JPG), then flipped to the real photo and the SVG removed at launch. - changed - a one-line constant swap is cleaner and never shows a broken image.
+- 2026-06-24: EN/ES kept faithful to each PDF (ES Pinflag keeps Getnet and a Hybrid tag, EN omits both) rather than aligned. - decided - honesty to the published downloads beats a tidy match.
+- 2026-06-24: Added `/about` + `/cv` to `sitemap.ts`. - shipped-beyond-spec - implied by the indexability quality bar but not in the original build plan.
+- 2026-06-24: "What I'm looking for" hiring section stays deferred; a mobile nav menu noted out of scope (About/CV are desktop-only in the header, matching the existing nav). - deferred - smaller launch surface.
