@@ -6,7 +6,7 @@ import { MethodLoop } from "@/components/landing/method-loop";
 export const metadata: Metadata = {
   title: "Methodology | Javier Ramos",
   description:
-    "The closed agentic loop behind every exhibit: PRD, implement, verify, ship, with Claude Code skills and a custom MCP server.",
+    "The closed agentic loop behind every exhibit: PRD, implement, verify, reconcile, with Claude Code skills and a custom MCP server.",
 };
 
 const SECTIONS = [
@@ -24,11 +24,15 @@ const SECTIONS = [
   },
   {
     title: "MCP + skills",
-    body: "A project MCP server exposes schema introspection, exhibit scaffolding, and deploy status. Skills (prd / implement / verify / design-sync) drive the repeatable steps.",
+    body: "A project MCP server exposes schema introspection, exhibit scaffolding, and deploy status. Skills (prd / implement / verify / design-sync / reconcile) drive the repeatable steps.",
   },
   {
     title: "Closed-loop verify",
     body: "Lint, typecheck, tests, Lighthouse, and CI form the gate. Nothing ships until the loop closes green, and the proof is the public GitHub history.",
+  },
+  {
+    title: "Reconcile (living PRD)",
+    body: "A PRD is a living doc, not a contract written once. After shipping, a reconcile step diffs the spec against what actually shipped, logs the deltas, and updates the doc, so the PRD stays honest instead of drifting.",
   },
 ] as const;
 
@@ -56,7 +60,8 @@ export default function MethodologyPage() {
               60–90s demo, coming soon
             </p>
             <p className="max-w-md text-xs text-muted-foreground">
-              A short walkthrough of the loop in action: PRD → implement → verify → ship.
+              A short walkthrough of the loop in action: PRD → implement → verify →
+              reconcile.
             </p>
           </div>
         </div>

@@ -38,7 +38,7 @@ const projects = [
     ciUrl: `${GH}/portfolio/actions/workflows/ci.yml`,
     prd: null,
     buildStory:
-      'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',
+      'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify → reconcile loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',
     metrics: [
       {
         key: 'ship-time',
@@ -107,7 +107,7 @@ const projects = [
     tagline:
       'Open-source Claude Code skills, an MCP server, and PRD templates for building TS / Nest / Next apps with agents.',
     problem:
-      'Agentic coding is powerful but ad-hoc. This kit makes it repeatable: a PRD loop, a verify gate, design-sync, and project-introspection tools you can drop into any repo.',
+      'Agentic coding is powerful but ad-hoc. This kit makes it repeatable: a PRD loop, a verify gate, design-sync, spec reconciliation, and project-introspection tools you can drop into any repo.',
     stack: ['TypeScript', 'Node.js', 'MCP'],
     toolsUsed: ['CC skills', 'MCP server', 'PRD templates'],
     liveUrl: null,
@@ -116,7 +116,7 @@ const projects = [
     prdUrl: null,
     prd: null,
     buildStory:
-      'A reusable toolkit extracted while building this portfolio: skills (prd / implement / verify / design-sync), an MCP server (schema introspection, exhibit scaffolding, deploy status), and PRD templates.',
+      'A reusable toolkit extracted while building this portfolio: skills (prd / implement / verify / design-sync / reconcile), an MCP server (schema introspection, exhibit scaffolding, deploy status), and PRD templates.',
     metrics: [{ key: 'ci', label: 'CI', value: 'green', kind: 'target' }],
     timeline: [],
     screenshots: [] as string[],
