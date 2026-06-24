@@ -116,7 +116,7 @@ const projects = [
     prdUrl: null,
     prd: null,
     buildStory:
-      'A reusable toolkit extracted while building this portfolio: skills (prd / implement / verify / design-sync / reconcile), an MCP server (schema introspection, exhibit scaffolding, deploy status), and PRD templates.',
+      'A reusable toolkit extracted while building this portfolio: skills (prd / prd-grill-me / implement / verify / design-sync / reconcile), an MCP server (schema introspection, exhibit scaffolding, deploy status), and PRD templates.',
     metrics: [{ key: 'ci', label: 'CI', value: 'green', kind: 'target' }],
     timeline: [],
     screenshots: [] as string[],
