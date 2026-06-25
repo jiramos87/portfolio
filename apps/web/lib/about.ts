@@ -137,6 +137,7 @@ const EN: AboutContent = {
     heading: "Beyond work",
     paragraphs: [
       "Outside the editor I'm a physics graduate and a former working musician, so I have a soft spot for where math, code, sound, and craft overlap. I build isometric city-builders for fun and use them as testbeds for agentic workflows. I also make sure to go to the gym for some strength training so I can keep lifting my two kids.",
+      "I'm based in Santiago, Chile, work in English and Spanish, and care a lot about leaving systems more honest than I found them.",
     ],
   },
   musicHeading: "Music",
@@ -201,6 +202,7 @@ const ES: AboutContent = {
     heading: "Más allá del trabajo",
     paragraphs: [
       "Fuera del editor soy licenciado en física y fui músico de oficio, así que tengo debilidad por el cruce entre matemáticas, código, sonido y oficio. Construyo constructores de ciudades isométricos por diversión y los uso como banco de pruebas para flujos agénticos. También me aseguro de ir al gimnasio a hacer algo de fuerza para poder seguir levantando a mis dos hijos.",
+      "Vivo en Santiago de Chile, trabajo en español e inglés, y me importa dejar los sistemas más honestos de como los encontré.",
     ],
   },
   musicHeading: "Música",
