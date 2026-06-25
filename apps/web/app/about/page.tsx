@@ -17,12 +17,12 @@ const META = {
   en: {
     title: "About | Javier Ramos",
     description:
-      "Javier Ramos Humeres: physics graduate turned full-stack engineer, building production systems and agentic dev tooling in public.",
+      "Javier Ramos Humeres: physics graduate turned full-stack software engineer, building production systems with agentic dev tooling.",
   },
   es: {
     title: "Sobre mí | Javier Ramos",
     description:
-      "Javier Ramos Humeres: licenciado en física e ingeniero full-stack que construye sistemas en producción y herramientas de desarrollo agéntico en público.",
+      "Javier Ramos Humeres: licenciado en física convertido en ingeniero de software full-stack, que construye sistemas en producción con herramientas de desarrollo agéntico.",
   },
 } as const;
 

@@ -115,29 +115,28 @@ const PAPER = {
 
 const EN: AboutContent = {
   eyebrow: "ABOUT",
-  heroHeadline: "I build production systems, and the agent tooling that ships them.",
+  heroHeadline: "I build production systems with agentic tools.",
   heroBlurb:
-    "Full-stack software engineer with 4+ years shipping end to end, from requirements and architecture to backend, frontend, and cloud. Physics graduate, now building in public with AI coding agents.",
+    "Full-stack software engineer with 4+ years shipping end to end, from requirements and architecture to backend, frontend, and cloud. Physics graduate, now building with AI coding agents.",
   headshotAlt: "Javier Ramos Humeres",
   careerHeading: "My path",
   careerParagraphs: [
-    "I started in physics. A B.Sc from Universidad Católica taught me to model messy systems and trust fundamentals over hand-waving, and somewhere along the way I found I cared more about building the tools than running the experiments.",
-    "So I went full-stack. At Pinflag I spent three years on the unglamorous, load-bearing parts of e-commerce: payment integrations, reconciliation, order fulfillment, analytics backends, the notifications nobody notices until they break. I learned what production really costs.",
-    "At TeselaGen I lead a legacy-API migration to a modern NestJS clean-architecture backend, and build the data and integration layers behind an AI copilot for biotech tools. Around that work I started building an agentic-development toolchain, custom Claude Code skills, MCP servers, and ticket-to-PR workflows, that the whole team now uses.",
+    "I started in Astronomy and then moved to physics. A B.Sc from Universidad Católica taught me to model messy systems, basic programming, electronics and audio technology, and also to trust fundamentals over hand-waving. Somewhere along the way I found I cared more about building than running the experiments.",
+    "So I went full-stack. At Pinflag I spent three years on the load-bearing parts of e-commerce: payment integrations, reconciliation, order fulfillment, analytics backends. I learned what production at scale really costs.",
+    "At TeselaGen I lead a legacy-API migration to a modern NestJS clean-architecture backend, and build the data and integration layers behind an AI copilot for biotech tools. Around that work I started building an agentic-development toolchain, custom Claude Code skills, MCP servers, and ticket-to-PR workflows.",
   ],
   howIWork: {
     heading: "How I work",
     paragraphs: [
-      "I ship production code daily with AI coding agents, but the leverage isn't the autocomplete, it's the loop. Every feature starts as a written PRD, gets implemented against it, and only ships once a verify gate (typecheck, lint, build, Lighthouse, CI) closes green.",
-      "Then a reconcile step diffs the spec against what actually shipped and updates the doc, so the PRD stays honest instead of drifting. This portfolio is exhibit number one: built in public, dogfooding that exact loop.",
+      "I ship production code daily with AI coding agents, Spec and Test driven development, and also cowork with peers designing new systems and solving urgent and pending issues. Every feature starts as a written PRD, gets implemented against it, and only ships once the CI tests pass green and receive peer approval.",
+      "Then I reflect on the recent shipping and improve the context, skills used, and the overall AI infrastructure so that further agents receive a better prepared agentic toolchain. This portfolio is exhibit number one: built in public, dogfooding that exact loop. Currently I'm learning and experimenting on agentic loop workflows to further improve production and quality.",
     ],
   },
   methodologyCta: "See the methodology",
   beyondWork: {
     heading: "Beyond work",
     paragraphs: [
-      "Outside the editor I'm a physics graduate and a former working musician, so I have a soft spot for where math, code, sound, and craft overlap. I build isometric city-builders for fun and use them as testbeds for agentic workflows.",
-      "I'm based in Santiago, Chile, work in English and Spanish, and care a lot about leaving systems more honest than I found them.",
+      "Outside the editor I'm a physics graduate and a former working musician, so I have a soft spot for where math, code, sound, and craft overlap. I build isometric city-builders for fun and use them as testbeds for agentic workflows. I also make sure to go to the gym for some strength training so I can keep lifting my two kids.",
     ],
   },
   musicHeading: "Music",
@@ -180,30 +179,28 @@ const EN: AboutContent = {
 
 const ES: AboutContent = {
   eyebrow: "SOBRE MÍ",
-  heroHeadline:
-    "Construyo sistemas en producción, y las herramientas de agentes que los entregan.",
+  heroHeadline: "Construyo sistemas en producción con herramientas agénticas.",
   heroBlurb:
-    "Ingeniero de software full-stack con más de 4 años entregando de extremo a extremo, desde requerimientos y arquitectura hasta backend, frontend y cloud. Licenciado en física, ahora construyendo en público con agentes de IA.",
+    "Ingeniero de software full-stack con más de 4 años entregando de extremo a extremo, desde requerimientos y arquitectura hasta backend, frontend y cloud. Licenciado en física, ahora construyendo con agentes de IA.",
   headshotAlt: "Javier Ramos Humeres",
   careerHeading: "Mi camino",
   careerParagraphs: [
-    "Empecé en la física. Una licenciatura en la Universidad Católica me enseñó a modelar sistemas complejos y a confiar en los fundamentos antes que en la intuición, y en algún momento descubrí que me importaba más construir las herramientas que correr los experimentos.",
-    "Así que me fui al desarrollo full-stack. En Pinflag pasé tres años en las partes poco glamorosas pero críticas del e-commerce: integraciones de pago, conciliación, fulfillment de pedidos, backends de analítica y las notificaciones que nadie nota hasta que fallan. Aprendí lo que de verdad cuesta la palabra producción.",
-    "En TeselaGen lidero la migración de una API legada a un backend moderno con NestJS y arquitectura limpia, y construyo las capas de datos e integración detrás de un copiloto de IA para herramientas biotech. Alrededor de ese trabajo empecé a construir un toolchain de desarrollo agéntico, skills de Claude Code a medida, servidores MCP y flujos de ticket-a-PR, que hoy usa todo el equipo.",
+    "Empecé en Astronomía y luego me pasé a la física. Una licenciatura en la Universidad Católica me enseñó a modelar sistemas complejos, programación básica, electrónica y tecnología del audio, y también a confiar en los fundamentos antes que en la intuición. En algún momento descubrí que me importaba más construir que correr los experimentos.",
+    "Así que me fui al desarrollo full-stack. En Pinflag pasé tres años en las partes críticas del e-commerce: integraciones de pago, conciliación, fulfillment de pedidos, backends de analítica. Aprendí lo que de verdad cuesta la producción a escala.",
+    "En TeselaGen lidero la migración de una API legada a un backend moderno con NestJS y arquitectura limpia, y construyo las capas de datos e integración detrás de un copiloto de IA para herramientas biotech. Alrededor de ese trabajo empecé a construir un toolchain de desarrollo agéntico, skills de Claude Code a medida, servidores MCP y flujos de ticket-a-PR.",
   ],
   howIWork: {
     heading: "Cómo trabajo",
     paragraphs: [
-      "Escribo código en producción a diario con agentes de IA, pero la ventaja no está en el autocompletado, está en el ciclo. Cada funcionalidad parte como un PRD escrito, se implementa contra él y solo se entrega cuando la verificación (tipos, lint, build, Lighthouse, CI) cierra en verde.",
-      "Después, un paso de reconciliación compara la especificación con lo que realmente se entregó y actualiza el documento, para que el PRD siga siendo honesto en lugar de quedar desactualizado. Este portafolio es el exhibit número uno: construido en público, haciendo dogfooding de ese mismo ciclo.",
+      "Escribo código en producción a diario con agentes de IA, desarrollo guiado por especificaciones y por pruebas, y además colaboro con colegas diseñando nuevos sistemas y resolviendo problemas urgentes y pendientes. Cada funcionalidad parte como un PRD escrito, se implementa contra él y solo se entrega cuando las pruebas de CI pasan en verde y recibe la aprobación de un par.",
+      "Luego reflexiono sobre lo recién entregado y mejoro el contexto, las skills utilizadas y la infraestructura de IA en general, para que los próximos agentes reciban un toolchain agéntico mejor preparado. Este portafolio es el exhibit número uno: construido en público, haciendo dogfooding de ese mismo ciclo. Actualmente estoy aprendiendo y experimentando con flujos de loop agéntico para seguir mejorando la producción y la calidad.",
     ],
   },
   methodologyCta: "Ver la metodología",
   beyondWork: {
     heading: "Más allá del trabajo",
     paragraphs: [
-      "Fuera del editor soy licenciado en física y fui músico de oficio, así que tengo debilidad por el cruce entre matemáticas, código, sonido y oficio. Construyo constructores de ciudades isométricos por diversión y los uso como banco de pruebas para flujos agénticos.",
-      "Vivo en Santiago de Chile, trabajo en español e inglés, y me importa dejar los sistemas más honestos de como los encontré.",
+      "Fuera del editor soy licenciado en física y fui músico de oficio, así que tengo debilidad por el cruce entre matemáticas, código, sonido y oficio. Construyo constructores de ciudades isométricos por diversión y los uso como banco de pruebas para flujos agénticos. También me aseguro de ir al gimnasio a hacer algo de fuerza para poder seguir levantando a mis dos hijos.",
     ],
   },
   musicHeading: "Música",

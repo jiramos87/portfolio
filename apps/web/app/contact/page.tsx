@@ -9,7 +9,7 @@ import { CONTACT_EMAIL, CV_EN_PATH, CV_ES_PATH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact | Javier Ramos",
-  description: "Open to remote full-stack roles and agentic-tooling work.",
+  description: "Open to remote full-stack roles and freelance work.",
 };
 
 const SOCIAL_LINKS = [
@@ -26,11 +26,11 @@ export default function ContactPage() {
     <main className="mx-auto max-w-4xl px-6 py-16">
       <Eyebrow>CONTACT</Eyebrow>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight">
-        Let&apos;s build something, and show how.
+        Let&apos;s build something
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        Open to remote full-stack roles and agentic-tooling work. Send a note and
-        I&apos;ll reply with relevant exhibits.
+        Open to remote full-stack roles and freelance work. Send a note and
+        I&apos;ll reply as soon as possible.
       </p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
