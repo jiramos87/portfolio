@@ -22,11 +22,11 @@ export function ContactSection() {
         <div>
           <Eyebrow>CONTACT</Eyebrow>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-            Let&apos;s build something, and show how.
+            Let&apos;s build something
           </h2>
           <p className="mt-4 max-w-md text-muted-foreground">
-            Open to remote full-stack roles and agentic-tooling work. Send a note and
-            I&apos;ll reply with relevant exhibits.
+            Open to remote full-stack roles and freelance work. Send a note and
+            I&apos;ll reply as soon as possible.
           </p>
 
           <div className="mt-8 space-y-4">

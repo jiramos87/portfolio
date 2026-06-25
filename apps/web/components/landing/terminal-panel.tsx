@@ -19,16 +19,18 @@ const GLYPHS: Record<Glyph, { char: string; className: string }> = {
   iterate: { char: "↻", className: "text-chart-4" }, // ↻
 };
 
-// Verify reports the local gate result (check-types, lint, build) as a pass count;
-// no Lighthouse/CI score in the hero log until real scores exist (M6–M8).
+// A representative Claude Code session: slash-command steps with their results.
+// The PRD is the spec; tests are written first (red), implement turns them green,
+// /verify gates the ship, and /learnings feeds the lessons back into the toolchain.
 const LINES: Line[] = [
-  { command: true, text: "$ agent run --prd portfolio.prd.md" },
-  { glyph: "ok", step: "explore", text: "repo scanned · 142 files · context built" },
+  { command: true, text: "/prd portfolio-exploration.md" },
   { glyph: "ok", step: "plan", text: "PRD → 9 tasks · acceptance set" },
-  { glyph: "run", step: "implement", text: "apps/web/landing.tsx · +312 −44" },
-  { glyph: "iterate", step: "iterate", text: "Claude Design → UI · diff applied" },
-  { glyph: "ok", step: "verify", text: "7/7 tests passed" },
+  { glyph: "verify", step: "tests", text: "7 specs written first · red" },
+  { command: true, text: "/implement portfolio-prd.md" },
+  { glyph: "iterate", step: "iterate", text: "Claude Code → diff applied" },
+  { command: true, text: "/verify → 7/7 tests passed" },
   { glyph: "ok", step: "ship", text: "deployed · main@a1f9c2" },
+  { command: true, text: "/learnings → 1 skill improved, 2 repo rules modified, and 1 memory entry added" },
 ];
 
 export function TerminalPanel({ className }: { className?: string }) {
@@ -46,7 +48,7 @@ export function TerminalPanel({ className }: { className?: string }) {
           <span className="size-3 rounded-full bg-success/70" />
         </span>
         <span className="ml-2 font-mono text-xs text-muted-foreground">
-          agent · build-feature.sh
+          example claude code agentic workflow
         </span>
       </div>
 

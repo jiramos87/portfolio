@@ -17,7 +17,7 @@ const geistMono = localFont({
 const SITE_URL = process.env.SITE_URL ?? "https://javierramos.dev";
 const TITLE = "Javier Ramos | Developer Showroom";
 const DESCRIPTION =
-  "A full-stack showroom that proves the product and the agentic workflow behind each build.";
+  "A full-stack showroom that displays shipped products and the agentic workflows behind each build.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

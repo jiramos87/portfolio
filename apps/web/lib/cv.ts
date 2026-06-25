@@ -93,7 +93,7 @@ export const CV_PROFILE = {
 const EN: CvContent = {
   title: "Software Engineer | Full-Stack & AI-Augmented Development",
   summary:
-    "Full-stack software engineer with 4+ years building production systems end to end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate who pairs strong fundamentals with an AI-augmented workflow: ships production code daily with AI coding agents and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines) adopted by the team. Core stack: Node.js / NestJS, TypeScript, React / Next.js, SQL, and AWS.",
+    "Full-stack software engineer with 4+ years building production systems end to end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate who pairs strong fundamentals with an AI-augmented workflow: ships production code daily with AI coding agents, applying spec-driven and test-driven development, and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines) adopted by the team. Core stack: Node.js / NestJS, TypeScript, React / Next.js, SQL, and AWS.",
   labels: {
     experience: "Professional experience",
     projects: "Projects",
@@ -184,7 +184,7 @@ const EN: CvContent = {
     },
     { group: "Databases", items: ["PostgreSQL", "MongoDB"] },
     { group: "Frontend", items: ["React (Hooks)", "Next.js", "Tailwind CSS", "Chart.js"] },
-    { group: "Testing", items: ["Jest"] },
+    { group: "Testing", items: ["Jest", "Test-Driven Development (TDD)"] },
     {
       group: "Cloud & DevOps",
       items: [
@@ -202,6 +202,7 @@ const EN: CvContent = {
         "Claude Code (desktop & CLI)",
         "MCP tool and server authoring",
         "Agent skill & workflow design",
+        "Spec-Driven Development (SDD)",
         "Cursor",
         "GitHub Copilot",
       ],
@@ -226,7 +227,7 @@ const EN: CvContent = {
 const ES: CvContent = {
   title: "Ingeniero de Software | Full-Stack y Desarrollo Aumentado con IA",
   summary:
-    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física que combina fundamentos sólidos con un flujo de trabajo aumentado con IA: escribe código en producción a diario con agentes de IA y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR) adoptadas por el equipo. Stack principal: Node.js / NestJS, TypeScript, React / Next.js, SQL y AWS.",
+    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física que combina fundamentos sólidos con un flujo de trabajo aumentado con IA: escribe código en producción a diario con agentes de IA, aplicando desarrollo guiado por especificaciones y por pruebas, y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR) adoptadas por el equipo. Stack principal: Node.js / NestJS, TypeScript, React / Next.js, SQL y AWS.",
   labels: {
     experience: "Experiencia profesional",
     projects: "Proyectos",
@@ -317,7 +318,7 @@ const ES: CvContent = {
     },
     { group: "BBDD", items: ["PostgreSQL", "MongoDB"] },
     { group: "Frontend", items: ["React (Hooks)", "Next.js", "Tailwind CSS", "Chart.js"] },
-    { group: "Testing", items: ["Jest"] },
+    { group: "Testing", items: ["Jest", "Desarrollo guiado por pruebas (TDD)"] },
     {
       group: "Cloud & DevOps",
       items: [
@@ -335,6 +336,7 @@ const ES: CvContent = {
         "Claude Code (desktop y CLI)",
         "Creación de herramientas y servidores MCP",
         "Diseño de skills y workflows de agentes",
+        "Desarrollo guiado por especificaciones (SDD)",
         "Cursor",
         "GitHub Copilot",
       ],

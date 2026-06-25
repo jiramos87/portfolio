@@ -11,7 +11,7 @@ const STEPS = [
   {
     num: "02",
     title: "PRD",
-    body: "Write a PRD: scope, tasks, and acceptance criteria.",
+    body: "Write a PRD: scope, tasks, and acceptance criteria. It is the spec the build runs against.",
   },
   {
     num: "03",
@@ -26,12 +26,12 @@ const STEPS = [
   {
     num: "05",
     title: "Verify",
-    body: "Lint, typecheck, Lighthouse, CI, then loop back.",
+    body: "Tests from the spec, plus lint, typecheck, and CI, gate every ship.",
   },
   {
     num: "06",
-    title: "Reconcile",
-    body: "Diff the PRD against what shipped; log the deltas, update the spec.",
+    title: "Learn",
+    body: "Reflect on session process and results and improve the repo context, memory, and skills.",
   },
 ] as const;
 
@@ -78,8 +78,9 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
           <span className="font-mono font-semibold uppercase tracking-wide text-primary">
             iterate
           </span>{" "}
-          When verify fails, loop back to implement. Reconcile keeps the PRD honest
-          against what shipped, and Claude Design ⇄ UI runs on every visual change.
+          When verify fails, loop back to implement. Learn then feeds each session&apos;s
+          lessons back into the repo context, memory, and skills, and Claude Design ⇄
+          UI runs on every visual change.
         </p>
       </div>
     </section>
