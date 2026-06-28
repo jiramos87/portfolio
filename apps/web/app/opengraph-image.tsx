@@ -49,7 +49,7 @@ export default function OpengraphImage() {
               color: "#22d3ee",
             }}
           >
-            PRD → IMPLEMENT → VERIFY → SHIP
+            SPEC → IMPLEMENT → VERIFY → SHIP
           </div>
           <div
             style={{
@@ -62,7 +62,7 @@ export default function OpengraphImage() {
               maxWidth: "1000px",
             }}
           >
-            From PRD to production.
+            From Spec to production.
           </div>
           <div style={{ fontSize: "30px", color: "#8a96a3", fontFamily: "sans-serif" }}>
             Built with agentic workflows.

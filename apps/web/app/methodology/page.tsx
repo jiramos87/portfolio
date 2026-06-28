@@ -45,7 +45,7 @@ export default function MethodologyPage() {
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-4">
         <Eyebrow>METHODOLOGY</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
-          A repeatable, verifiable pipeline, driven by a PRD
+          A repeatable, verifiable pipeline, driven by a Spec
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           Every exhibit runs the same closed loop. Here&apos;s the shape of it, and the

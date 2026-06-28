@@ -47,7 +47,7 @@ export function MethodLoop({ withHeading = true }: { withHeading?: boolean }) {
           </h2>
           <p className="mt-4 text-muted-foreground">
             Each product is built with a repeatable, verifiable pipeline, driven by
-            a PRD and Claude Code skills, closed by automated checks.
+            a Spec and Claude Code skills, closed by automated checks.
           </p>
         </div>
       ) : null}
