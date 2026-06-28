@@ -9,10 +9,10 @@ export function Hero() {
     <section className="mx-auto max-w-6xl px-6 pt-16 pb-12 md:pt-24 md:pb-16">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
         <div>
-          <Eyebrow>PRD → IMPLEMENT → VERIFY → SHIP</Eyebrow>
+          <Eyebrow>SPEC → IMPLEMENT → VERIFY → SHIP</Eyebrow>
 
           <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            From PRD to production.
+            From Spec to production.
             <br className="hidden sm:block" /> Built with agentic workflows.
           </h1>
 
