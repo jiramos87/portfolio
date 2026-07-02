@@ -21,8 +21,8 @@ export default async function ProjectsPage() {
       <Eyebrow>EXHIBITS</Eyebrow>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight">Projects</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Each row is an exhibit: the shipped product and the build process behind it.
-        Click a header to sort; click a row for the full story.
+        Each row is an exhibit: the shipped product and the build behind it. Click a
+        header to sort; open a row for the full story, PRD included.
       </p>
 
       <div className="mt-8">

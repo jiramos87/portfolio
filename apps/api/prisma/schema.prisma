@@ -77,6 +77,7 @@ model Lead {
   name      String
   email     String
   message   String
+  topic     String? // optional "what brings you here" hint from the form
   ipHash    String? // for rate limiting, not PII
   userAgent String?
   handled   Boolean  @default(false)

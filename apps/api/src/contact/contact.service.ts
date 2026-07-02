@@ -25,6 +25,7 @@ export class ContactService {
         name: dto.name,
         email: dto.email,
         message: dto.message,
+        topic: dto.topic,
         ipHash: meta.ipHash,
         userAgent: meta.userAgent,
       },

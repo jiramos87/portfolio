@@ -6,7 +6,7 @@ import {
 } from "@/lib/api";
 import { Hero } from "@/components/landing/hero";
 import { KpiStrip, type Kpi } from "@/components/landing/kpi-strip";
-import { ProjectCarousel } from "@/components/landing/project-carousel";
+import { ProjectGrid } from "@/components/landing/project-grid";
 import { MethodLoop } from "@/components/landing/method-loop";
 import { ActivitySection } from "@/components/landing/activity-section";
 import { ContactSection } from "@/components/landing/contact-section";
@@ -29,20 +29,30 @@ export default async function Home() {
       sub: "verified on GitHub",
     },
     {
-      label: "Launch exhibits",
-      tag: "NOW",
-      value: String(projects.length || 3),
-      sub: "product + build log",
+      label: "Ship time · this site",
+      tag: "REAL",
+      value: "<24h",
+      sub: "spec to production",
     },
-    { label: "Avg Lighthouse", tag: "TARGET", value: "95+", sub: "target across exhibits" },
-    { label: "Core stack", tag: "TECH", value: "10", sub: "TS · Node · Nest · Next +6" },
+    {
+      label: "Lighthouse · live site",
+      tag: "REAL",
+      value: "96-100",
+      sub: "every category, desktop + mobile",
+    },
+    {
+      label: "Production experience",
+      tag: "REAL",
+      value: "4+ yrs",
+      sub: "payments, e-commerce, biotech",
+    },
   ];
 
   return (
     <main>
       <Hero />
       <KpiStrip kpis={kpis} />
-      <ProjectCarousel projects={projects} />
+      <ProjectGrid projects={projects} />
       <MethodLoop />
       <ActivitySection activity={activity} />
       <ContactSection />

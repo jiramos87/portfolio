@@ -11,7 +11,6 @@ import { GithubIcon } from "@/components/site/brand-icons";
 import { CV_PATH } from "@/lib/site";
 
 const LINKS = [
-  { href: "/", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "/methodology", label: "Methodology" },
   { href: "/design-system", label: "Design System" },

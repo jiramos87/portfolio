@@ -3,13 +3,15 @@ import Link from "next/link";
 import { Mail, FileText } from "lucide-react";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { ContactForm } from "@/components/contact/contact-form";
+import { ContactIntro } from "@/components/contact/contact-intro";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
 import { buttonVariants } from "@/components/ui/button";
 import { CONTACT_EMAIL, CV_EN_PATH, CV_ES_PATH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact | Javier Ramos",
-  description: "Open to remote full-stack roles and freelance work.",
+  description:
+    "Get in touch about full-time roles, freelance projects, or agentic-workflow help.",
 };
 
 const SOCIAL_LINKS = [
@@ -28,10 +30,9 @@ export default function ContactPage() {
       <h1 className="mt-4 text-4xl font-semibold tracking-tight">
         Let&apos;s build something
       </h1>
-      <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        Open to remote full-stack roles and freelance work. Send a note and
-        I&apos;ll reply as soon as possible.
-      </p>
+      <div className="mt-6 max-w-2xl">
+        <ContactIntro />
+      </div>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <div className="space-y-4">

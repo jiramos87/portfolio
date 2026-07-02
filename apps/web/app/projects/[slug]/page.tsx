@@ -4,7 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Lock } from "lucide-react";
 import { getProject, type Project } from "@/lib/api";
 import { buttonVariants } from "@/components/ui/button";
-import { ProjectTabs } from "@/components/projects/project-tabs";
+import { ProjectDetail } from "@/components/projects/project-detail";
+import { HireCta } from "@/components/site/hire-cta";
 import { GithubIcon } from "@/components/site/brand-icons";
 
 const KIND_LABEL: Record<Project["kind"], string> = {
@@ -97,7 +98,11 @@ export default async function ProjectDetailPage({
       </header>
 
       <div className="mt-8">
-        <ProjectTabs project={project} />
+        <ProjectDetail project={project} />
+      </div>
+
+      <div className="mt-16">
+        <HireCta />
       </div>
     </main>
   );

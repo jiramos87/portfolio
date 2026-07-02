@@ -29,6 +29,7 @@ const LINES: Line[] = [
   { command: true, text: "/implement portfolio-prd.md" },
   { glyph: "iterate", step: "iterate", text: "Claude Code → diff applied" },
   { command: true, text: "/verify → 7/7 tests passed" },
+  { glyph: "ok", step: "lighthouse", text: "96-100 · live site" },
   { glyph: "ok", step: "ship", text: "deployed · main@a1f9c2" },
   { command: true, text: "/learnings → 1 skill improved, 2 repo rules modified, and 1 memory entry added" },
 ];
@@ -55,7 +56,11 @@ export function TerminalPanel({ className }: { className?: string }) {
       <pre className="overflow-x-auto px-4 py-4 font-mono text-[13px] leading-relaxed">
         <code>
           {LINES.map((line, i) => (
-            <div key={i} className="flex gap-2 whitespace-pre-wrap">
+            <div
+              key={i}
+              className="flex gap-2 whitespace-pre-wrap animate-fade-rise"
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
               {line.command ? (
                 <span className="text-foreground">{line.text}</span>
               ) : (

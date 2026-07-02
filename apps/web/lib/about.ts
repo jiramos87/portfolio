@@ -128,8 +128,8 @@ const EN: AboutContent = {
   howIWork: {
     heading: "How I work",
     paragraphs: [
-      "I ship production code daily with AI coding agents, Spec and Test driven development, and also cowork with peers designing new systems and solving urgent and pending issues. Every feature starts as a written PRD, gets implemented against it, and only ships once the CI tests pass green and receive peer approval.",
-      "Then I reflect on the recent shipping and improve the context, skills used, and the overall AI infrastructure so that further agents receive a better prepared agentic toolchain. This portfolio is exhibit number one: built in public, dogfooding that exact loop. Currently I'm learning and experimenting on agentic loop workflows to further improve production and quality.",
+      "I ship production code daily with AI coding agents, using spec-driven and test-driven development. I also pair with teammates on system design and on the urgent, unglamorous issues that keep a product healthy. Every feature starts as a written PRD, is implemented against it, and ships only when CI is green and a peer has approved it.",
+      "After shipping, I fold the lessons back into the toolchain: the repo context, the skills, and the agent's memory, so the next session starts better prepared. This portfolio is exhibit number one, built in public with that exact loop. Right now I'm experimenting with autonomous loop workflows to push throughput and quality further.",
     ],
   },
   methodologyCta: "See the methodology",
@@ -193,8 +193,8 @@ const ES: AboutContent = {
   howIWork: {
     heading: "Cómo trabajo",
     paragraphs: [
-      "Escribo código en producción a diario con agentes de IA, desarrollo guiado por especificaciones y por pruebas, y además colaboro con colegas diseñando nuevos sistemas y resolviendo problemas urgentes y pendientes. Cada funcionalidad parte como un PRD escrito, se implementa contra él y solo se entrega cuando las pruebas de CI pasan en verde y recibe la aprobación de un par.",
-      "Luego reflexiono sobre lo recién entregado y mejoro el contexto, las skills utilizadas y la infraestructura de IA en general, para que los próximos agentes reciban un toolchain agéntico mejor preparado. Este portafolio es el exhibit número uno: construido en público, haciendo dogfooding de ese mismo ciclo. Actualmente estoy aprendiendo y experimentando con flujos de loop agéntico para seguir mejorando la producción y la calidad.",
+      "Escribo código en producción a diario con agentes de IA, con desarrollo guiado por especificaciones y por pruebas. También trabajo en pareja con colegas en diseño de sistemas y en los problemas urgentes y poco glamorosos que mantienen sano un producto. Cada funcionalidad parte como un PRD escrito, se implementa contra él y solo se entrega cuando el CI está en verde y un par la aprobó.",
+      "Después de entregar, devuelvo las lecciones al toolchain: el contexto del repo, las skills y la memoria del agente, para que la próxima sesión parta mejor preparada. Este portafolio es el exhibit número uno, construido en público con ese mismo ciclo. Hoy estoy experimentando con flujos de loop autónomo para subir aún más el ritmo y la calidad.",
     ],
   },
   methodologyCta: "Ver la metodología",

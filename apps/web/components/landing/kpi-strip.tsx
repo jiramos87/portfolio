@@ -35,10 +35,14 @@ export function KpiStrip({ kpis }: { kpis: Kpi[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-8">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {kpis.map((kpi) => {
+        {kpis.map((kpi, i) => {
           const muted = tagStyle(kpi.tag).muted;
           return (
-            <Card key={kpi.label} className="gap-3 p-5">
+            <Card
+              key={kpi.label}
+              className="gap-3 p-5 animate-fade-rise"
+              style={{ animationDelay: `${i * 70}ms` }}
+            >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
                   {kpi.label}

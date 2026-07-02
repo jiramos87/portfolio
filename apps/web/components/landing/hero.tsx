@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { TerminalPanel } from "@/components/landing/terminal-panel";
+import { CV_PATH } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -17,9 +18,14 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            I&apos;m Javier, a backend-leaning full-stack engineer. Each exhibit is
-            real, deployed, and backed by GitHub activity, with the agent-driven
-            process shown in full.
+            I&apos;m Javier Ramos, a backend-leaning full-stack engineer with 4+
+            years shipping production systems. Everything here is real: deployed
+            products, live GitHub activity, and the agent-driven process that built
+            each one, from spec to green CI.
+          </p>
+
+          <p className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            SANTIAGO, CHILE (GMT-4) · REMOTE · EN / ES
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -37,6 +43,14 @@ export function Hero() {
               See the method
             </Link>
           </div>
+
+          <Link
+            href={CV_PATH}
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            In a hurry? Read the CV
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
         </div>
 
         <TerminalPanel />

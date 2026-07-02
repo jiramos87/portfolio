@@ -219,8 +219,40 @@
   );
 }
 
+/* ---------------------------------------------------------------------------
+   Entrance motion: a subtle rise-and-fade for above-the-fold groups (terminal
+   log lines, KPI cards) and a scroll-triggered reveal for exhibit cards.
+   Opacity + transform only, so no layout shift. Uses the motion tokens; both
+   are disabled under reduced-motion, leaving content in its resting state.
+   --------------------------------------------------------------------------- */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-rise {
+  animation: fade-rise var(--dur-slow) var(--ease) both;
+}
+
+/* Scroll-driven reveal where supported; a no-op (content shown) elsewhere. */
+@supports (animation-timeline: view()) {
+  .reveal-on-scroll {
+    animation: fade-rise var(--dur-slow) var(--ease) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-fade-rise,
+  .reveal-on-scroll {
     animation: none;
   }
 }

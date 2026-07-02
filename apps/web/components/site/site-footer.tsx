@@ -18,6 +18,9 @@ export function SiteFooter() {
             <p className="font-mono text-xs text-muted-foreground">
               full-stack &middot; agentic workflows
             </p>
+            <p className="font-mono text-xs text-muted-foreground">
+              Santiago, Chile (GMT-4) &middot; remote &middot; EN / ES
+            </p>
           </div>
         </div>
 

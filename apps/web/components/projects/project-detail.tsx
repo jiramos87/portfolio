@@ -1,37 +1,52 @@
-"use client";
-
 import { ExternalLink, FileText } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { buttonVariants } from "@/components/ui/button";
 import { MetricChip } from "@/components/site/metric-chip";
 import { Timeline } from "@/components/projects/timeline";
 import { RecentCommits } from "@/components/projects/recent-commits";
 import { ScreenshotGallery } from "@/components/projects/screenshot-gallery";
+import { TerminalCover } from "@/components/site/terminal-cover";
 import { GithubIcon } from "@/components/site/brand-icons";
 import { formatDate } from "@/lib/format";
 import type { Project } from "@/lib/api";
 
-export function ProjectTabs({ project }: { project: Project }) {
+const SECTIONS = [
+  { id: "product", label: "Product" },
+  { id: "build", label: "How I built it" },
+  { id: "metrics", label: "Metrics" },
+] as const;
+
+/**
+ * Project detail as stacked, server-rendered sections (was a client tab widget).
+ * Every section is in the initial HTML, so the "how it was built" story is
+ * visible to a skimmer and to crawlers without a click. The row of anchor links
+ * jumps between sections.
+ */
+export function ProjectDetail({ project }: { project: Project }) {
   const metrics = project.metrics ?? [];
   const timeline = project.timeline ?? [];
   const commits = project.repoCommits ?? [];
+  const showDemoSlot = project.kind === "CASE_STUDY" && !project.liveUrl;
 
   return (
-    <Tabs defaultValue="product" className="gap-6">
-      <TabsList className="w-fit">
-        <TabsTrigger value="product" className="flex-none px-3">
-          Product
-        </TabsTrigger>
-        <TabsTrigger value="build" className="flex-none px-3">
-          How I built it
-        </TabsTrigger>
-        <TabsTrigger value="metrics" className="flex-none px-3">
-          Metrics
-        </TabsTrigger>
-      </TabsList>
+    <div className="space-y-14">
+      <nav
+        aria-label="Sections"
+        className="flex flex-wrap gap-1 border-b border-border pb-3"
+      >
+        {SECTIONS.map((s) => (
+          <a
+            key={s.id}
+            href={`#${s.id}`}
+            className="rounded-md px-3 py-1.5 font-mono text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            {s.label}
+          </a>
+        ))}
+      </nav>
 
-      <TabsContent value="product" className="space-y-6">
-        <p className="text-muted-foreground">
+      <section id="product" className="scroll-mt-24 space-y-6">
+        <h2 className="text-lg font-semibold tracking-tight">Product</h2>
+        <p className="text-sm text-muted-foreground">
           The shipped product: live link, the problem it solves, and the stack it runs
           on.
         </p>
@@ -55,6 +70,19 @@ export function ProjectTabs({ project }: { project: Project }) {
           </div>
         </div>
 
+        {showDemoSlot ? (
+          <div>
+            <h3 className="text-sm font-medium">Gameplay</h3>
+            {/* Placeholder until a capture is recorded; no video field is added
+                until there is a real asset to render. */}
+            <div className="mt-2 flex aspect-video w-full items-center justify-center rounded-lg border border-dashed border-border bg-card">
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Gameplay capture coming here
+              </span>
+            </div>
+          </div>
+        ) : null}
+
         {project.screenshots.length > 0 ? (
           <div>
             <h3 className="text-sm font-medium">Screenshots</h3>
@@ -65,12 +93,19 @@ export function ProjectTabs({ project }: { project: Project }) {
               />
             </div>
           </div>
-        ) : (
-          <p className="text-sm text-muted-foreground">Screenshots coming soon.</p>
-        )}
-      </TabsContent>
+        ) : project.kind === "TOOLING" ? (
+          <div>
+            <h3 className="text-sm font-medium">Preview</h3>
+            <div className="mt-2 max-w-md">
+              <TerminalCover className="rounded-lg border border-border" />
+            </div>
+          </div>
+        ) : null}
+      </section>
 
-      <TabsContent value="build" className="space-y-8">
+      <section id="build" className="scroll-mt-24 space-y-8">
+        <h2 className="text-lg font-semibold tracking-tight">How I built it</h2>
+
         <div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h3 className="text-base font-semibold">Product requirements</h3>
@@ -168,23 +203,16 @@ export function ProjectTabs({ project }: { project: Project }) {
             </div>
           </div>
         ) : null}
+      </section>
 
-        {timeline.length === 0 && commits.length === 0 ? (
-          <div>
-            <h3 className="text-base font-semibold">Timeline</h3>
-            <div className="mt-4">
-              <Timeline entries={[]} />
-            </div>
-          </div>
-        ) : null}
-      </TabsContent>
-
-      <TabsContent value="metrics" className="space-y-4">
+      <section id="metrics" className="scroll-mt-24 space-y-4">
+        <h2 className="text-lg font-semibold tracking-tight">Metrics</h2>
         {metrics.some((m) => m.key === "ship-time") ? (
           <p className="max-w-2xl text-foreground">
             Designed, built, and shipped in under 24 hours for under $15 of agent
             time, about 15% of a weekly Claude Code plan. That is roughly 7 projects
-            of capacity in a five-day work week.
+            of capacity in a five-day work week. Capacity, not yet a track record:
+            the cadence metric stays a target until it is proven.
           </p>
         ) : null}
         <p className="text-sm text-muted-foreground">
@@ -202,7 +230,7 @@ export function ProjectTabs({ project }: { project: Project }) {
             No metrics published for this exhibit yet.
           </p>
         )}
-      </TabsContent>
-    </Tabs>
+      </section>
+    </div>
   );
 }

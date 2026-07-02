@@ -83,6 +83,8 @@ export interface ContactInput {
   name: string;
   email: string;
   message: string;
+  /** Optional "what brings you here" selection. */
+  topic?: string;
   /** Honeypot: leave empty. */
   company?: string;
 }

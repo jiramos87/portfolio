@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { sendContact, type ContactResult } from "@/app/actions";
@@ -33,7 +34,7 @@ export function ContactForm() {
         <div>
           <p className="font-medium text-foreground">Message sent.</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Thanks, I&apos;ll reply with relevant exhibits.
+            Got it. I&apos;ll get back to you soon.
           </p>
         </div>
       </div>
@@ -56,6 +57,19 @@ export function ContactForm() {
       <div className="space-y-1.5">
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="email" autoComplete="email" required />
+      </div>
+
+      <div className="space-y-1.5">
+        <Label htmlFor="topic">What brings you here?</Label>
+        <Select id="topic" name="topic" defaultValue="">
+          <option value="">Select one (optional)</option>
+          <option value="A full-time role">A full-time role</option>
+          <option value="A freelance project">A freelance project</option>
+          <option value="Agentic workflows / the kit">
+            Agentic workflows / the kit
+          </option>
+          <option value="Something else">Something else</option>
+        </Select>
       </div>
 
       <div className="space-y-1.5">

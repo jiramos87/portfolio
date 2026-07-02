@@ -4,6 +4,7 @@ import { ArrowUpRight, ExternalLink, Lock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { TagChip } from "@/components/site/tag-chip";
 import { GithubIcon } from "@/components/site/brand-icons";
+import { TerminalCover } from "@/components/site/terminal-cover";
 import { metricTag } from "@/lib/honesty";
 import type { Project } from "@/lib/api";
 
@@ -35,28 +36,6 @@ function VisibilityChip({ repoPublic }: { repoPublic: boolean }) {
   );
 }
 
-/** A faux build-log cover for tooling exhibits that have no UI to screenshot. */
-function TerminalCover() {
-  return (
-    <div className="aspect-[16/10] w-full overflow-hidden border-b border-border bg-card">
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/40 px-3 py-2">
-        <span className="size-2 rounded-full bg-destructive/70" />
-        <span className="size-2 rounded-full bg-warning/70" />
-        <span className="size-2 rounded-full bg-success/70" />
-      </div>
-      <pre className="px-3 py-2.5 font-mono text-[10px] leading-relaxed text-muted-foreground">
-        <span className="text-foreground">$ agent run --kit</span>
-        {"\n"}
-        <span className="text-success">✓</span> skills · prd · implement · verify
-        {"\n"}
-        <span className="text-primary">→</span> mcp · schema · scaffold · deploy
-        {"\n"}
-        <span className="text-success">✓</span> ready
-      </pre>
-    </div>
-  );
-}
-
 /**
  * 16:10 card cover: the first screenshot when present, a terminal mock for
  * tooling (no UI to capture), else a mono placeholder that keeps the ratio.
@@ -79,7 +58,7 @@ function CardCover({ project }: { project: Project }) {
   }
 
   if (project.kind === "TOOLING") {
-    return <TerminalCover />;
+    return <TerminalCover className="border-b border-border" />;
   }
 
   return (

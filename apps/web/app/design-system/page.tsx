@@ -125,7 +125,8 @@ export default function DesignSystemPage() {
       <p className="mt-4 max-w-2xl text-muted-foreground">
         A dark-first system on the shadcn/ui CSS-variable contract, with a cyan accent
         and one gradient moment reserved for the primary CTA. Built for Next.js +
-        Tailwind + shadcn/ui.
+        Tailwind + shadcn/ui. The system itself came out of the loop: a Claude Design
+        handoff, kept in sync with the code by the design-sync skill.
       </p>
 
       <Section num="01" title="COLOR TOKENS">

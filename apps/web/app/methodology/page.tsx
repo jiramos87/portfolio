@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { MethodLoop } from "@/components/landing/method-loop";
+import { HireCta } from "@/components/site/hire-cta";
 
 export const metadata: Metadata = {
   title: "Methodology | Javier Ramos",
@@ -19,7 +20,7 @@ const SECTIONS = [
   },
   {
     title: "Spec + test driven",
-    body: "The PRD is the spec, so every build runs against a written contract instead of guesswork. Tests are written from that spec and run in CI, so verification is test-driven and gates each ship. Spec-driven and test-driven development are two ends of one loop: write it down, then prove it green.",
+    body: "The PRD is the spec, so every build runs against a written contract instead of guesswork. Tests are written from that spec and run in CI, gating each ship. Two ends of one loop: write it down, then prove it green.",
   },
   {
     title: "Claude Design → UI",
@@ -34,7 +35,7 @@ const SECTIONS = [
     body: "Lint, typecheck, tests, Lighthouse, and CI form the gate. Nothing ships until the loop closes green, and the proof is the public GitHub history.",
   },
   {
-    title: "Learning (compounding the toolchain)",
+    title: "Learn: the toolchain compounds",
     body: "After shipping, a learnings step reflects on how the session actually went: what worked, where the agent fought the tools, and what the human had to correct. Those lessons are written back to where the next agent will read them, the repo context and rules, the persistent memory, and the skills themselves, so each run starts from a better-prepared toolchain. The portfolio improves the kit that builds it.",
   },
 ] as const;
@@ -48,12 +49,24 @@ export default function MethodologyPage() {
           A repeatable, verifiable pipeline, driven by a Spec
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Every exhibit runs the same closed loop. Here&apos;s the shape of it, and the
-          tooling that makes it repeatable.
+          Every exhibit runs the same closed loop. It is the discipline you already
+          expect from a strong team, a written spec first, tests as the gate, honest
+          scope changes, with agents doing the heavy lifting. Here is the shape of it,
+          and the tooling that makes it repeatable.
         </p>
       </section>
 
       <MethodLoop withHeading={false} />
+
+      <section className="mx-auto max-w-6xl px-6 pt-4">
+        <div className="mx-auto flex aspect-video max-w-3xl items-center justify-center rounded-2xl border border-dashed border-border bg-card p-6 text-center">
+          <p className="max-w-md text-sm text-muted-foreground">
+            A 60 to 90 second screen capture of one real loop, PRD to green verify,
+            is coming here. Until then, the timeline and commits on each exhibit are
+            the receipts.
+          </p>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -67,6 +80,10 @@ export default function MethodologyPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <HireCta variant="methodology" />
       </section>
     </main>
   );

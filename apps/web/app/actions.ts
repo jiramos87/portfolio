@@ -18,6 +18,7 @@ export async function sendContact(_prev: ContactResult, formData: FormData): Pro
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const topic = String(formData.get("topic") ?? "").trim();
 
   if (!name) return { ok: false, error: "Please enter your name." };
   if (!EMAIL_RE.test(email)) return { ok: false, error: "Please enter a valid email." };
@@ -26,7 +27,12 @@ export async function sendContact(_prev: ContactResult, formData: FormData): Pro
   }
 
   try {
-    const res = await submitContact({ name, email, message });
+    const res = await submitContact({
+      name,
+      email,
+      message,
+      ...(topic ? { topic } : {}),
+    });
     if (!res.ok) return { ok: false, error: "Something went wrong. Please try again." };
     return { ok: true };
   } catch {

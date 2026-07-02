@@ -26,7 +26,7 @@ const projects = [
     slug: 'portfolio',
     name: 'This Portfolio',
     tagline:
-      'A full-stack showroom that presents the product and exactly how it was built with agents.',
+      'The showroom itself: a full-stack Next.js + NestJS app taken from spec to production in under 24 hours of agent-driven work.',
     problem:
       'Most portfolios show only the finished product. This one shows the build too: the PRD, the commit/PR/deploy timeline, the metrics, and the agent-driven workflow behind each exhibit.',
     stack: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma'],
@@ -38,7 +38,7 @@ const projects = [
     ciUrl: `${GH}/portfolio/actions/workflows/ci.yml`,
     prd: null,
     buildStory:
-      'Built in public by dogfooding the agentic-dev-kit: each milestone runs the PRD → implement → verify → reconcile loop with Claude Code and a custom MCP server. This showroom is exhibit #1.',
+      'Built in public by dogfooding the agentic-dev-kit: every milestone ran the PRD → implement → verify → reconcile loop with Claude Code and a custom MCP server. The PRD is public and kept honest against what actually shipped, scope changes logged, not hidden. This showroom is exhibit #1.',
     metrics: [
       {
         key: 'ship-time',
@@ -105,7 +105,7 @@ const projects = [
     slug: 'world-music-map',
     name: 'World Music Map',
     tagline:
-      'A discovery-first world map: click a place to open a drawer of curated music from that locale, each embed with full attribution.',
+      'Explore the planet by sound: an interactive map where each curated place opens region-defining music, with full attribution built in.',
     problem:
       'Music discovery is usually by algorithm or genre, rarely by place. World Music Map flips it: an interactive map where each curated locale opens a drawer of region-defining music with genre and era context and always-visible attribution, so you can explore the planet by sound. It is honest about what it is: curated YouTube embeds, not a licensed catalog.',
     stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'MapLibre GL'],
@@ -147,13 +147,13 @@ const projects = [
     kind: ProjectKind.WEB_APP,
     featured: true,
     shippedAt: null,
-    sortOrder: 2,
+    sortOrder: 4,
   },
   {
     slug: 'agentic-dev-kit',
     name: 'agentic-dev-kit',
     tagline:
-      'Open-source Claude Code skills, an MCP server, and PRD templates for building TS / Nest / Next apps with agents.',
+      'The open-source toolkit behind every exhibit: Claude Code skills, an MCP server, and PRD templates that make agentic building repeatable.',
     problem:
       'Agentic coding is powerful but ad-hoc. This kit makes it repeatable: a PRD loop, a verify gate, design-sync, spec reconciliation, and project-introspection tools you can drop into any repo.',
     stack: ['TypeScript', 'Node.js', 'MCP'],
@@ -178,7 +178,7 @@ const projects = [
     slug: 'territory-developer',
     name: 'territory-developer',
     tagline:
-      'A 2D isometric city-builder grounded in real simulation, built with a custom agentic pipeline. Public writeup, private code.',
+      'A geography-first isometric city-builder, a year in the making, driven by a custom Unity-to-agent bridge. Public writeup, private code.',
     problem:
       'Most city builders place props; Territory grows cities from a real simulation constrained by geography (terrain, water, slopes), across both a city and a region scale. Building something this deep solo, at pace, meant the tooling had to be as serious as the game, so the project doubles as a working example of agent-native game development.',
     stack: ['Unity 2022', 'C#', 'Next.js', 'PostgreSQL', 'MCP'],
@@ -210,9 +210,9 @@ const projects = [
     ] as string[],
     status: ProjectStatus.LIVE,
     kind: ProjectKind.CASE_STUDY,
-    featured: false,
+    featured: true,
     shippedAt: null,
-    sortOrder: 4,
+    sortOrder: 2,
   },
 ];
 

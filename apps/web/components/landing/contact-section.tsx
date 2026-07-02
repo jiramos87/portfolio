@@ -2,6 +2,7 @@ import { Mail } from "lucide-react";
 import Link from "next/link";
 import { Eyebrow } from "@/components/site/eyebrow";
 import { ContactForm } from "@/components/contact/contact-form";
+import { ContactIntro } from "@/components/contact/contact-intro";
 import { GithubIcon, LinkedinIcon } from "@/components/site/brand-icons";
 import { buttonVariants } from "@/components/ui/button";
 import { CONTACT_EMAIL } from "@/lib/site";
@@ -24,10 +25,9 @@ export function ContactSection() {
           <h2 className="mt-4 text-3xl font-semibold tracking-tight">
             Let&apos;s build something
           </h2>
-          <p className="mt-4 max-w-md text-muted-foreground">
-            Open to remote full-stack roles and freelance work. Send a note and
-            I&apos;ll reply as soon as possible.
-          </p>
+          <div className="mt-6 max-w-md">
+            <ContactIntro />
+          </div>
 
           <div className="mt-8 space-y-4">
             <Link
