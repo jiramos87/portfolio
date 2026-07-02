@@ -4,6 +4,20 @@ Javier Ramos's developer "showroom": each exhibit shows both the shipped product
 
 Repo: https://github.com/jiramos87/portfolio (public). Kit: https://github.com/jiramos87/agentic-dev-kit (`~/projects/agentic-dev-kit`).
 
+## Canon (imported rules)
+
+@~/projects/agentic-dev-kit/rules/code-craft.md
+@~/projects/agentic-dev-kit/rules/testing.md
+@~/projects/agentic-dev-kit/rules/writing-and-prose.md
+@~/projects/agentic-dev-kit/rules/workflow-and-git.md
+@~/projects/agentic-dev-kit/rules/reference-systems.md
+@~/projects/agentic-dev-kit/rules/stack-notes/typescript-node.md
+
+<!-- Imports resolve on machines with the kit cloned at ~/projects/agentic-dev-kit. -->
+<!-- Canon source: https://github.com/jiramos87/agentic-dev-kit (rules/). Missing imports are non-fatal for other clones. -->
+<!-- Canon wins for engineering rules; the sections below are repo deltas that win on repo specifics. -->
+<!-- Validate after editing imports: node ~/projects/agentic-dev-kit/tools/validate-imports.mjs --file CLAUDE.md -->
+
 Companion docs: `docs/PRD.md` (requirements — what/why/acceptance), `docs/build-plan.md` (progress log). Per-feature PRDs go in `docs/prd/`.
 
 ## Stack (locked)
@@ -45,8 +59,7 @@ Honesty (load-bearing — never fabricate a stat): GitHub contribution count + h
 - **Deploy (1a is LIVE):** web → Vercel, primary domain **`https://javierramos.dev`** (`.dev`, bought via Vercel, auto DNS+SSL, `www` 308s to apex; also `portfolio-nine-pearl-77.vercel.app`); project `portfolio`, team `jiramos87s-projects`, root dir `apps/web`, Git-connected → auto-deploys on push to `main`. API+Postgres → Railway `https://portfolio-production-ed5b.up.railway.app`. **Railway:** set `RAILWAY_DOCKERFILE_PATH=apps/api/Dockerfile`, `DATABASE_URL=${{Postgres.DATABASE_URL}}`, healthcheck `/health`, no `PORT` (injected). Its **Pre-Deploy field ignores shell `&&`** — keep it to one `prisma migrate deploy`; run `db:seed`+`activity:refresh` via the Console tab/cron. **Vercel:** the MCP `deploy_to_vercel` is advisory-only + the CLI re-auths every sandboxed-shell call → drive via REST API with a short-lived gitignored `VERCEL_TOKEN` (`POST /v13/deployments` gitSource `{type:github,ref:main,repoId}`; env via `POST /v10/projects/{id}/env`). Full runbook + gotchas: `docs/build-plan.md` → "Decisions (deploy / M5)".
 - **Railway prod ops (CLI):** `railway` CLI (brew) is linked to project `just-recreation` / env `production` / service `portfolio` (Postgres is a sibling service). Reusable from repo root: `pnpm db:seed:prod` and `pnpm activity:refresh:prod` (both `railway ssh "cd /app/apps/api && pnpm <script>"`). One-time setup already done: dedicated key `~/.ssh/railway_portfolio` registered (`railway ssh keys add`), `ssh.railway.com` trusted in `known_hosts` (the CLI shells to system ssh, so the host key must be present or `railway ssh` fails with "Host key verification failed"). **In-container seed runs the DEPLOYED `seed.ts`**, so push new seed content first, let Railway rebuild, then run `db:seed:prod`. Do NOT pull the prod `DATABASE_URL` to localhost (the auto-mode classifier blocks dumping Postgres service vars); keep DB writes in-container via `railway ssh`.
 - **Docs map:** PRD `docs/PRD.md` · progress+decisions `docs/build-plan.md` · design spec `docs/m4-design-spec.md` · deploy `docs/deploy.md`. Per-feature PRDs → `docs/prd/`.
-- **Commits:** clean, per-milestone (build-in-public timeline); push to origin only when explicitly asked.
-- **Copy:** no em-dash (U+2014) in user-facing text or code comments; use commas, periods, or hyphens instead. Terminal hero log omits the verify (Lighthouse/CI) line until M6–M8 when real scores exist.
+- **Copy:** terminal hero log now includes the real Lighthouse verify line (`lighthouse 96-100 · live site`, added once scores were measured on the live site); keep any future CI line out until a real CI score exists.
 
 ## Build order
 Lives in `docs/build-plan.md` (milestones M0–M8 + progress). Not duplicated here — it's transient and goes stale.
