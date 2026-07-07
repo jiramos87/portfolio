@@ -4,6 +4,8 @@ import { MetricChip } from "@/components/site/metric-chip";
 import { Timeline } from "@/components/projects/timeline";
 import { RecentCommits } from "@/components/projects/recent-commits";
 import { ScreenshotGallery } from "@/components/projects/screenshot-gallery";
+import { AgentGraphDiagram } from "@/components/projects/agent-graph-diagram";
+import { EvalTable } from "@/components/projects/eval-table";
 import { TerminalCover } from "@/components/site/terminal-cover";
 import { GithubIcon } from "@/components/site/brand-icons";
 import { formatDate } from "@/lib/format";
@@ -26,9 +28,23 @@ export function ProjectDetail({ project }: { project: Project }) {
   const timeline = project.timeline ?? [];
   const commits = project.repoCommits ?? [];
   const showDemoSlot = project.kind === "CASE_STUDY" && !project.liveUrl;
+  const isAgent = project.slug === "portfolio-agent";
 
   return (
     <div className="space-y-14">
+      {isAgent ? (
+        <figure className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+          <AgentGraphDiagram />
+          <figcaption className="mt-5 text-center text-sm text-muted-foreground">
+            A LangGraph.js graph answers every question. The guardrail declines
+            anything off topic or any injection attempt, retrieve runs a pgvector
+            search over the corpus, the agent node calls real tools, and answer
+            streams a grounded, cited reply. Each run emits a public Langfuse
+            trace.
+          </figcaption>
+        </figure>
+      ) : null}
+
       <nav
         aria-label="Sections"
         className="flex flex-wrap gap-1 border-b border-border pb-3"
@@ -143,6 +159,20 @@ export function ProjectDetail({ project }: { project: Project }) {
             </p>
           ) : null}
         </div>
+
+        {isAgent ? (
+          <div>
+            <h3 className="text-base font-semibold">Evaluation</h3>
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+              The agent is measured, not asserted. A golden set runs on every
+              build and the results are published here, straight from the
+              committed JSON the agent itself reads.
+            </p>
+            <div className="mt-4">
+              <EvalTable />
+            </div>
+          </div>
+        ) : null}
 
         {project.ciUrl ? (
           <div>

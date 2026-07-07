@@ -8,3 +8,5 @@ allowBuilds:
   prisma: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - ai@7.0.16
