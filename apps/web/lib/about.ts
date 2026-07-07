@@ -123,7 +123,7 @@ const EN: AboutContent = {
   careerParagraphs: [
     "I started in Astronomy and then moved to physics. A B.Sc from Universidad Católica taught me to model messy systems, basic programming, electronics and audio technology, and also to trust fundamentals over hand-waving. Somewhere along the way I found I cared more about building than running the experiments.",
     "So I went full-stack. At Pinflag I spent three years on the load-bearing parts of e-commerce: payment integrations, reconciliation, order fulfillment, analytics backends. I learned what production at scale really costs.",
-    "At TeselaGen I lead a legacy-API migration to a modern NestJS clean-architecture backend, and build the data and integration layers behind an AI copilot for biotech tools. Around that work I started building an agentic-development toolchain, custom Claude Code skills, MCP servers, and ticket-to-PR workflows.",
+    "At TeselaGen I lead a legacy-API migration to a modern NestJS clean-architecture backend, build the REST and GraphQL APIs and data layers behind an AI copilot for biotech tools, and wrote a Python client SDK that turns the backend's OpenAPI docs into a programmatic client. Around that work I started building an agentic-development toolchain, custom Claude Code skills, MCP servers, and ticket-to-PR workflows.",
   ],
   howIWork: {
     heading: "How I work",
@@ -188,7 +188,7 @@ const ES: AboutContent = {
   careerParagraphs: [
     "Empecé en Astronomía y luego me pasé a la física. Una licenciatura en la Universidad Católica me enseñó a modelar sistemas complejos, programación básica, electrónica y tecnología del audio, y también a confiar en los fundamentos antes que en la intuición. En algún momento descubrí que me importaba más construir que correr los experimentos.",
     "Así que me fui al desarrollo full-stack. En Pinflag pasé tres años en las partes críticas del e-commerce: integraciones de pago, conciliación, fulfillment de pedidos, backends de analítica. Aprendí lo que de verdad cuesta la producción a escala.",
-    "En TeselaGen lidero la migración de una API legada a un backend moderno con NestJS y arquitectura limpia, y construyo las capas de datos e integración detrás de un copiloto de IA para herramientas biotech. Alrededor de ese trabajo empecé a construir un toolchain de desarrollo agéntico, skills de Claude Code a medida, servidores MCP y flujos de ticket-a-PR.",
+    "En TeselaGen lidero la migración de una API legada a un backend moderno con NestJS y arquitectura limpia, construyo las APIs REST y GraphQL y las capas de datos detrás de un copiloto de IA para herramientas biotech, y escribí un SDK cliente en Python que convierte la documentación OpenAPI del backend en un cliente programático. Alrededor de ese trabajo empecé a construir un toolchain de desarrollo agéntico, skills de Claude Code a medida, servidores MCP y flujos de ticket-a-PR.",
   ],
   howIWork: {
     heading: "Cómo trabajo",
