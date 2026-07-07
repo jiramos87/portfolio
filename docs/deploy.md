@@ -60,3 +60,60 @@ migration that recreates `CorpusChunk` (grants don't survive a `DROP TABLE`).
 | `GITHUB_REPO_TOKEN` | api | optional — fine-grained read-only, repo stats |
 | `INTERNAL_API_URL` | web | base URL the RSC reads call |
 | `SITE_URL` | web | canonical URL for metadata/sitemap/OG |
+
+## Portfolio Agent — prod deploy runbook (B11, LIVE 2026-07-07)
+
+The agent is a Next route in `apps/web` (Vercel) that talks to Railway Postgres
+(pgvector) directly for retrieval and to OpenRouter / Groq / Langfuse / Upstash
+for generation, tracing, and limits. Everything below is the real launch
+sequence; repeat the content steps whenever the seed or corpus changes.
+
+### 1. Vercel runtime envs (production + preview)
+Ten vars beyond the base `INTERNAL_API_URL` + `SITE_URL`. Set via the REST flow
+(`POST /v10/projects/{projectId}/env?upsert=true&teamId=...`, `type:"encrypted"`,
+`target:["production","preview"]`); a short-lived gitignored root `VERCEL_TOKEN`
+authorizes it. Project `prj_VHk8KQIZFMhZzEnoHqE84WP61Ie8`, team
+`team_J4GPo6SG9tvBJGiDk8Qa0H57`.
+
+| Var | Value source |
+|-----|--------------|
+| `OPENROUTER_API_KEY` | OpenRouter, the $5-capped key (primary generation) |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | AI Studio (query embeddings at retrieval time) |
+| `GROQ_API_KEY` | Groq free tier (fallback generation + the eval judge) |
+| `AGENT_DATABASE_URL` | `agent_reader` over the Railway public proxy (see below) |
+| `UPSTASH_REDIS_REST_URL` / `_TOKEN` | Upstash (rate limits + kill-switch) |
+| `LANGFUSE_PUBLIC_KEY` / `_SECRET_KEY` / `_BASE_URL` | Langfuse Cloud (US) tracing |
+| `GITHUB_TOKEN` | classic `read:user` (the `github_activity` tool) |
+
+`AGENT_DATABASE_URL` = `postgresql://agent_reader:<pw>@<RAILWAY_TCP_PROXY_DOMAIN>:<RAILWAY_TCP_PROXY_PORT>/railway?sslmode=no-verify`.
+Vercel is outside Railway's private network, so it connects over the Postgres
+service's **public TCP proxy** (Postgres service → Variables → `RAILWAY_TCP_PROXY_DOMAIN` + `_PORT`);
+`sslmode=no-verify` because the proxy presents a self-signed cert. The password is
+the one generated when `agent_reader` was created (kept out of the repo).
+
+### 2. Railway one-time DB setup
+Run once against prod (via `railway connect Postgres`, piping the SQL in
+`## Portfolio Agent — read-only DB role` above). `agent_reader` can `SELECT`
+`CorpusChunk` ONLY (verified: `SELECT` on `Project` is denied). Re-run the
+`GRANT SELECT ON "CorpusChunk"` after any migration that recreates the table.
+
+### 3. Prod content (run after each deploy that changes seed or corpus)
+The API Dockerfile now ships `README.md` + `docs/` into the image, so the
+in-container corpus ingest reads the same sources as local (without them the
+curated fact sheet and PRDs silently drop and the corpus is gutted). Sequence:
+1. Push to `main` → Railway rebuilds; pre-deploy runs the single `prisma migrate deploy`.
+2. `railway ssh -s portfolio "cd /app/apps/api && pnpm db:seed"` (adds/updates `portfolio-agent`).
+3. `railway ssh -s portfolio "cd /app/apps/api && GOOGLE_GENERATIVE_AI_API_KEY=<key> pnpm ingest:corpus"` (embeds ~121 chunks; the key is curation-only, pass it inline or set it as a Railway var).
+4. `railway ssh -s portfolio "cd /app/apps/api && pnpm activity:refresh"` — REQUIRED after a seed, because `db:seed` writes a placeholder activity snapshot; this restores the real one.
+
+### 4. Redeploy web to bake envs
+Vercel env changes only take effect on a fresh deploy: `POST /v13/deployments`
+with `gitSource {type:github, ref:main, repoId:1277204237}`, then poll
+`GET /v13/deployments/{id}` for `readyState:"READY"`.
+
+### 5. Monthly OpenRouter ritual (the $5 cap)
+The cap is the **key credit limit**, not a monthly reset. At
+`openrouter.ai/settings/credits`: keep **auto top-up OFF**, check usage, and
+manually top up ~$5 when the balance runs low. With auto-top-up off, spend can
+never exceed the standing balance, so a hot day degrades to the Groq free tier
+(HTTP 402 → `capped` metadata) instead of overspending.
