@@ -86,14 +86,14 @@ export const CV_PROFILE = {
   github: { label: "github.com/jiramos87", url: "https://github.com/jiramos87" },
   linkedin: {
     label: "linkedin.com/in/javier-ramos-humeres",
-    url: "https://linkedin.com/in/javier-ramos-humeres",
+    url: "https://www.linkedin.com/in/javier-ramos-humeres/",
   },
 } as const;
 
 const EN: CvContent = {
   title: "Software Engineer | Full-Stack & AI-Augmented Development",
   summary:
-    "Full-stack software engineer with 4+ years building production systems end to end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate who pairs strong fundamentals with an AI-augmented workflow: ships production code daily with AI coding agents, applying spec-driven and test-driven development, and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines) adopted by the team. Core stack: Node.js / NestJS, TypeScript, React / Next.js, SQL, and AWS.",
+    "Full-stack software engineer with 4+ years building production systems end to end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate who pairs strong fundamentals with an AI-augmented workflow: ships production code daily with AI coding agents, applying spec-driven and test-driven development, and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines). Core stack: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS, and GCP.",
   labels: {
     experience: "Professional experience",
     projects: "Projects",
@@ -111,8 +111,9 @@ const EN: CvContent = {
       location: "Santiago, Chile (Hybrid)",
       bullets: [
         "Led a full legacy-API migration to a modern NestJS clean-architecture (v2) backend in TypeScript, modernizing the services that power TeselaGen's consumer-facing biotech tools.",
-        "Build backend services and React / Next.js frontend features across multiple consumer tools, including the data and integration layers that serve the AI copilot.",
-        "Built an agentic-development toolchain: custom Claude Code skills, MCP tools and servers, and automated ticket-to-PR workflows that speed up delivery across the team.",
+        "Build backend services and React / Next.js frontend features across multiple consumer tools, including the REST and GraphQL APIs and the data and integration layers that serve the AI copilot.",
+        "Built a Python client SDK that turns the NestJS backend's auto-generated OpenAPI / Swagger docs into a complete programmatic API client for consuming the platform's Custom Tools.",
+        "Built an agentic-development toolchain: custom Claude Code skills, MCP tools and servers, and automated ticket-to-PR workflows.",
         "Own authentication, security, and infrastructure concerns across the v2 services.",
       ],
     },
@@ -122,10 +123,10 @@ const EN: CvContent = {
       period: "05/2022 – 08/2025",
       location: "Santiago, Chile",
       bullets: [
-        "Built end-to-end payment integrations (Klap, Transbank): checkout flows, confirmation webhooks, reconciliation, refunds, and failure recovery.",
+        "Built end-to-end payment integrations (Klap, Transbank, Getnet): checkout flows, confirmation webhooks, reconciliation, refunds, and failure recovery.",
         "Developed order-management and fulfillment automation across the full order lifecycle for e-commerce clients.",
         "Designed and built a large-dataset analytics backend and its Chart.js dashboard frontend, with reporting and Excel / CSV data exports.",
-        "Shipped customer-notification integrations (WhatsApp API) on Node.js / Express and AWS (S3, SES, SNS, Lambda).",
+        "Built event-driven microservices on AWS Lambda with the Serverless Framework (webhooks, SNS / SQS) for customer notifications (WhatsApp API) and payments.",
       ],
     },
   ],
@@ -175,7 +176,9 @@ const EN: CvContent = {
         "Node.js",
         "NestJS",
         "Express",
-        "REST APIs",
+        "REST & GraphQL APIs",
+        "Event-driven microservices",
+        "Clean architecture & SOLID",
         "Authentication & encryption",
         "Serverless (AWS Lambda)",
         "Sequelize",
@@ -184,12 +187,23 @@ const EN: CvContent = {
     },
     { group: "Databases", items: ["PostgreSQL", "MongoDB"] },
     { group: "Frontend", items: ["React (Hooks)", "Next.js", "Tailwind CSS", "Chart.js"] },
-    { group: "Testing", items: ["Jest", "Test-Driven Development (TDD)"] },
+    {
+      group: "Testing",
+      items: [
+        "Jest",
+        "bun test",
+        "Cypress",
+        "Playwright",
+        "Unit / integration / e2e",
+        "Test-Driven Development (TDD)",
+      ],
+    },
     {
       group: "Cloud & DevOps",
       items: [
         "AWS (S3, SES, SNS, CloudWatch, Lambda)",
         "GCP",
+        "Docker",
         "GitHub Actions",
         "Heroku",
         "Serverless Framework",
@@ -210,7 +224,7 @@ const EN: CvContent = {
     {
       group: "Specialized",
       items: [
-        "Payment gateways (Klap, Transbank)",
+        "Payment gateways (Klap, Transbank, Getnet)",
         "E-commerce (Shopify, WooCommerce)",
         "Order management",
         "WhatsApp API",
@@ -227,7 +241,7 @@ const EN: CvContent = {
 const ES: CvContent = {
   title: "Ingeniero de Software | Full-Stack y Desarrollo Aumentado con IA",
   summary:
-    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física que combina fundamentos sólidos con un flujo de trabajo aumentado con IA: escribe código en producción a diario con agentes de IA, aplicando desarrollo guiado por especificaciones y por pruebas, y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR) adoptadas por el equipo. Stack principal: Node.js / NestJS, TypeScript, React / Next.js, SQL y AWS.",
+    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física que combina fundamentos sólidos con un flujo de trabajo aumentado con IA: escribe código en producción a diario con agentes de IA, aplicando desarrollo guiado por especificaciones y por pruebas, y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR). Stack principal: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS y GCP.",
   labels: {
     experience: "Experiencia profesional",
     projects: "Proyectos",
@@ -245,8 +259,9 @@ const ES: CvContent = {
       location: "Santiago, Chile (Híbrido)",
       bullets: [
         "Lideré una migración completa de la API legada a un backend moderno en TypeScript con NestJS y arquitectura limpia (v2), modernizando los servicios que impulsan las herramientas biotech de TeselaGen orientadas al usuario.",
-        "Desarrollo servicios backend y funcionalidades frontend en React / Next.js en múltiples herramientas de usuario, incluyendo las capas de datos e integración que alimentan el copiloto de IA.",
-        "Construí un toolchain de desarrollo agéntico: skills de Claude Code a medida, herramientas y servidores MCP, y flujos automatizados de ticket-a-PR que aceleran la entrega en todo el equipo.",
+        "Desarrollo servicios backend y funcionalidades frontend en React / Next.js en múltiples herramientas de usuario, incluyendo las APIs REST y GraphQL y las capas de datos e integración que alimentan el copiloto de IA.",
+        "Construí un SDK cliente en Python que, a partir de la documentación OpenAPI / Swagger autogenerada del backend NestJS, produce un cliente de API programático completo para consumir las Custom Tools de la plataforma.",
+        "Construí un toolchain de desarrollo agéntico: skills de Claude Code a medida, herramientas y servidores MCP, y flujos automatizados de ticket-a-PR.",
         "Responsable de autenticación, seguridad e infraestructura en los servicios v2.",
       ],
     },
@@ -259,7 +274,7 @@ const ES: CvContent = {
         "Construí integraciones de pago de extremo a extremo (Klap, Transbank, Getnet): flujos de checkout, webhooks de confirmación, conciliación, reembolsos y recuperación ante fallos.",
         "Automaticé la gestión y el fulfillment de pedidos para clientes de e-commerce.",
         "Desarrollé un backend de analítica para grandes volúmenes de datos y su dashboard frontend en Chart.js, con exportación de datos a Excel / CSV.",
-        "Integré notificaciones a clientes (API de WhatsApp) en Node.js / Express y AWS (S3, SES, SNS, Lambda).",
+        "Construí microservicios orientados a eventos en AWS Lambda con Serverless Framework (webhooks, SNS / SQS) para notificaciones a clientes (API de WhatsApp) y pagos.",
       ],
     },
   ],
@@ -309,7 +324,9 @@ const ES: CvContent = {
         "Node.js",
         "NestJS",
         "Express",
-        "REST APIs",
+        "APIs REST y GraphQL",
+        "Microservicios orientados a eventos",
+        "Arquitectura limpia y SOLID",
         "Autenticación y encriptación",
         "Serverless (AWS Lambda)",
         "Sequelize",
@@ -318,12 +335,23 @@ const ES: CvContent = {
     },
     { group: "BBDD", items: ["PostgreSQL", "MongoDB"] },
     { group: "Frontend", items: ["React (Hooks)", "Next.js", "Tailwind CSS", "Chart.js"] },
-    { group: "Testing", items: ["Jest", "Desarrollo guiado por pruebas (TDD)"] },
+    {
+      group: "Testing",
+      items: [
+        "Jest",
+        "bun test",
+        "Cypress",
+        "Playwright",
+        "Unit / integración / e2e",
+        "Desarrollo guiado por pruebas (TDD)",
+      ],
+    },
     {
       group: "Cloud & DevOps",
       items: [
         "AWS (S3, SES, SNS, CloudWatch, Lambda)",
         "GCP",
+        "Docker",
         "GitHub Actions",
         "Heroku",
         "Serverless",
