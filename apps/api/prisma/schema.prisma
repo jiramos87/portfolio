@@ -71,6 +71,22 @@ model ActivitySnapshot {
   @@index([capturedAt])
 }
 
+/// One retrievable chunk of the Portfolio Agent's corpus (build-time ingest, see docs/prd/agentic-concierge.md).
+/// id is deterministic ("{source}#{section-slug}") so re-ingest is idempotent, not a cuid.
+model CorpusChunk {
+  id        String                @id
+  source    String // e.g. a repo path or doc path the chunk was ingested from
+  title     String
+  url       String?
+  section   String?
+  content   String
+  tokens    Int
+  embedding Unsupported("vector(768)") // Gemini embedding, outputDimensionality 768 (pgvector HNSW index limit)
+  updatedAt DateTime              @updatedAt
+
+  @@index([source])
+}
+
 /// Contact form submission.
 model Lead {
   id        String   @id @default(cuid())

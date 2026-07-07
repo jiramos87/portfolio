@@ -33,6 +33,24 @@ docker run --rm -e DATABASE_URL=... -p 3333:3333 portfolio-api
 pnpm --filter web build && pnpm --filter web start
 ```
 
+## Portfolio Agent — read-only DB role (pgvector)
+
+The Portfolio Agent's public chat route (`apps/web`) connects to Railway Postgres directly for
+retrieval over `CorpusChunk`. It must use a role that can ONLY read that one table (least
+privilege on a public endpoint), never the role the API uses for the rest of the schema. Run once
+against the prod database (executed in B11, not at migration time):
+
+```sql
+CREATE ROLE agent_reader LOGIN PASSWORD '<generate a strong password>';
+GRANT CONNECT ON DATABASE railway TO agent_reader; -- adjust db name if different
+GRANT USAGE ON SCHEMA public TO agent_reader;
+GRANT SELECT ON "CorpusChunk" TO agent_reader;
+```
+
+Build the `AGENT_DATABASE_URL` env var from the Railway public-proxy host/port with this role's
+credentials (not the migration/seed role's `DATABASE_URL`). Re-run the `GRANT SELECT` after any
+migration that recreates `CorpusChunk` (grants don't survive a `DROP TABLE`).
+
 ## Env reference
 | Var | Where | Purpose |
 |-----|-------|---------|

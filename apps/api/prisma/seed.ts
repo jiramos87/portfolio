@@ -102,6 +102,86 @@ const projects = [
     sortOrder: 1,
   },
   {
+    slug: 'portfolio-agent',
+    name: 'Portfolio Agent',
+    tagline:
+      "This site's own concierge: a retrieval-augmented agent that answers questions about Javier, grounded in a curated corpus and live GitHub activity, with a published eval to back it.",
+    problem:
+      'A portfolio can claim seniority; it is harder to prove it. The Portfolio Agent turns the claim into a working system: a grounded, cited chat that only answers from a real corpus, refuses everything off topic, pulls live commit data, traces every reply in public, and publishes its own accuracy score so nothing has to be taken on faith.',
+    stack: [
+      'Next.js',
+      'LangGraph.js',
+      'pgvector',
+      'OpenRouter',
+      'Gemini',
+      'Groq',
+      'Langfuse',
+      'Upstash Redis',
+    ],
+    toolsUsed: ['Claude Code', 'MCP', 'PRD loop'],
+    liveUrl: '/agent',
+    repoUrl: `${GH}/portfolio`,
+    repoPublic: true,
+    prdUrl: `${GH}/portfolio/blob/main/docs/prd/agentic-concierge.md`,
+    ciUrl: null,
+    prd: null,
+    buildStory:
+      "The Portfolio Agent runs as a LangGraph.js graph with four named nodes. The guardrail declines anything off topic or any prompt-injection attempt in a single redirect sentence, retrieve does a top-6 pgvector cosine search over the embedded corpus, the agent node runs deterministic tools (real GitHub commits, the published eval score), and answer composes a grounded, cited reply. Cost is engineered, not hoped for: all generation flows through OpenRouter on a prepaid key hard-capped at $5 a month at the billing layer, the visitor picks the answer model from a server-enforced allowlist, and if the credit is ever exhausted (an HTTP 402) the graph degrades to the Groq free tier with an honest caption instead of an outage. Every reply carries a public Langfuse trace with one span per node. The accuracy is measured, not asserted: a 40-question golden set (facts, live tools, guardrail probes, and Spanish) is graded by a free cross-family judge and published as a real table. The honest part is the iteration. The score moved from 92.5% to 100%, and every early miss was a judge limitation caught and fixed through a human review of disagreements, never a fabrication by the agent, whose anti-fabrication behavior is architectural: it answers from real tool output or says the lookup failed. Built in public with the agentic-dev-kit, one backlog item at a time, spec first.",
+    metrics: [
+      {
+        // Real, from docs/evals/results.json (overall.pct at HEAD 50fd69d): the
+        // published eval table on the detail page reads that same file, so this
+        // headline number cannot drift from it. See docs/evals/iterations.md.
+        key: 'eval-accuracy',
+        label: 'Eval accuracy',
+        value: '100%',
+        kind: 'real',
+      },
+      {
+        // Real: docs/evals/golden-set.json has 40 typed items (20 fact, 8 tool,
+        // 6 guardrail, 6 es), all graded in results.json.
+        key: 'golden-set',
+        label: 'Golden set',
+        value: '40 Q',
+        kind: 'real',
+      },
+      {
+        // Real billing-layer cap: OpenRouter prepaid key with a $5 credit limit
+        // and auto-top-up off. Actual spend runs in cents; $5 is the hard ceiling.
+        key: 'cost-cap',
+        label: 'Cost cap',
+        value: '$5/mo',
+        kind: 'real',
+      },
+    ],
+    timeline: [
+      {
+        date: '2026-07-07',
+        type: 'milestone',
+        label:
+          'Chat UI, public Langfuse traces, and a published 100% eval (40-question golden set, cross-family judge)',
+      },
+      {
+        date: '2026-07-07',
+        type: 'milestone',
+        label:
+          'Cost + guardrails: OpenRouter primary hard-capped at $5/mo, Groq free fallback on 402, Upstash rate limits and kill-switch',
+      },
+      {
+        date: '2026-07-05',
+        type: 'milestone',
+        label:
+          'LangGraph graph (guardrail, retrieve, agent, answer) over a pgvector RAG corpus, streaming grounded cited answers',
+      },
+    ],
+    screenshots: [] as string[],
+    status: ProjectStatus.LIVE,
+    kind: ProjectKind.WEB_APP,
+    featured: true,
+    shippedAt: null,
+    sortOrder: 2,
+  },
+  {
     slug: 'world-music-map',
     name: 'World Music Map',
     tagline:
@@ -147,7 +227,7 @@ const projects = [
     kind: ProjectKind.WEB_APP,
     featured: true,
     shippedAt: null,
-    sortOrder: 4,
+    sortOrder: 5,
   },
   {
     slug: 'agentic-dev-kit',
@@ -172,7 +252,7 @@ const projects = [
     kind: ProjectKind.TOOLING,
     featured: true,
     shippedAt: null,
-    sortOrder: 3,
+    sortOrder: 4,
   },
   {
     slug: 'territory-developer',
@@ -212,7 +292,7 @@ const projects = [
     kind: ProjectKind.CASE_STUDY,
     featured: true,
     shippedAt: null,
-    sortOrder: 2,
+    sortOrder: 3,
   },
 ];
 

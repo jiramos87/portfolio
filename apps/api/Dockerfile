@@ -16,6 +16,14 @@ RUN pnpm install --frozen-lockfile --filter api...
 RUN pnpm --filter api exec prisma generate
 RUN pnpm --filter api build
 
+# The corpus ingest (`railway ssh ... pnpm ingest:corpus`) reads these repo docs
+# from the filesystem (apps/api/src/scripts/corpus/sources.ts): without them the
+# prod corpus would silently drop the curated fact sheet and PRDs (missing files
+# are skipped, not fatal). Copied after the build so doc edits never bust the
+# dependency-install cache. Everything here is public (public repo).
+COPY README.md ./README.md
+COPY docs ./docs
+
 FROM node:22-alpine AS runner
 RUN corepack enable && corepack prepare pnpm@11.8.0 --activate
 ENV NODE_ENV=production
