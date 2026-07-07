@@ -174,7 +174,7 @@ const projects = [
           'LangGraph graph (guardrail, retrieve, agent, answer) over a pgvector RAG corpus, streaming grounded cited answers',
       },
     ],
-    screenshots: [] as string[],
+    screenshots: ['/screenshots/portfolio-agent/chat-widget.png'] as string[],
     status: ProjectStatus.LIVE,
     kind: ProjectKind.WEB_APP,
     featured: true,
