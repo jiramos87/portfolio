@@ -15,12 +15,12 @@ const META = {
   en: {
     title: `CV | ${CV_PROFILE.name}`,
     description:
-      "Resume of Javier Ramos Humeres: full-stack software engineer, AI-augmented development. Experience, skills, education, and a downloadable PDF.",
+      "Resume of Javier Ramos Humeres: full-stack software engineer building with AI agents and MCP. Experience, skills, education, and a downloadable PDF.",
   },
   es: {
     title: `CV | ${CV_PROFILE.name}`,
     description:
-      "CV de Javier Ramos Humeres: ingeniero de software full-stack, desarrollo aumentado con IA. Experiencia, habilidades, educación y PDF descargable.",
+      "CV de Javier Ramos Humeres: ingeniero de software full-stack que construye con agentes de IA y MCP. Experiencia, habilidades, educación y PDF descargable.",
   },
 } as const;
 

@@ -91,9 +91,9 @@ export const CV_PROFILE = {
 } as const;
 
 const EN: CvContent = {
-  title: "Software Engineer | Full-Stack & AI-Augmented Development",
+  title: "Software Engineer | Full-Stack, AI Agents & MCP (TypeScript / Node)",
   summary:
-    "Full-stack software engineer with 4+ years building production systems end to end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate who pairs strong fundamentals with an AI-augmented workflow: ships production code daily with AI coding agents, applying spec-driven and test-driven development, and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines). Core stack: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS, and GCP.",
+    "Full-stack software engineer with 4+ years building production systems end-to-end, from requirements and architecture to backend services, frontend, and cloud. Physics graduate with an AI-native workflow: ships production code daily with AI agents and builds custom agent tooling (Claude Code skills, MCP servers, automated issue-to-PR pipelines). Core stack: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS, and GCP.",
   labels: {
     experience: "Professional experience",
     projects: "Projects",
@@ -110,11 +110,10 @@ const EN: CvContent = {
       period: "08/2025 – Present",
       location: "Santiago, Chile (Hybrid)",
       bullets: [
-        "Led a full legacy-API migration to a modern NestJS clean-architecture (v2) backend in TypeScript, modernizing the services that power TeselaGen's consumer-facing biotech tools.",
-        "Build backend services and React / Next.js frontend features across multiple consumer tools, including the REST and GraphQL APIs and the data and integration layers that serve the AI copilot.",
-        "Built a Python client SDK that turns the NestJS backend's auto-generated OpenAPI / Swagger docs into a complete programmatic API client for consuming the platform's Custom Tools.",
-        "Built an agentic-development toolchain: custom Claude Code skills, MCP tools and servers, and automated ticket-to-PR workflows.",
-        "Own authentication, security, and infrastructure concerns across the v2 services.",
+        "Led the v1-to-v2 migration of a legacy biotech API to a modern NestJS / TypeScript clean-architecture backend: 58 controllers and 182 REST endpoints shipped to master across 40+ PRs, powering the platform's AI copilot and user-facing biotech tools.",
+        "Built the agentic delivery pipeline behind that migration (custom Claude Code skills, a project MCP server, and an automated issue-to-PR workflow with verification), cutting per-controller migration time from a week to a day.",
+        "Built a Python client SDK auto-generated from the backend's OpenAPI / Swagger docs, covering 100% of the v2 API surface by design, so scientists and engineers consume the platform's Custom Tools programmatically.",
+        "Built backend services and React / Next.js frontend features across multiple user-facing tools, including the REST and GraphQL APIs and the data and integration layers that feed the AI features.",
       ],
     },
     {
@@ -123,18 +122,22 @@ const EN: CvContent = {
       period: "05/2022 – 08/2025",
       location: "Santiago, Chile",
       bullets: [
-        "Built end-to-end payment integrations (Klap, Transbank, Getnet): checkout flows, confirmation webhooks, reconciliation, refunds, and failure recovery.",
-        "Developed order-management and fulfillment automation across the full order lifecycle for e-commerce clients.",
-        "Designed and built a large-dataset analytics backend and its Chart.js dashboard frontend, with reporting and Excel / CSV data exports.",
-        "Built event-driven microservices on AWS Lambda with the Serverless Framework (webhooks, SNS / SQS) for customer notifications (WhatsApp API) and payments.",
+        "Built end-to-end payment integrations (Klap, Transbank, Getnet) for custom Shopify checkouts: confirmation webhooks, reconciliation, refunds, and failure recovery for ~10,000 orders/month.",
+        "Built an analytics backend that auto-gathers and pre-aggregates ~10,000 orders/month through hourly and daily cron jobs, with a Chart.js dashboard and Excel / CSV export.",
+        "Built event-driven microservices on AWS Lambda and the Serverless Framework (webhooks, SNS / SQS queues) powering payment integrations and customer notifications (~1,000 WhatsApp API messages/month).",
       ],
     },
   ],
   projects: [
     {
-      name: "Isometric City-Builder (Unity, C#)",
-      context: "Personal Project",
-      body: "An end-to-end testbed for agentic development. Built a project-scoped MCP server, multi-agent and PRD-driven workflows, and a library of custom Claude Code skills and subagents that drive automated implement-and-verify loops from written specs.",
+      name: "Agentic Dev Kit",
+      context: "Open source · since 2026",
+      body: "Claude Code skills, an MCP server, and PRD templates for spec-driven agentic delivery.",
+    },
+    {
+      name: "World Music Map",
+      context: "Live · since 2026",
+      body: "An interactive music-discovery map. Next.js App Router (RSC), TypeScript, Prisma, PostgreSQL, and MapLibre.",
     },
   ],
   education: [
@@ -171,18 +174,28 @@ const EN: CvContent = {
   skills: [
     { group: "Languages", items: ["JavaScript", "TypeScript", "Python", "C#", "SQL"] },
     {
+      group: "AI & Agentic Dev",
+      items: [
+        "Claude Code (desktop & CLI)",
+        "MCP servers & tooling",
+        "LLM integration (Anthropic API, OpenAI API)",
+        "Agent skill & workflow design",
+        "Cursor",
+        "GitHub Copilot",
+      ],
+    },
+    {
       group: "Backend",
       items: [
         "Node.js",
         "NestJS",
         "Express",
-        "REST & GraphQL APIs",
-        "Event-driven microservices",
-        "Clean architecture & SOLID",
+        "REST APIs",
+        "GraphQL",
+        "Microservices",
+        "Clean architecture",
         "Authentication & encryption",
         "Serverless (AWS Lambda)",
-        "Sequelize",
-        "TypeORM",
       ],
     },
     { group: "Databases", items: ["PostgreSQL", "MongoDB"] },
@@ -195,13 +208,12 @@ const EN: CvContent = {
         "Cypress",
         "Playwright",
         "Unit / integration / e2e",
-        "Test-Driven Development (TDD)",
       ],
     },
     {
       group: "Cloud & DevOps",
       items: [
-        "AWS (S3, SES, SNS, CloudWatch, Lambda)",
+        "AWS (S3, SES, SNS, SQS, Lambda)",
         "GCP",
         "Docker",
         "GitHub Actions",
@@ -211,21 +223,10 @@ const EN: CvContent = {
       ],
     },
     {
-      group: "AI & Agentic Dev",
-      items: [
-        "Claude Code (desktop & CLI)",
-        "MCP tool and server authoring",
-        "Agent skill & workflow design",
-        "Spec-Driven Development (SDD)",
-        "Cursor",
-        "GitHub Copilot",
-      ],
-    },
-    {
       group: "Specialized",
       items: [
         "Payment gateways (Klap, Transbank, Getnet)",
-        "E-commerce (Shopify, WooCommerce)",
+        "E-commerce (Shopify)",
         "Order management",
         "WhatsApp API",
       ],
@@ -239,9 +240,9 @@ const EN: CvContent = {
 };
 
 const ES: CvContent = {
-  title: "Ingeniero de Software | Full-Stack y Desarrollo Aumentado con IA",
+  title: "Ingeniero de Software | Full-Stack, Agentes de IA y MCP (TypeScript / Node)",
   summary:
-    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física que combina fundamentos sólidos con un flujo de trabajo aumentado con IA: escribe código en producción a diario con agentes de IA, aplicando desarrollo guiado por especificaciones y por pruebas, y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR). Stack principal: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS y GCP.",
+    "Ingeniero de software full-stack con más de 4 años construyendo sistemas en producción de extremo a extremo, desde requerimientos y arquitectura hasta servicios backend, frontend y cloud. Licenciado en Física con un flujo de trabajo nativo en IA: escribe código en producción a diario con agentes de IA y construye herramientas de agentes a medida (skills de Claude Code, servidores MCP, pipelines automatizados de issue-a-PR). Stack principal: Node.js / NestJS, TypeScript, React / Next.js, Python, SQL, GraphQL, MongoDB, AWS y GCP.",
   labels: {
     experience: "Experiencia profesional",
     projects: "Proyectos",
@@ -258,11 +259,10 @@ const ES: CvContent = {
       period: "08/2025 – Presente",
       location: "Santiago, Chile (Híbrido)",
       bullets: [
-        "Lideré una migración completa de la API legada a un backend moderno en TypeScript con NestJS y arquitectura limpia (v2), modernizando los servicios que impulsan las herramientas biotech de TeselaGen orientadas al usuario.",
-        "Desarrollo servicios backend y funcionalidades frontend en React / Next.js en múltiples herramientas de usuario, incluyendo las APIs REST y GraphQL y las capas de datos e integración que alimentan el copiloto de IA.",
-        "Construí un SDK cliente en Python que, a partir de la documentación OpenAPI / Swagger autogenerada del backend NestJS, produce un cliente de API programático completo para consumir las Custom Tools de la plataforma.",
-        "Construí un toolchain de desarrollo agéntico: skills de Claude Code a medida, herramientas y servidores MCP, y flujos automatizados de ticket-a-PR.",
-        "Responsable de autenticación, seguridad e infraestructura en los servicios v2.",
+        "Migré de v1 a v2 una API legada de biotecnología a un backend moderno NestJS / TypeScript con arquitectura CLEAN: 58 controladores y 182 endpoints REST enviados a master en más de 40 PRs, impulsando el copiloto de IA y las herramientas biotech de la plataforma.",
+        "Construí el pipeline agéntico detrás de esa migración (skills de Claude Code a medida, un servidor MCP de proyecto y un flujo automatizado de issue-a-PR con verificación), reduciendo el tiempo de migración por controlador de una semana a medio día.",
+        "Desarrollé un cliente SDK en Python auto-generado desde la documentación OpenAPI / Swagger del backend NestJS, que cubre por diseño el 100% de la superficie de la API v2 para su consumo programático.",
+        "Desarrollé front y back en React / Next.js en múltiples herramientas de usuario, incluyendo las APIs REST y GraphQL y las capas de datos e integración que alimentan las funcionalidades de IA.",
       ],
     },
     {
@@ -271,18 +271,22 @@ const ES: CvContent = {
       period: "05/2022 – 08/2025",
       location: "Santiago, Chile (Híbrido)",
       bullets: [
-        "Construí integraciones de pago de extremo a extremo (Klap, Transbank, Getnet): flujos de checkout, webhooks de confirmación, conciliación, reembolsos y recuperación ante fallos.",
-        "Automaticé la gestión y el fulfillment de pedidos para clientes de e-commerce.",
-        "Desarrollé un backend de analítica para grandes volúmenes de datos y su dashboard frontend en Chart.js, con exportación de datos a Excel / CSV.",
-        "Construí microservicios orientados a eventos en AWS Lambda con Serverless Framework (webhooks, SNS / SQS) para notificaciones a clientes (API de WhatsApp) y pagos.",
+        "Construí integraciones de pago de extremo a extremo (Klap, Transbank, Getnet) para checkouts personalizados de Shopify: webhooks de confirmación, conciliación, reembolsos y recuperación de fallas para ~10.000 pedidos mensuales.",
+        "Construí un backend de analítica que recolecta y pre-agrega automáticamente ~10.000 pedidos mensuales mediante cron jobs horarios y diarios, con dashboard en Chart.js y exportación a Excel / CSV.",
+        "Construí microservicios event-driven sobre AWS Lambda y Serverless Framework (webhooks, colas SNS / SQS) para integraciones de pago y notificaciones a clientes (~1.000 mensajes mensuales vía API de WhatsApp).",
       ],
     },
   ],
   projects: [
     {
-      name: "Constructor de Ciudad Isométrico (Unity, C#)",
-      context: "Proyecto Personal",
-      body: "Banco de pruebas de extremo a extremo para desarrollo agéntico. Construí un servidor MCP a nivel de proyecto, flujos de trabajo multi-agente y dirigidos por PRD, y una librería de skills y subagentes de Claude Code a medida que ejecutan ciclos automatizados de implementar-y-verificar a partir de especificaciones escritas.",
+      name: "Agentic Dev Kit",
+      context: "Open source · desde 2026",
+      body: "Skills de Claude Code, un servidor MCP y plantillas de PRD para entrega agéntica spec-driven.",
+    },
+    {
+      name: "World Music Map",
+      context: "En vivo · desde 2026",
+      body: "Un mapa interactivo de descubrimiento musical. Next.js App Router (RSC), TypeScript, Prisma, PostgreSQL y MapLibre.",
     },
   ],
   education: [
@@ -319,18 +323,28 @@ const ES: CvContent = {
   skills: [
     { group: "Lenguajes", items: ["JavaScript", "TypeScript", "Python", "C#", "SQL"] },
     {
+      group: "IA y Desarrollo Agéntico",
+      items: [
+        "Claude Code (desktop y CLI)",
+        "Servidores MCP y tooling",
+        "Integración de LLMs (API de Anthropic, API de OpenAI)",
+        "Diseño de skills y workflows de agentes",
+        "Cursor",
+        "GitHub Copilot",
+      ],
+    },
+    {
       group: "Backend",
       items: [
         "Node.js",
         "NestJS",
         "Express",
-        "APIs REST y GraphQL",
-        "Microservicios orientados a eventos",
-        "Arquitectura limpia y SOLID",
+        "APIs REST",
+        "GraphQL",
+        "Microservicios",
+        "Arquitectura limpia",
         "Autenticación y encriptación",
         "Serverless (AWS Lambda)",
-        "Sequelize",
-        "TypeORM",
       ],
     },
     { group: "BBDD", items: ["PostgreSQL", "MongoDB"] },
@@ -343,37 +357,26 @@ const ES: CvContent = {
         "Cypress",
         "Playwright",
         "Unit / integración / e2e",
-        "Desarrollo guiado por pruebas (TDD)",
       ],
     },
     {
       group: "Cloud & DevOps",
       items: [
-        "AWS (S3, SES, SNS, CloudWatch, Lambda)",
+        "AWS (S3, SES, SNS, SQS, Lambda)",
         "GCP",
         "Docker",
         "GitHub Actions",
         "Heroku",
-        "Serverless",
+        "Serverless Framework",
         "CI/CD (GitHub / Heroku / AWS)",
-      ],
-    },
-    {
-      group: "AI & Agentic Dev",
-      items: [
-        "Claude Code (desktop y CLI)",
-        "Creación de herramientas y servidores MCP",
-        "Diseño de skills y workflows de agentes",
-        "Desarrollo guiado por especificaciones (SDD)",
-        "Cursor",
-        "GitHub Copilot",
       ],
     },
     {
       group: "Específicos",
       items: [
         "Pasarelas de pago (Klap, Transbank, Getnet)",
-        "E-commerce (Shopify, WooCommerce)",
+        "E-commerce (Shopify)",
+        "Gestión de pedidos",
         "API de WhatsApp",
       ],
     },
