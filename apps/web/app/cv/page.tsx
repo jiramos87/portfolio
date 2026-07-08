@@ -15,12 +15,12 @@ const META = {
   en: {
     title: `CV | ${CV_PROFILE.name}`,
     description:
-      "Resume of Javier Ramos Humeres: full-stack software engineer building with AI agents and MCP. Experience, skills, education, and a downloadable PDF.",
+      "Resume of Javier Ramos Humeres: full-stack developer specialized in generative AI, agents, and MCP. Experience, skills, education, and a downloadable PDF.",
   },
   es: {
     title: `CV | ${CV_PROFILE.name}`,
     description:
-      "CV de Javier Ramos Humeres: ingeniero de software full-stack que construye con agentes de IA y MCP. Experiencia, habilidades, educación y PDF descargable.",
+      "CV de Javier Ramos Humeres: desarrollador full stack especializado en IA generativa, agentes y MCP. Experiencia, habilidades, educación y PDF descargable.",
   },
 } as const;
 
@@ -138,6 +138,14 @@ export default async function CvPage({
                   <li key={i}>{b}</li>
                 ))}
               </ul>
+              {job.stack ? (
+                <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground">
+                    {cv.labels.technologies}:
+                  </span>{" "}
+                  {job.stack}
+                </p>
+              ) : null}
             </article>
           ))}
         </div>
@@ -153,6 +161,14 @@ export default async function CvPage({
                 <span className="font-normal text-muted-foreground"> · {p.context}</span>
               </h3>
               <p className="mt-2 max-w-prose text-sm text-muted-foreground">{p.body}</p>
+              {p.stack ? (
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground">
+                    {cv.labels.technologies}:
+                  </span>{" "}
+                  {p.stack}
+                </p>
+              ) : null}
             </article>
           ))}
         </div>
