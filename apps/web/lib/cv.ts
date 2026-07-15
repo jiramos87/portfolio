@@ -96,9 +96,9 @@ export const CV_PROFILE = {
 } as const;
 
 const EN: CvContent = {
-  title: "Full Stack Developer, AI Agents & MCP",
+  title: "Full Stack Developer",
   summary:
-    "Fullstack developer with 4+ years building production systems end to end, with the last year focused on generative AI development in corporate environments: language-model (LLM) integration, intelligent agents, and agentic tooling for a US biotech SaaS. Specialized in TypeScript, Node.js / NestJS, React / Next.js, and Python, with REST / GraphQL APIs, microservices, and CI/CD. Cloud experience on AWS and GCP. Looking to contribute to high-impact projects that combine solid full-stack development with generative AI.",
+    "Full-stack developer with 4+ years building production systems end-to-end, with the past year focused on generative AI in enterprise settings: integrating large language models (LLMs), intelligent agents, and agentic tooling for a U.S. biotech SaaS. Specialized in TypeScript, Node.js / NestJS, React / Next.js, and Python, with REST / GraphQL APIs, scalable serverless microservices, and CI/CD with DevSecOps. Focused on AI-assisted development with Claude Code and Cursor, and end-to-end delivery grounded in software-engineering fundamentals (DDD, automated testing via TDD, SDD, Clean Architecture, SOLID). Cloud experience on AWS and GCP. I'm looking to contribute to high-impact projects that combine solid full-stack development with generative AI.",
   labels: {
     experience: "Professional experience",
     projects: "Projects",
@@ -116,13 +116,13 @@ const EN: CvContent = {
       period: "08/2025 – Present",
       location: "Santiago, Chile (Hybrid)",
       bullets: [
-        "Development for the generative AI platform of a US biotech SaaS: contributed to a specialized AI agent and led the v1-to-v2 migration of the API that feeds the platform's AI copilot (LLM agent) and its Custom Tools: 58 controllers and 182 REST endpoints in NestJS with clean architecture.",
-        "Built the tool-chain for the development cycle: Claude Code skills, an MCP server, and issue-to-PR automation, cutting per-controller migration time from ~1 week to ~1 day.",
-        "Developed the API's Python client SDK (auto-generated from the OpenAPI / Swagger documentation), covering 100% of the v2 surface by design and exposing it for programmatic consumption.",
-        "Developed frontend and backend in React / Next.js and NestJS across multiple user-facing tools, including the data and integration layers that feed generative AI features.",
+        "Developed for the generative-AI platform of a biotech SaaS: contributed to building a specialized AI agent and led the v1-to-v2 migration of the API that powers the AI copilot (LLM agent) and its Custom Tools: 58 controllers and 182 REST endpoints in NestJS, with clean architecture and automated testing via TDD.",
+        "Built a tool-chain for the end-to-end development cycle: Claude Code skills, an MCP server, and issue-to-PR automation, cutting per-controller migration time from ~1 week to ~1 day.",
+        "Built the API's Python client SDK (auto-generated from the OpenAPI / Swagger documentation), which by design covers 100% of the v2 surface and exposes it for programmatic consumption.",
+        "Built frontend and backend in React / Next.js and NestJS across multiple user-facing tools, including the data and integration layers that power generative-AI features, applying software-engineering principles such as DDD (Domain-Driven), TDD (Test-Driven), SDD (Spec-Driven), Clean Architecture, and SOLID.",
       ],
       stack:
-        "TypeScript, Node.js, NestJS, Python, React, Next.js, PostgreSQL, GraphQL, OpenAPI / Swagger, Claude Code, MCP servers, Anthropic API, LangChain, LangGraph, Docker, GitHub Actions (CI/CD).",
+        "TypeScript, Node.js, NestJS, Python, React, Next.js, PostgreSQL, GraphQL, OpenAPI / Swagger, Claude Code, Cursor, MCP servers, Anthropic API, LangChain, LangGraph, Docker, GitHub Actions (CI/CD).",
     },
     {
       role: "Backend Developer",
@@ -130,12 +130,13 @@ const EN: CvContent = {
       period: "05/2022 – 08/2025",
       location: "Santiago, Chile (Hybrid)",
       bullets: [
-        "Built end-to-end payment integrations (Klap, Transbank, Getnet) for custom Shopify checkouts: checkout flows, confirmation webhooks, reconciliation, refunds, and failure recovery for ~10,000 orders/month.",
-        "Built an analytics backend that automatically gathers and pre-aggregates ~10,000 orders/month through hourly and daily cron jobs, with a Chart.js dashboard, Python scripts, and Excel / CSV export.",
-        "Built event-driven microservices on AWS Lambda and the Serverless Framework (webhooks, SNS / SQS queues) for payment integrations and customer notifications (~1,000 messages/month via the WhatsApp API).",
+        "Built end-to-end payment integrations (Klap, Transbank, Getnet) for custom Shopify checkouts: checkout flows, confirmation webhooks, reconciliation, refunds, and failure recovery for ~10,000 orders per month.",
+        "Built an analytics backend that automatically collects and pre-aggregates ~10,000 monthly orders via hourly and daily cron jobs, with a Chart.js dashboard, Python scripts, and Excel / CSV export.",
+        "Built scalable event-driven microservices on AWS Lambda and the Serverless Framework (webhooks, SNS / SQS queues) for payment integrations and customer notifications (~1,000 monthly messages via the WhatsApp API).",
+        "Applied software-engineering principles such as DDD (Domain-Driven), TDD (Test-Driven), SDD (Spec-Driven), Clean Architecture, and SOLID.",
       ],
       stack:
-        "Node.js, Express, TypeScript, React, Python, Django, FastAPI, PostgreSQL, MongoDB, Sequelize, AWS (Lambda, S3, SQS, SNS, SES), Serverless Framework, Docker, CI/CD, Shopify, WhatsApp API.",
+        "Node.js, Express, TypeScript, React, Python, Django, FastAPI, PostgreSQL, MongoDB, Sequelize, Claude Code, Cursor, AWS (Lambda, S3, SQS, SNS, SES), Serverless Framework, Docker, CI/CD, Shopify, WhatsApp API.",
     },
   ],
   projects: [
@@ -234,6 +235,7 @@ const EN: CvContent = {
         "GitHub Actions",
         "Heroku",
         "Serverless Framework",
+        "DevSecOps",
         "CI/CD (GitHub / Heroku / AWS)",
       ],
     },
@@ -255,9 +257,9 @@ const EN: CvContent = {
 };
 
 const ES: CvContent = {
-  title: "Desarrollador Full Stack, Agentes de IA y MCP",
+  title: "Desarrollador Full Stack",
   summary:
-    "Desarrollador fullstack con más de 4 años de experiencia construyendo sistemas en producción de extremo a extremo, con el último año enfocado en IA generativa en entornos corporativos: integración de modelos de lenguaje (LLMs), agentes inteligentes y tooling agéntico para un SaaS biotech de EE.UU. Especializado en TypeScript, Node.js / NestJS, React / Next.js y Python, con APIs REST / GraphQL, microservicios y CI/CD. Experiencia cloud en AWS y GCP. Busco aportar en proyectos de alto impacto que combinen desarrollo full stack sólido con IA generativa.",
+    "Desarrollador full stack con más de 4 años de experiencia construyendo sistemas en producción de extremo a extremo, con el último año enfocado en IA generativa en entornos corporativos: integración de modelos de lenguaje (LLMs), agentes inteligentes y tooling agéntico para un SaaS biotech de EE.UU. Especializado en TypeScript, Node.js / NestJS, React / Next.js y Python, con APIs REST / GraphQL, microservicios escalables serverless y CI/CD con DevSecOps. Enfocado en el desarrollo asistido por IA con Claude Code y Cursor, y en la entrega end-to-end basada en fundamentos de Ingeniería de Software (DDD, pruebas automatizadas mediante TDD, SDD, Clean Architecture, SOLID). Experiencia cloud en AWS y GCP. Busco aportar en proyectos de alto impacto que combinen desarrollo full stack sólido con IA generativa.",
   labels: {
     experience: "Experiencia profesional",
     projects: "Proyectos",
@@ -275,13 +277,13 @@ const ES: CvContent = {
       period: "08/2025 – Presente",
       location: "Santiago, Chile (Híbrido)",
       bullets: [
-        "Desarrollo para la plataforma de IA generativa de un SaaS biotech de EE.UU.: participé del desarrollo de un agente de IA especializado y lideré la migración v1 a v2 de la API que alimenta al copiloto de IA (agente LLM) y sus Custom Tools: 58 controladores y 182 endpoints REST en NestJS con arquitectura clean.",
-        "Construí el tool-chain para el ciclo de desarrollo: skills de Claude Code, un servidor MCP y automatización issue-a-PR, reduciendo el tiempo de migración por controlador de ~1 semana a ~1 día.",
+        "Desarrollo para la plataforma de IA generativa de un SaaS biotech: participé del desarrollo de un agente de IA especializado y lideré la migración v1 a v2 de la API que alimenta al copiloto de IA (agente LLM) y sus Custom Tools: 58 controladores y 182 endpoints REST en NestJS, con arquitectura clean y pruebas automatizadas mediante TDD.",
+        "Construí el tool-chain para el ciclo de desarrollo end-to-end: skills de Claude Code, un servidor MCP y automatización issue-a-PR, reduciendo el tiempo de migración por controlador de ~1 semana a ~1 día.",
         "Desarrollé en Python el cliente SDK de la API (auto-generado desde la documentación OpenAPI / Swagger), que cubre por diseño el 100% de la superficie v2 y la expone para consumo programático.",
-        "Desarrollé frontend y backend en React / Next.js y NestJS en múltiples herramientas de usuario, incluyendo las capas de datos e integración que alimentan funcionalidades de IA generativa.",
+        "Desarrollé frontend y backend en React / Next.js y NestJS en múltiples herramientas de usuario, incluyendo las capas de datos e integración que alimentan funcionalidades de IA generativa, aplicando principios de ingeniería de software como DDD (Domain-Driven), TDD (Test-Driven), SDD (Spec-Driven), Clean Architecture y SOLID.",
       ],
       stack:
-        "TypeScript, Node.js, NestJS, Python, React, Next.js, PostgreSQL, GraphQL, OpenAPI / Swagger, Claude Code, servidores MCP, API de Anthropic, LangChain, LangGraph, Docker, GitHub Actions (CI/CD).",
+        "TypeScript, Node.js, NestJS, Python, React, Next.js, PostgreSQL, GraphQL, OpenAPI / Swagger, Claude Code, Cursor, servidores MCP, API de Anthropic, LangChain, LangGraph, Docker, GitHub Actions (CI/CD).",
     },
     {
       role: "Backend Developer",
@@ -291,10 +293,11 @@ const ES: CvContent = {
       bullets: [
         "Construí integraciones de pago de extremo a extremo (Klap, Transbank, Getnet) para checkouts personalizados de Shopify: flujos de checkout, webhooks de confirmación, conciliación, reembolsos y recuperación de fallas para ~10.000 pedidos mensuales.",
         "Construí un backend de analítica que recolecta y pre-agrega automáticamente ~10.000 pedidos mensuales mediante cron jobs horarios y diarios, con dashboard en Chart.js, scripts en Python y exportación a Excel / CSV.",
-        "Construí microservicios event-driven sobre AWS Lambda y Serverless Framework (webhooks, colas SNS / SQS) para integraciones de pago y notificaciones a clientes (~1.000 mensajes mensuales vía API de WhatsApp).",
+        "Construí microservicios escalables event-driven sobre AWS Lambda y Serverless Framework (webhooks, colas SNS / SQS) para integraciones de pago y notificaciones a clientes (~1.000 mensajes mensuales vía API de WhatsApp).",
+        "Apliqué principios de ingeniería de software como DDD (Domain-Driven), TDD (Test-Driven), SDD (Spec-Driven), Clean Architecture y SOLID.",
       ],
       stack:
-        "Node.js, Express, TypeScript, React, Python, Django, FastAPI, PostgreSQL, MongoDB, Sequelize, AWS (Lambda, S3, SQS, SNS, SES), Serverless Framework, Docker, CI/CD, Shopify, API de WhatsApp.",
+        "Node.js, Express, TypeScript, React, Python, Django, FastAPI, PostgreSQL, MongoDB, Sequelize, Claude Code, Cursor, AWS (Lambda, S3, SQS, SNS, SES), Serverless Framework, Docker, CI/CD, Shopify, API de WhatsApp.",
     },
   ],
   projects: [
@@ -393,6 +396,7 @@ const ES: CvContent = {
         "GitHub Actions",
         "Heroku",
         "Serverless Framework",
+        "DevSecOps",
         "CI/CD (GitHub / Heroku / AWS)",
       ],
     },
